@@ -1,8 +1,6 @@
-import { getCommandsForDay, getWritingPracticeForDay } from "@/lib/curriculumLoader";
+import { shuffleMcqDeck, shuffleTypingDeck } from "@/lib/questionsLoader";
 
-export function shuffleArray(arr) {
-  return [...arr].sort(() => Math.random() - 0.5);
-}
+export { shuffleArray } from "@/lib/questionsLoader";
 
 export function normalizeAnswer(value) {
   return value
@@ -22,66 +20,47 @@ export function normalizeAnswer(value) {
     .trim();
 }
 
-export function matchesPracticeAnswer(typed, acceptedAnswers) {
-  const normalized = normalizeAnswer(typed);
-  return acceptedAnswers.some((a) => {
-    const accepted = normalizeAnswer(a);
+function normalizeForCompare(value, caseSensitive) {
+  const n = normalizeAnswer(value);
+  return caseSensitive ? n : n.toLowerCase();
+}
+
+export function matchesPracticeAnswer(typed, questionOrAnswers) {
+  const answers = Array.isArray(questionOrAnswers)
+    ? questionOrAnswers
+    : questionOrAnswers?.answers ?? [];
+  const caseSensitive = Array.isArray(questionOrAnswers)
+    ? true
+    : questionOrAnswers?.caseSensitive !== false;
+  const allowExtraSpaces = Array.isArray(questionOrAnswers)
+    ? true
+    : questionOrAnswers?.allowExtraSpaces !== false;
+
+  const normalized = normalizeForCompare(typed, caseSensitive);
+  if (!allowExtraSpaces && typed.trim() !== typed.replace(/\s+/g, " ").trim()) {
+    /* still allow via normalizeAnswer collapse */
+  }
+
+  return answers.some((a) => {
+    const accepted = normalizeForCompare(a, caseSensitive);
     if (normalized === accepted) return true;
-    // if: قبول الشرط بدون "; then"
-    if (accepted.includes("if [") && normalized === normalizeAnswer(accepted.replace(/;\s*then$/i, ""))) {
+    if (accepted.includes("if [") && normalized === normalizeForCompare(a.replace(/;\s*then$/i, ""), caseSensitive)) {
       return true;
     }
-    // for/while: قبول بدون "; do"
-    if ((accepted.includes("for ") || accepted.includes("while ")) && normalized === normalizeAnswer(accepted.replace(/;\s*do$/i, ""))) {
+    if (
+      (accepted.includes("for ") || accepted.includes("while ")) &&
+      normalized === normalizeForCompare(a.replace(/;\s*do$/i, ""), caseSensitive)
+    ) {
       return true;
     }
     return false;
   });
 }
 
-/** مفتاح فريد للاختيار — يمنع التباس عدة بطاقات بنفس اسم الأمر (ls, chmod, kill). */
-function optionKey(item) {
-  return item.example;
-}
-
-export function buildQuestion(item, index, dayCommands) {
-  const types = ["descToCommand", "exampleToMeaning", "commandToDesc", "targetToCommand"];
-  const type = types[index % types.length];
-  let question = "";
-  let answer = "";
-  let pool = [];
-
-  if (type === "descToCommand") {
-    question = `أي أمر يطابق هذا الوصف؟\n${item.desc}`;
-    answer = optionKey(item);
-    pool = dayCommands.map(optionKey);
-  } else if (type === "exampleToMeaning") {
-    question = `ما وظيفة هذا الأمر؟\n${item.example}`;
-    answer = item.desc;
-    pool = dayCommands.map((c) => c.desc);
-  } else if (type === "commandToDesc") {
-    question = `اختر الشرح الصحيح للأمر:\n${item.example}`;
-    answer = item.desc;
-    pool = dayCommands.map((c) => c.desc);
-  } else {
-    question = `أي أمر يناسب الهدف/الوسيطة التالية؟\n${item.target}`;
-    answer = optionKey(item);
-    const withTarget = dayCommands.filter((c) => c.target !== "None");
-    pool = (withTarget.length > 0 ? withTarget : dayCommands).map(optionKey);
-  }
-
-  const wrong = shuffleArray([...new Set(pool.filter((x) => x !== answer))]).slice(0, 3);
-  const options = shuffleArray([answer, ...wrong]);
-  return { ...item, type, question, answer, options };
-}
-
 export function buildQuizDeck(dayId) {
-  const dayCommands = getCommandsForDay(dayId);
-  return shuffleArray(dayCommands).map((item, i) => buildQuestion(item, i, dayCommands));
+  return shuffleMcqDeck(dayId);
 }
 
 export function buildPracticeDeck(dayId) {
-  return shuffleArray(getWritingPracticeForDay(dayId));
+  return shuffleTypingDeck(dayId);
 }
-
-export { getCommandsForDay, getWritingPracticeForDay as getPracticeForDay };

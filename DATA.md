@@ -1,17 +1,37 @@
-# بيانات المنهج
+# بيانات المشروع — مصدران للحقيقة
 
-**مصدر الحقيقة الوحيد:** [`src/data/curriculum.ar.json`](src/data/curriculum.ar.json)
+## 1) المنهج (أوامر + مذاكرة + مسار اليوم)
 
-لا تعدّل [`terminal_7_days_commands_ar.json`](terminal_7_days_commands_ar.json) يدويًا — يُحدَّث تلقائيًا كمرآة عند إعادة البناء.
+**الملف:** [`src/data/curriculum.ar.json`](src/data/curriculum.ar.json)
 
-## تعديل المحتوى
+**التعديل:**
+1. [`scripts/curriculum-base.json`](scripts/curriculum-base.json) — أوامر وأيام
+2. `python3 scripts/build-curriculum-json.py`
 
-1. أوامر وأيام: [`scripts/curriculum-base.json`](scripts/curriculum-base.json)
-2. أسئلة الكتابة: [`scripts/practiceQuestions.source.js`](scripts/practiceQuestions.source.js) ثم:
+مرآة اختيارية: [`terminal_7_days_commands_ar.json`](terminal_7_days_commands_ar.json)
+
+---
+
+## 2) الأسئلة (اختبار + كتابة)
+
+**الملف:** [`src/data/questions.v2.ar.json`](src/data/questions.v2.ar.json)
+
+- **30 MCQ** + **30 typing** لكل يوم (210 + 210 = 420 سؤال)
+- `scoring` و `ui_copy` في جذر الملف
+
+**التعديل:** عدّل الملف مباشرة (أو النسخة في الجذر [`terminal_7_days_training_questions_v2_ar.json`](terminal_7_days_training_questions_v2_ar.json) ثم انسخها إلى `src/data/`).
 
 ```bash
-node --input-type=module -e "import {practiceQuestions} from './scripts/practiceQuestions.source.js'; import {writeFileSync} from 'fs'; writeFileSync('scripts/practice-questions.seed.json', JSON.stringify(practiceQuestions,null,2));"
-python3 scripts/build-curriculum-json.py
+cp terminal_7_days_training_questions_v2_ar.json src/data/questions.v2.ar.json
+npm run dev
 ```
 
-3. شغّل `npm run dev` للتجربة.
+---
+
+## التحميل في الكود
+
+| الوظيفة | الملف |
+|---------|--------|
+| أوامر، Lab، goal | [`src/lib/curriculumLoader.js`](src/lib/curriculumLoader.js) |
+| MCQ، typing، ui_copy | [`src/lib/questionsLoader.js`](src/lib/questionsLoader.js) |
+| خلط + مطابقة إجابات | [`src/lib/quiz.js`](src/lib/quiz.js) |

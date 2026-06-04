@@ -298,53 +298,8 @@ def enrich_command(day: int, cmd: dict, idx: int) -> dict:
     }
 
 
-def load_practice_js() -> list[dict]:
-    seed = ROOT / "scripts/practice-questions.seed.json"
-    if seed.exists():
-        return json.loads(seed.read_text(encoding="utf-8"))
-    source = ROOT / "scripts/practiceQuestions.source.js"
-    if not source.exists():
-        source = ROOT / "src/data/practiceQuestions.js"
-    text = source.read_text(encoding="utf-8")
-    items = []
-    for block in re.finditer(
-        r"\{\s*dayId:\s*(\d+),\s*prompt:\s*\"([^\"]+)\",\s*answers:\s*\[([^\]]+)\],\s*hint:\s*\"([^\"]*)\",\s*explanation:\s*\"([^\"]*)\"\s*\}",
-        text,
-        re.DOTALL,
-    ):
-        day_id = int(block.group(1))
-        prompt = block.group(2)
-        answers_raw = block.group(3)
-        answers = re.findall(r'"([^"]*)"|\'([^\']*)\'', answers_raw)
-        answers = [a[0] or a[1] for a in answers]
-        items.append(
-            {
-                "dayId": day_id,
-                "prompt": prompt,
-                "answers": answers,
-                "hint": block.group(4),
-                "explanation": block.group(5),
-            }
-        )
-    return items
-
-
 def main():
     raw = json.loads(SRC_JSON.read_text(encoding="utf-8"))
-    practice_items = load_practice_js()
-    practice_by_day: dict[int, list] = {i: [] for i in range(1, 8)}
-    for i, q in enumerate(practice_items):
-        day = q["dayId"]
-        practice_by_day[day].append(
-            {
-                "id": f"d{day}w-{i+1:03d}",
-                "prompt": q["prompt"],
-                "answers": q["answers"],
-                "hint": q["hint"],
-                "explanation": q["explanation"],
-            }
-        )
-    practice_by_day[6].extend(EXTRA_WRITING_DAY6)
 
     out_days = []
     for day_obj in raw["days"]:
@@ -370,7 +325,6 @@ def main():
                 "goal": day_obj["goal"],
                 "commands": commands,
                 "practice": day_obj.get("practice", []),
-                "writingPractice": practice_by_day[d],
             }
         )
 
@@ -379,8 +333,9 @@ def main():
         "title": raw["title"],
         "language": raw["language"],
         "description": raw["description"],
-        "_editInstructions": "عدّل scripts/curriculum-base.json و scripts/practice-questions.seed.json ثم شغّل: python3 scripts/build-curriculum-json.py",
+        "_editInstructions": "أوامر: scripts/curriculum-base.json | أسئلة: src/data/questions.v2.ar.json — ثم python3 scripts/build-curriculum-json.py",
         "_sourceOfTruth": "src/data/curriculum.ar.json",
+        "_questionsSource": "src/data/questions.v2.ar.json",
         "days": out_days,
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
@@ -388,8 +343,7 @@ def main():
     OUT.write_text(text, encoding="utf-8")
     mirror = ROOT / "terminal_7_days_commands_ar.json"
     mirror.write_text(text, encoding="utf-8")
-    print(f"Wrote {OUT} — {sum(len(d['commands']) for d in out_days)} commands, "
-          f"{sum(len(d['writingPractice']) for d in out_days)} writing questions")
+    print(f"Wrote {OUT} — {sum(len(d['commands']) for d in out_days)} commands (questions: questions.v2.ar.json)")
 
 
 if __name__ == "__main__":

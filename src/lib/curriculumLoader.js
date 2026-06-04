@@ -109,25 +109,6 @@ export function getCommandsForDay(dayId) {
   return raw.commands.map((c) => normalizeCommandEntry(c, dayId));
 }
 
-export function getWritingPracticeForDay(dayId) {
-  const raw = getRawDay(dayId);
-  if (!raw?.writingPractice) return [];
-  return raw.writingPractice.map((q) => ({
-    dayId,
-    prompt: q.prompt,
-    answers: q.answers,
-    hint: q.hint,
-    explanation: q.explanation,
-    id: q.id,
-    relatedCommandId: q.relatedCommandId,
-  }));
-}
-
-/** @deprecated use getWritingPracticeForDay */
-export function getPracticeForDay(dayId) {
-  return getWritingPracticeForDay(dayId);
-}
-
 export function getLabStepsForDay(dayId) {
   const raw = getRawDay(dayId);
   return raw?.practice ?? [];

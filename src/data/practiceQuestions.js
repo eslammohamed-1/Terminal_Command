@@ -1,1 +1,8 @@
-export { getPracticeForDay, getWritingPracticeForDay } from "@/lib/curriculumLoader";
+export {
+  getTypingForDay as getPracticeForDay,
+  getTypingForDay,
+  getWritingPracticeForDay,
+  getMcqForDay,
+  getMcqCountForDay,
+  getTypingCountForDay,
+} from "@/lib/questionsLoader";

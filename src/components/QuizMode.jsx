@@ -3,13 +3,17 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, XCircle, Lightbulb, Trophy, RotateCcw, Keyboard } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import DifficultyBadge from "@/components/DifficultyBadge";
 import { buildQuizDeck } from "@/lib/quiz";
+import { getQuestionsMeta } from "@/lib/questionsLoader";
 import { saveQuizResult } from "@/lib/progress";
 
 export default function QuizMode({ dayId, onBackToDay, onStartPractice, onProgressUpdate }) {
+  const { uiCopy } = getQuestionsMeta();
   const [deckSeed, setDeckSeed] = useState(0);
   const [questionIndex, setQuestionIndex] = useState(0);
-  const [score, setScore] = useState(0);
+  const [correctCount, setCorrectCount] = useState(0);
+  const [pointsEarned, setPointsEarned] = useState(0);
   const [streak, setStreak] = useState(0);
   const [selected, setSelected] = useState(null);
   const [showHint, setShowHint] = useState(false);
@@ -25,7 +29,8 @@ export default function QuizMode({ dayId, onBackToDay, onStartPractice, onProgre
     if (isAnswered || !current) return;
     setSelected(option);
     if (option === current.answer) {
-      setScore((s) => s + 1);
+      setCorrectCount((c) => c + 1);
+      setPointsEarned((p) => p + (current.points ?? 1));
       setStreak((s) => s + 1);
     } else {
       setStreak(0);
@@ -34,7 +39,8 @@ export default function QuizMode({ dayId, onBackToDay, onStartPractice, onProgre
 
   const restart = () => {
     setQuestionIndex(0);
-    setScore(0);
+    setCorrectCount(0);
+    setPointsEarned(0);
     setStreak(0);
     setSelected(null);
     setShowHint(false);
@@ -55,10 +61,13 @@ export default function QuizMode({ dayId, onBackToDay, onStartPractice, onProgre
             <Trophy className="mx-auto h-16 w-16 text-yellow-300" />
             <h2 className="text-3xl font-bold">نتيجة الاختبار</h2>
             <p className="text-5xl font-black text-emerald-300">
-              {score} / {quizDeck.length}
+              {correctCount} / {quizDeck.length}
+            </p>
+            <p className="text-2xl text-amber-200">
+              {uiCopy.points_label}: {pointsEarned}
             </p>
             <p className="text-slate-300">
-              {score >= passThreshold
+              {correctCount >= passThreshold
                 ? "ممتاز! جرّب تدريب الكتابة لنفس اليوم."
                 : "راجع كروت المذاكرة ثم أعد الاختبار."}
             </p>
@@ -86,32 +95,37 @@ export default function QuizMode({ dayId, onBackToDay, onStartPractice, onProgre
       <Card className="rounded-2xl bg-slate-900 border-slate-800 shadow-xl">
         <CardContent className="p-5 md:p-7 space-y-5">
           <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-            <div className="flex gap-3 flex-wrap">
-              <span className="rounded-full bg-emerald-500/15 px-4 py-2 text-emerald-300">النقاط: {score}</span>
-              <span className="rounded-full bg-yellow-500/15 px-4 py-2 text-yellow-300">سلسلة: {streak}</span>
+            <div className="flex gap-3 flex-wrap items-center">
+              <span className="rounded-full bg-emerald-500/15 px-4 py-2 text-emerald-300">
+                {uiCopy.points_label}: {pointsEarned}
+              </span>
+              <span className="rounded-full bg-yellow-500/15 px-4 py-2 text-yellow-300">
+                {uiCopy.streak_label}: {streak}
+              </span>
               <span className="rounded-full bg-indigo-500/15 px-4 py-2 text-indigo-300">
                 سؤال {questionIndex + 1} من {quizDeck.length}
               </span>
+              {current && <DifficultyBadge difficulty={current.difficulty} />}
             </div>
             <Button onClick={() => setShowHint(!showHint)} className="rounded-2xl bg-slate-800">
-              <Lightbulb className="ml-2 h-4 w-4" /> تلميح
+              <Lightbulb className="ml-2 h-4 w-4" /> {uiCopy.hint_label}
             </Button>
           </div>
           <div className="h-3 rounded-full bg-slate-800 overflow-hidden">
             <div className="h-full bg-emerald-500 transition-all" style={{ width: `${progress}%` }} />
           </div>
           <div className="rounded-2xl bg-slate-950 p-5 border border-slate-800">
-            <p className="whitespace-pre-line text-xl md:text-2xl font-bold leading-10">{current.question}</p>
+            <p className="whitespace-pre-line text-xl md:text-2xl font-bold leading-10">{current.prompt}</p>
           </div>
           <AnimatePresence>
-            {showHint && (
+            {showHint && current.hint && (
               <motion.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
                 className="rounded-2xl bg-amber-500/10 border border-amber-500/20 p-4 text-amber-200"
               >
-                مثال قريب: <span dir="ltr" className="font-mono">{current.example}</span>
+                {uiCopy.hint_label}: {current.hint}
               </motion.div>
             )}
           </AnimatePresence>
@@ -136,7 +150,9 @@ export default function QuizMode({ dayId, onBackToDay, onStartPractice, onProgre
             })}
           </div>
           {isAnswered && (
-            <div className={`rounded-2xl p-4 flex items-start gap-3 ${isCorrect ? "bg-emerald-500/10 text-emerald-200" : "bg-red-500/10 text-red-200"}`}>
+            <div
+              className={`rounded-2xl p-4 flex items-start gap-3 ${isCorrect ? "bg-emerald-500/10 text-emerald-200" : "bg-red-500/10 text-red-200"}`}
+            >
               {isCorrect ? <CheckCircle2 className="h-6 w-6 shrink-0" /> : <XCircle className="h-6 w-6 shrink-0" />}
               <div>
                 <div className="font-bold">{isCorrect ? "إجابة صحيحة!" : "مش مشكلة، اتعلمها دلوقتي."}</div>
@@ -145,14 +161,19 @@ export default function QuizMode({ dayId, onBackToDay, onStartPractice, onProgre
                   <span className="font-bold font-mono ltr inline-block" dir="ltr">
                     {current.answer}
                   </span>
+                  {isCorrect && (
+                    <span className="mr-2 text-amber-200">
+                      (+{current.points} {uiCopy.points_label})
+                    </span>
+                  )}
                 </div>
-                <div className="mt-1 text-slate-300">{current.desc}</div>
+                <div className="mt-1 text-slate-300">{current.explanation}</div>
               </div>
             </div>
           )}
           <div className="flex justify-between gap-3">
             <Button onClick={onBackToDay} className="rounded-2xl bg-slate-800">
-              رجوع
+              {uiCopy.back_label}
             </Button>
             <Button
               onClick={() => {
@@ -161,7 +182,7 @@ export default function QuizMode({ dayId, onBackToDay, onStartPractice, onProgre
                   setSelected(null);
                   setShowHint(false);
                 } else {
-                  saveQuizResult(dayId, score, quizDeck.length);
+                  saveQuizResult(dayId, correctCount, quizDeck.length);
                   onProgressUpdate?.();
                   setFinished(true);
                 }
