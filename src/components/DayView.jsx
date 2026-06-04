@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
-import { ArrowRight, BookOpen, ListChecks, Keyboard } from "lucide-react";
+import { ArrowRight, BookOpen, ListChecks, Keyboard, Route } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getDay, formatDayLabel } from "@/data/curriculum";
 import LearnMode from "@/components/LearnMode";
 import QuizMode from "@/components/QuizMode";
 import PracticeMode from "@/components/PracticeMode";
+import LabMode from "@/components/LabMode";
 
 export default function DayView({ dayId, mode, onModeChange, onBack, onProgressUpdate }) {
   const day = getDay(dayId);
@@ -31,6 +32,11 @@ export default function DayView({ dayId, mode, onModeChange, onBack, onProgressU
           </p>
           <h1 className="text-2xl md:text-3xl font-bold">{formatDayLabel(day)}</h1>
           <p className="text-slate-400">{day.titleAr}</p>
+          {day.goal && (
+            <p className="text-slate-300 text-sm leading-7 mt-2 rounded-xl bg-slate-900/80 border border-slate-800 p-3">
+              {day.goal}
+            </p>
+          )}
         </div>
         <div className="flex flex-wrap gap-2">
           <Button
@@ -50,6 +56,12 @@ export default function DayView({ dayId, mode, onModeChange, onBack, onProgressU
             className={`rounded-2xl ${mode === "practice" ? "bg-emerald-600" : "bg-slate-800"}`}
           >
             <Keyboard className="ml-2 h-4 w-4" /> تدريب كتابة
+          </Button>
+          <Button
+            onClick={() => handleMode("lab")}
+            className={`rounded-2xl ${mode === "lab" ? "bg-emerald-600" : "bg-slate-800"}`}
+          >
+            <Route className="ml-2 h-4 w-4" /> مسار اليوم
           </Button>
         </div>
       </motion.div>
@@ -79,6 +91,7 @@ export default function DayView({ dayId, mode, onModeChange, onBack, onProgressU
           }}
         />
       )}
+      {mode === "lab" && <LabMode key={`lab-${dayId}`} dayId={dayId} />}
     </div>
   );
 }

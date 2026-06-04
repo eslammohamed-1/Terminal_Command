@@ -127,7 +127,8 @@ export default function QuizMode({ dayId, onBackToDay, onStartPractice, onProgre
                   key={idx}
                   type="button"
                   onClick={() => choose(opt)}
-                  className={`rounded-2xl border p-4 text-right leading-7 transition ${cls}`}
+                  className={`rounded-2xl border p-4 text-left font-mono text-sm leading-7 transition ltr ${cls}`}
+                  dir="ltr"
                 >
                   {opt}
                 </button>
@@ -140,7 +141,10 @@ export default function QuizMode({ dayId, onBackToDay, onStartPractice, onProgre
               <div>
                 <div className="font-bold">{isCorrect ? "إجابة صحيحة!" : "مش مشكلة، اتعلمها دلوقتي."}</div>
                 <div className="mt-1">
-                  الإجابة الصحيحة: <span className="font-bold">{current.answer}</span>
+                  الإجابة الصحيحة:{" "}
+                  <span className="font-bold font-mono ltr inline-block" dir="ltr">
+                    {current.answer}
+                  </span>
                 </div>
                 <div className="mt-1 text-slate-300">{current.desc}</div>
               </div>

@@ -3,8 +3,11 @@ import { Terminal, CheckCircle2, ChevronLeft } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { days } from "@/data/curriculum";
-import { getCommandsForDay } from "@/data/commands";
-import { getPracticeForDay } from "@/data/practiceQuestions";
+import {
+  getCommandsForDay,
+  getWritingPracticeForDay,
+  getLabStepsForDay,
+} from "@/lib/curriculumLoader";
 import { getDayCompletionPercent, getDayProgress, isDayFullyComplete } from "@/lib/progress";
 
 export default function PathHome({ onSelectDay, progressVersion }) {
@@ -25,7 +28,8 @@ export default function PathHome({ onSelectDay, progressVersion }) {
       <div className="grid gap-4 md:grid-cols-2">
         {days.map((day, idx) => {
           const cmdCount = getCommandsForDay(day.id).length;
-          const practiceCount = getPracticeForDay(day.id).length;
+          const practiceCount = getWritingPracticeForDay(day.id).length;
+          const labCount = getLabStepsForDay(day.id).length;
           const percent = getDayCompletionPercent(day.id);
           const progress = getDayProgress(day.id);
           const complete = isDayFullyComplete(day.id);
@@ -50,7 +54,7 @@ export default function PathHome({ onSelectDay, progressVersion }) {
                     {complete && <CheckCircle2 className="h-8 w-8 text-emerald-400 shrink-0" />}
                   </div>
                   <p className="text-sm text-slate-400">
-                    {cmdCount} أوامر · {practiceCount} تمرين كتابة
+                    {cmdCount} أوامر · {practiceCount} تمرين كتابة · {labCount} خطوة مسار
                   </p>
                   <div className="h-2 rounded-full bg-slate-800 overflow-hidden">
                     <div className="h-full bg-emerald-500 transition-all" style={{ width: `${percent}%` }} />

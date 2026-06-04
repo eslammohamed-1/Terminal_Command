@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, XCircle, Lightbulb, Trophy, RotateCcw, ListChecks } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { buildPracticeDeck, normalizeAnswer } from "@/lib/quiz";
+import { buildPracticeDeck, matchesPracticeAnswer } from "@/lib/quiz";
 import { savePracticeResult } from "@/lib/progress";
 
 export default function PracticeMode({ dayId, onBackToDay, onStartQuiz, onProgressUpdate }) {
@@ -22,12 +22,11 @@ export default function PracticeMode({ dayId, onBackToDay, onStartQuiz, onProgre
     ? Math.round(((practiceIndex + 1) / practiceDeck.length) * 100)
     : 0;
   const typedIsCorrect =
-    practiceChecked &&
-    currentPractice?.answers.map(normalizeAnswer).includes(normalizeAnswer(typedAnswer));
+    practiceChecked && currentPractice && matchesPracticeAnswer(typedAnswer, currentPractice.answers);
 
   const checkTypedAnswer = () => {
     if (practiceChecked || !currentPractice) return;
-    const ok = currentPractice.answers.map(normalizeAnswer).includes(normalizeAnswer(typedAnswer));
+    const ok = matchesPracticeAnswer(typedAnswer, currentPractice.answers);
     setPracticeChecked(true);
     if (ok) {
       setPracticeScore((s) => s + 1);

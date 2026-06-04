@@ -1,0 +1,606 @@
+{
+  "title": "Terminal Commands 7-Day Learning Plan",
+  "language": "ar",
+  "description": "قائمة أوامر Terminal مقسّمة على 7 أيام للتدريب العملي على macOS وLinux.",
+  "days": [
+    {
+      "day": 1,
+      "id": "day01-navigation",
+      "title": "التنقل وفهم المكان",
+      "goal": "تعرف أنت فين، تتحرك بين المجلدات، وتشوف المحتويات وتطلب المساعدة.",
+      "commands": [
+        {
+          "command": "pwd",
+          "purpose": "يعرض المسار الحالي."
+        },
+        {
+          "command": "ls",
+          "purpose": "يعرض الملفات والمجلدات في المكان الحالي."
+        },
+        {
+          "command": "ls -l",
+          "purpose": "يعرض الملفات بتفاصيل مثل الصلاحيات والمالك والحجم."
+        },
+        {
+          "command": "ls -a",
+          "purpose": "يعرض الملفات المخفية أيضًا."
+        },
+        {
+          "command": "ls -lah",
+          "purpose": "عرض تفصيلي شامل مع أحجام مقروءة."
+        },
+        {
+          "command": "cd folder-name",
+          "purpose": "يدخل إلى مجلد معين."
+        },
+        {
+          "command": "cd ..",
+          "purpose": "يرجع للمجلد الأب."
+        },
+        {
+          "command": "cd ~",
+          "purpose": "يرجع لمجلد المستخدم الرئيسي."
+        },
+        {
+          "command": "cd -",
+          "purpose": "يرجع للمسار السابق."
+        },
+        {
+          "command": "type ls",
+          "purpose": "يعرفك نوع الأمر وهل هو built-in أم برنامج خارجي."
+        },
+        {
+          "command": "which bash",
+          "purpose": "يعرض مكان برنامج bash."
+        },
+        {
+          "command": "command -v git",
+          "purpose": "يعرض مكان الأمر بطريقة مناسبة للسكربتات."
+        },
+        {
+          "command": "man ls",
+          "purpose": "يفتح دليل استخدام الأمر ls."
+        },
+        {
+          "command": "help cd",
+          "purpose": "يعرض مساعدة لأوامر shell الداخلية مثل cd."
+        },
+        {
+          "command": "echo $SHELL",
+          "purpose": "يطبع نوع الـ Shell الحالي (zsh أو bash)."
+        },
+        {
+          "command": "uname -s",
+          "purpose": "يعرض اسم نظام التشغيل: Darwin على macOS أو Linux."
+        },
+        {
+          "command": "brew --version",
+          "purpose": "يعرض إصدار Homebrew على macOS."
+        },
+        {
+          "command": "brew doctor",
+          "purpose": "يفحص إعداد Homebrew على macOS."
+        },
+        {
+          "command": "brew install wget",
+          "purpose": "يثبت برنامجًا على macOS عبر Homebrew."
+        }
+      ],
+      "practice": [
+        "mkdir day01",
+        "cd day01",
+        "pwd",
+        "ls -lah",
+        "cd .."
+      ]
+    },
+    {
+      "day": 2,
+      "id": "day02-files",
+      "title": "إنشاء ونسخ ونقل وحذف الملفات",
+      "goal": "تتعامل مع الملفات والمجلدات بثقة داخل workspace آمن.",
+      "commands": [
+        {
+          "command": "mkdir project",
+          "purpose": "ينشئ مجلدًا جديدًا."
+        },
+        {
+          "command": "mkdir -p project/src/components",
+          "purpose": "ينشئ مسارًا كاملًا حتى لو بعض المجلدات غير موجودة."
+        },
+        {
+          "command": "touch file.txt",
+          "purpose": "ينشئ ملفًا فارغًا أو يحدّث وقت تعديله."
+        },
+        {
+          "command": "touch a.txt b.txt c.txt",
+          "purpose": "ينشئ عدة ملفات مرة واحدة."
+        },
+        {
+          "command": "cp file.txt copy.txt",
+          "purpose": "ينسخ ملفًا إلى ملف جديد."
+        },
+        {
+          "command": "cp file.txt project/",
+          "purpose": "ينسخ ملفًا إلى مجلد."
+        },
+        {
+          "command": "cp -r project project-backup",
+          "purpose": "ينسخ مجلدًا بكل محتواه."
+        },
+        {
+          "command": "mv old.txt new.txt",
+          "purpose": "يعيد تسمية ملف أو مجلد."
+        },
+        {
+          "command": "mv file.txt project/",
+          "purpose": "ينقل ملفًا إلى مجلد."
+        },
+        {
+          "command": "rm file.txt",
+          "purpose": "يحذف ملفًا."
+        },
+        {
+          "command": "rm -r folder",
+          "purpose": "يحذف مجلدًا ومحتوياته بحذر."
+        },
+        {
+          "command": "rmdir empty-folder",
+          "purpose": "يحذف مجلدًا فارغًا فقط."
+        },
+        {
+          "command": "file file.txt",
+          "purpose": "يعرض نوع الملف."
+        },
+        {
+          "command": "stat file.txt",
+          "purpose": "يعرض معلومات تفصيلية عن الملف (حجم، أوقات، inode)."
+        },
+        {
+          "command": "rm -rf folder",
+          "purpose": "يحذف مجلدًا ومحتواه بالقوة. تحذير: حذف نهائي — تأكد من المسار."
+        }
+      ],
+      "practice": [
+        "mkdir day02",
+        "cd day02",
+        "touch notes.txt",
+        "cp notes.txt notes-copy.txt",
+        "mkdir backup",
+        "mv notes-copy.txt backup/",
+        "ls -lah",
+        "rm notes.txt"
+      ]
+    },
+    {
+      "day": 3,
+      "id": "day03-text",
+      "title": "قراءة النصوص والبحث داخل الملفات",
+      "goal": "تقرأ الملفات وتبحث داخل logs وتعد السطور والنتائج.",
+      "commands": [
+        {
+          "command": "cat file.txt",
+          "purpose": "يعرض محتوى ملف صغير."
+        },
+        {
+          "command": "less file.txt",
+          "purpose": "يفتح ملفًا طويلًا للتصفح والبحث."
+        },
+        {
+          "command": "head file.txt",
+          "purpose": "يعرض أول 10 أسطر."
+        },
+        {
+          "command": "head -n 20 file.txt",
+          "purpose": "يعرض أول 20 سطرًا."
+        },
+        {
+          "command": "tail file.txt",
+          "purpose": "يعرض آخر 10 أسطر."
+        },
+        {
+          "command": "tail -n 20 file.txt",
+          "purpose": "يعرض آخر 20 سطرًا."
+        },
+        {
+          "command": "tail -f app.log",
+          "purpose": "يتابع ملف log لحظيًا."
+        },
+        {
+          "command": "grep \"ERROR\" app.log",
+          "purpose": "يبحث عن كلمة ERROR داخل ملف."
+        },
+        {
+          "command": "grep -i \"error\" app.log",
+          "purpose": "يبحث بدون حساسية لحالة الأحرف."
+        },
+        {
+          "command": "grep -n \"ERROR\" app.log",
+          "purpose": "يعرض نتائج البحث مع أرقام السطور."
+        },
+        {
+          "command": "grep -R \"TODO\" .",
+          "purpose": "يبحث داخل المجلدات بشكل recursive."
+        },
+        {
+          "command": "grep -Rni \"TODO\" .",
+          "purpose": "بحث recursive مع رقم السطر وتجاهل case."
+        },
+        {
+          "command": "wc file.txt",
+          "purpose": "يعرض عدد السطور والكلمات والبايتات."
+        },
+        {
+          "command": "wc -l file.txt",
+          "purpose": "يعرض عدد السطور فقط."
+        },
+        {
+          "command": "cat > notes.txt",
+          "purpose": "ينشئ ملفًا بالكتابة المباشرة؛ Ctrl+D للإنهاء."
+        },
+        {
+          "command": "grep -q \"ERROR\" app.log",
+          "purpose": "يبحث بصمت؛ يعتمد على exit code (0 موجود، 1 لا)."
+        }
+      ],
+      "practice": [
+        "mkdir day03",
+        "cd day03",
+        "printf 'INFO app started\\nERROR database failed\\nINFO retrying\\nERROR timeout\\n' > app.log",
+        "cat app.log",
+        "grep \"ERROR\" app.log",
+        "grep -n \"ERROR\" app.log",
+        "grep \"ERROR\" app.log | wc -l"
+      ]
+    },
+    {
+      "day": 4,
+      "id": "day04-pipes-redirection",
+      "title": "Pipes و Redirection",
+      "goal": "توصل أوامر ببعض وتخزن النتائج وتتعامل مع الترتيب والتكرار والأعمدة.",
+      "commands": [
+        {
+          "command": "command1 | command2",
+          "purpose": "يمرر output من الأمر الأول كـ input للأمر الثاني."
+        },
+        {
+          "command": "grep \"ERROR\" app.log | wc -l",
+          "purpose": "يعد عدد سطور ERROR."
+        },
+        {
+          "command": "echo \"hello\" > file.txt",
+          "purpose": "يكتب الناتج في ملف ويمسح المحتوى القديم."
+        },
+        {
+          "command": "echo \"world\" >> file.txt",
+          "purpose": "يضيف الناتج في آخر الملف بدون مسح القديم."
+        },
+        {
+          "command": "ls not-found 2> errors.txt",
+          "purpose": "يحفظ الأخطاء في ملف."
+        },
+        {
+          "command": "command > output.txt 2> errors.txt",
+          "purpose": "يحفظ الناتج العادي والأخطاء في ملفين منفصلين."
+        },
+        {
+          "command": "command > all.txt 2>&1",
+          "purpose": "يحفظ الناتج والأخطاء معًا في ملف واحد."
+        },
+        {
+          "command": "sort file.txt",
+          "purpose": "يرتب السطور أبجديًا."
+        },
+        {
+          "command": "sort -n numbers.txt",
+          "purpose": "يرتب الأرقام ترتيبًا رقميًا."
+        },
+        {
+          "command": "uniq file.txt",
+          "purpose": "يحذف التكرار المتجاور."
+        },
+        {
+          "command": "sort file.txt | uniq",
+          "purpose": "يرتب ثم يزيل التكرار."
+        },
+        {
+          "command": "sort file.txt | uniq -c",
+          "purpose": "يعرض عدد تكرار كل قيمة."
+        },
+        {
+          "command": "cut -d ':' -f 1 /etc/passwd",
+          "purpose": "يستخرج العمود الأول باستخدام : كفاصل."
+        },
+        {
+          "command": "echo \"hello\" | tr 'a-z' 'A-Z'",
+          "purpose": "يحوّل الحروف الصغيرة إلى كبيرة."
+        },
+        {
+          "command": "echo \"a b c\" | tr -d ' '",
+          "purpose": "يحذف المسافات."
+        }
+      ],
+      "practice": [
+        "mkdir day04",
+        "cd day04",
+        "echo \"ERROR\" > logs.txt",
+        "echo \"INFO\" >> logs.txt",
+        "echo \"ERROR\" >> logs.txt",
+        "echo \"DEBUG\" >> logs.txt",
+        "grep \"ERROR\" logs.txt | wc -l",
+        "sort logs.txt | uniq -c"
+      ]
+    },
+    {
+      "day": 5,
+      "id": "day05-find-xargs",
+      "title": "البحث عن الملفات ومعالجة النتائج",
+      "goal": "تبحث عن ملفات ومجلدات وتنفذ أوامر على النتائج بأمان.",
+      "commands": [
+        {
+          "command": "find . -name \"*.log\"",
+          "purpose": "يبحث عن ملفات أو مجلدات تنتهي بـ .log."
+        },
+        {
+          "command": "find . -iname \"readme.md\"",
+          "purpose": "بحث بدون حساسية لحالة الأحرف."
+        },
+        {
+          "command": "find . -type f",
+          "purpose": "يعرض الملفات فقط."
+        },
+        {
+          "command": "find . -type d",
+          "purpose": "يعرض المجلدات فقط."
+        },
+        {
+          "command": "find . -type f -name \"*.txt\"",
+          "purpose": "يبحث عن ملفات txt فقط."
+        },
+        {
+          "command": "find . -type d -name \"node_modules\"",
+          "purpose": "يبحث عن مجلدات باسم node_modules."
+        },
+        {
+          "command": "find . -type f -name \"*.log\" -print",
+          "purpose": "يعرض الملفات المستهدفة قبل أي حذف."
+        },
+        {
+          "command": "find . -type f -name \"*.log\" -delete",
+          "purpose": "يحذف ملفات log المطابقة بعد التأكد."
+        },
+        {
+          "command": "find . -name \"*.txt\" | xargs cat",
+          "purpose": "ينفذ cat على نتائج find."
+        },
+        {
+          "command": "find . -name \"*.txt\" -print0 | xargs -0 cat",
+          "purpose": "طريقة آمنة مع أسماء الملفات التي تحتوي مسافات."
+        }
+      ],
+      "practice": [
+        "mkdir -p day05/logs/old",
+        "cd day05",
+        "touch logs/a.log logs/b.log logs/old/c.log",
+        "touch notes.txt \"my file.txt\"",
+        "find . -name \"*.log\"",
+        "find . -type f -name \"*.log\" -print"
+      ]
+    },
+    {
+      "day": 6,
+      "id": "day06-system-permissions",
+      "title": "الصلاحيات والعمليات والنظام",
+      "goal": "تفهم صلاحيات الملفات وتراقب العمليات والمساحة وحالة النظام.",
+      "commands": [
+        {
+          "command": "whoami",
+          "purpose": "يعرض اسم المستخدم الحالي."
+        },
+        {
+          "command": "id",
+          "purpose": "يعرض UID وGID والمجموعات."
+        },
+        {
+          "command": "ls -l",
+          "purpose": "يعرض الصلاحيات والملكية."
+        },
+        {
+          "command": "chmod +x script.sh",
+          "purpose": "يجعل السكربت قابلًا للتنفيذ."
+        },
+        {
+          "command": "chmod -x script.sh",
+          "purpose": "يزيل صلاحية التنفيذ."
+        },
+        {
+          "command": "chmod 644 file.txt",
+          "purpose": "صلاحيات شائعة لملف عادي."
+        },
+        {
+          "command": "chmod 755 script.sh",
+          "purpose": "صلاحيات شائعة لسكربت قابل للتنفيذ."
+        },
+        {
+          "command": "sudo chown user file.txt",
+          "purpose": "يغير مالك الملف."
+        },
+        {
+          "command": "sudo chown user:group file.txt",
+          "purpose": "يغير المالك والمجموعة."
+        },
+        {
+          "command": "sudo chown -R user:group folder",
+          "purpose": "يغير ملكية مجلد ومحتواه بحذر."
+        },
+        {
+          "command": "sudo command",
+          "purpose": "يشغل أمرًا بصلاحيات المدير عند الحاجة."
+        },
+        {
+          "command": "df -h",
+          "purpose": "يعرض مساحة الأقراص."
+        },
+        {
+          "command": "du -sh folder",
+          "purpose": "يعرض حجم مجلد معين."
+        },
+        {
+          "command": "du -sh *",
+          "purpose": "يعرض أحجام العناصر داخل المكان الحالي."
+        },
+        {
+          "command": "ps aux",
+          "purpose": "يعرض العمليات الجارية."
+        },
+        {
+          "command": "ps aux | grep nginx",
+          "purpose": "يبحث عن عملية باسم nginx."
+        },
+        {
+          "command": "top",
+          "purpose": "يراقب العمليات لحظيًا."
+        },
+        {
+          "command": "kill PID",
+          "purpose": "يرسل إشارة إيقاف عادية لعملية."
+        },
+        {
+          "command": "kill -9 PID",
+          "purpose": "إيقاف قوي كحل أخير."
+        },
+        {
+          "command": "sleep 100 &",
+          "purpose": "يشغل أمرًا في الخلفية."
+        },
+        {
+          "command": "jobs",
+          "purpose": "يعرض المهام الخلفية في الجلسة الحالية."
+        },
+        {
+          "command": "fg",
+          "purpose": "يعيد مهمة للخلفية إلى الواجهة."
+        },
+        {
+          "command": "bg",
+          "purpose": "يكمل مهمة متوقفة في الخلفية."
+        }
+      ],
+      "practice": [
+        "mkdir day06",
+        "cd day06",
+        "touch script.sh",
+        "ls -l script.sh",
+        "chmod +x script.sh",
+        "ls -l script.sh",
+        "whoami",
+        "id",
+        "df -h"
+      ]
+    },
+    {
+      "day": 7,
+      "id": "day07-scripting",
+      "title": "السكربتات و Cross-platform",
+      "goal": "تكتب سكربت Bash بسيط يعمل على Linux وmacOS وتتجنب الأخطاء الشائعة.",
+      "commands": [
+        {
+          "command": "touch info.sh",
+          "purpose": "ينشئ ملف سكربت."
+        },
+        {
+          "command": "chmod +x info.sh",
+          "purpose": "يجعل السكربت قابلًا للتنفيذ."
+        },
+        {
+          "command": "#!/usr/bin/env bash",
+          "purpose": "Shebang portable لتشغيل Bash من PATH."
+        },
+        {
+          "command": "set -euo pipefail",
+          "purpose": "وضع أمان شائع في سكربتات Bash."
+        },
+        {
+          "command": "name=\"Ahmed\"",
+          "purpose": "تعريف متغير نصي."
+        },
+        {
+          "command": "echo \"$name\"",
+          "purpose": "طباعة متغير مع quotes لتجنب مشاكل المسافات."
+        },
+        {
+          "command": "echo \"$0\"",
+          "purpose": "يعرض اسم السكربت."
+        },
+        {
+          "command": "echo \"${1:-guest}\"",
+          "purpose": "يعرض أول argument أو قيمة افتراضية."
+        },
+        {
+          "command": "if [ -f \"file.txt\" ]; then echo \"File exists\"; else echo \"Not found\"; fi",
+          "purpose": "شرط للتحقق من وجود ملف."
+        },
+        {
+          "command": "case \"$(uname -s)\" in Linux) echo \"Linux\" ;; Darwin) echo \"macOS\" ;; *) echo \"Unknown\" ;; esac",
+          "purpose": "تحديد النظام Linux أو macOS."
+        },
+        {
+          "command": "for file in *.txt; do echo \"$file\"; done",
+          "purpose": "حلقة على ملفات txt."
+        },
+        {
+          "command": "while read -r line; do echo \"$line\"; done < file.txt",
+          "purpose": "قراءة ملف سطرًا بسطر."
+        },
+        {
+          "command": "log() { echo \"[INFO] $*\"; }",
+          "purpose": "تعريف function بسيطة."
+        },
+        {
+          "command": "tmpfile=\"$(mktemp)\"",
+          "purpose": "إنشاء ملف مؤقت آمن."
+        },
+        {
+          "command": "./info.sh",
+          "purpose": "تشغيل السكربت من المجلد الحالي."
+        },
+        {
+          "command": "uname -s",
+          "purpose": "يعرض اسم النظام: Linux أو Darwin."
+        },
+        {
+          "command": "bash script.sh",
+          "purpose": "يشغّل السكربت بدون chmod +x."
+        },
+        {
+          "command": "echo $HOME",
+          "purpose": "يعرض مسار مجلد البيت من متغير البيئة."
+        },
+        {
+          "command": "echo $?",
+          "purpose": "يعرض كود خروج آخر أمر (0 نجاح)."
+        },
+        {
+          "command": "date \"+%Y-%m-%d %H:%M:%S\"",
+          "purpose": "يعرض التاريخ والوقت بتنسيق strftime."
+        },
+        {
+          "command": "date -d \"tomorrow\" \"+%Y-%m-%d\"",
+          "purpose": "على Linux (GNU): حساب تاريخ نسبي مثل الغد."
+        },
+        {
+          "command": "date -v+1d \"+%Y-%m-%d\"",
+          "purpose": "على macOS (BSD): إضافة يوم للتاريخ الحالي."
+        }
+      ],
+      "practice": [
+        "mkdir day07",
+        "cd day07",
+        "touch info.sh",
+        "chmod +x info.sh",
+        "printf '#!/usr/bin/env bash\\nset -euo pipefail\\necho \"User: $(whoami)\"\\necho \"OS: $(uname -s)\"\\necho \"Current directory: $(pwd)\"\\n' > info.sh",
+        "./info.sh"
+      ]
+    }
+  ]
+}

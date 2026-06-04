@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { getCommandsForDay } from "@/data/commands";
+import { getCommandsForDay } from "@/lib/curriculumLoader";
 import { getDay } from "@/data/curriculum";
 
 export default function LearnMode({ dayId }) {

@@ -1,0 +1,1867 @@
+{
+  "schemaVersion": 2,
+  "title": "Terminal Commands 7-Day Learning Plan",
+  "language": "ar",
+  "description": "قائمة أوامر Terminal مقسّمة على 7 أيام للتدريب العملي على macOS وLinux.",
+  "_editInstructions": "عدّل scripts/curriculum-base.json و scripts/practice-questions.seed.json ثم شغّل: python3 scripts/build-curriculum-json.py",
+  "_sourceOfTruth": "src/data/curriculum.ar.json",
+  "days": [
+    {
+      "day": 1,
+      "id": "day01-navigation",
+      "title": "التنقل وفهم المكان",
+      "titleEn": "Navigation",
+      "titleAr": "التنقل وفهم المكان",
+      "slug": "navigation",
+      "goal": "تعرف أنت فين، تتحرك بين المجلدات، وتشوف المحتويات وتطلب المساعدة.",
+      "commands": [
+        {
+          "id": "d1-pwd",
+          "name": "pwd",
+          "example": "pwd",
+          "flags": "None",
+          "target": "None",
+          "purpose": "يعرض المسار الحالي."
+        },
+        {
+          "id": "d1-ls",
+          "name": "ls",
+          "example": "ls",
+          "flags": "None",
+          "target": "None",
+          "purpose": "يعرض الملفات والمجلدات في المكان الحالي."
+        },
+        {
+          "id": "d1-ls-l",
+          "name": "ls",
+          "example": "ls -l",
+          "flags": "-l",
+          "target": "None",
+          "purpose": "يعرض الملفات بتفاصيل مثل الصلاحيات والمالك والحجم."
+        },
+        {
+          "id": "d1-ls-a",
+          "name": "ls",
+          "example": "ls -a",
+          "flags": "-a",
+          "target": "None",
+          "purpose": "يعرض الملفات المخفية أيضًا."
+        },
+        {
+          "id": "d1-ls-lah",
+          "name": "ls",
+          "example": "ls -lah",
+          "flags": "-lah",
+          "target": "None",
+          "purpose": "عرض تفصيلي شامل مع أحجام مقروءة."
+        },
+        {
+          "id": "d1-cd-folder-name",
+          "name": "cd",
+          "example": "cd folder-name",
+          "flags": "folder-name",
+          "target": "None",
+          "purpose": "يدخل إلى مجلد معين."
+        },
+        {
+          "id": "d1-cd",
+          "name": "cd",
+          "example": "cd ..",
+          "flags": "..",
+          "target": "None",
+          "purpose": "يرجع للمجلد الأب."
+        },
+        {
+          "id": "d1-cd",
+          "name": "cd",
+          "example": "cd ~",
+          "flags": "~",
+          "target": "None",
+          "purpose": "يرجع لمجلد المستخدم الرئيسي."
+        },
+        {
+          "id": "d1-cd",
+          "name": "cd",
+          "example": "cd -",
+          "flags": "-",
+          "target": "None",
+          "purpose": "يرجع للمسار السابق."
+        },
+        {
+          "id": "d1-type-ls",
+          "name": "type",
+          "example": "type ls",
+          "flags": "ls",
+          "target": "None",
+          "purpose": "يعرفك نوع الأمر وهل هو built-in أم برنامج خارجي."
+        },
+        {
+          "id": "d1-which-bash",
+          "name": "which",
+          "example": "which bash",
+          "flags": "bash",
+          "target": "None",
+          "purpose": "يعرض مكان برنامج bash."
+        },
+        {
+          "id": "d1-command-v-git",
+          "name": "command -v",
+          "example": "command -v git",
+          "flags": "None",
+          "target": "git",
+          "purpose": "يعرض مكان الأمر بطريقة مناسبة للسكربتات."
+        },
+        {
+          "id": "d1-man-ls",
+          "name": "man",
+          "example": "man ls",
+          "flags": "ls",
+          "target": "None",
+          "purpose": "يفتح دليل استخدام الأمر ls."
+        },
+        {
+          "id": "d1-help-cd",
+          "name": "help",
+          "example": "help cd",
+          "flags": "cd",
+          "target": "None",
+          "purpose": "يعرض مساعدة لأوامر shell الداخلية مثل cd."
+        },
+        {
+          "id": "d1-echo-shell",
+          "name": "echo",
+          "example": "echo $SHELL",
+          "flags": "$SHELL",
+          "target": "None",
+          "purpose": "يطبع نوع الـ Shell الحالي (zsh أو bash)."
+        },
+        {
+          "id": "d1-uname-s",
+          "name": "uname",
+          "example": "uname -s",
+          "flags": "-s",
+          "target": "None",
+          "purpose": "يعرض اسم نظام التشغيل: Darwin على macOS أو Linux."
+        },
+        {
+          "id": "d1-brew-version",
+          "name": "brew",
+          "example": "brew --version",
+          "flags": "--version",
+          "target": "None",
+          "purpose": "يعرض إصدار Homebrew على macOS."
+        },
+        {
+          "id": "d1-brew-doctor",
+          "name": "brew",
+          "example": "brew doctor",
+          "flags": "doctor",
+          "target": "None",
+          "purpose": "يفحص إعداد Homebrew على macOS."
+        },
+        {
+          "id": "d1-brew-install-wget",
+          "name": "brew install",
+          "example": "brew install wget",
+          "flags": "اسم الحزمة",
+          "target": "wget",
+          "purpose": "يثبت برنامجًا على macOS عبر Homebrew."
+        }
+      ],
+      "practice": [
+        "mkdir day01",
+        "cd day01",
+        "pwd",
+        "ls -lah",
+        "cd .."
+      ],
+      "writingPractice": [
+        {
+          "id": "d1w-001",
+          "prompt": "اكتب الأمر الذي يعرض نوع الـ Shell الحالي.",
+          "answers": [
+            "echo $SHELL",
+            "echo \"$SHELL\""
+          ],
+          "hint": "استخدم echo مع المتغير $SHELL",
+          "explanation": "echo $SHELL يطبع قيمة متغير البيئة SHELL."
+        },
+        {
+          "id": "d1w-002",
+          "prompt": "اكتب الأمر الذي يعرض اسم نظام التشغيل الأساسي.",
+          "answers": [
+            "uname -s"
+          ],
+          "hint": "الأمر uname مع الخيار -s",
+          "explanation": "uname -s يطبع Darwin أو Linux."
+        },
+        {
+          "id": "d1w-003",
+          "prompt": "اكتب الأمر الذي يعرض المسار الحالي الكامل.",
+          "answers": [
+            "pwd"
+          ],
+          "hint": "Print Working Directory",
+          "explanation": "pwd يعرض مكانك الحالي."
+        },
+        {
+          "id": "d1w-004",
+          "prompt": "اكتب الأمر للرجوع للمجلد الأب خطوة واحدة.",
+          "answers": [
+            "cd .."
+          ],
+          "hint": "cd ومعها نقطتين",
+          "explanation": "cd .. ينقلك إلى Parent Directory."
+        },
+        {
+          "id": "d1w-005",
+          "prompt": "اكتب الأمر للانتقال إلى Home Directory.",
+          "answers": [
+            "cd ~",
+            "cd"
+          ],
+          "hint": "cd ومعها علامة ~",
+          "explanation": "cd ~ ينقلك إلى مجلد البيت."
+        },
+        {
+          "id": "d1w-006",
+          "prompt": "اكتب الأمر لعرض كل الملفات بالتفاصيل وبالأحجام المقروءة.",
+          "answers": [
+            "ls -lah",
+            "ls -la -h",
+            "ls -alh",
+            "ls -lha"
+          ],
+          "hint": "ls مع l و a و h",
+          "explanation": "ls -lah يعرض الملفات المخفية والتفاصيل."
+        },
+        {
+          "id": "d1w-007",
+          "prompt": "اكتب الأمر للرجوع إلى المجلد السابق قبل آخر cd.",
+          "answers": [
+            "cd -"
+          ],
+          "hint": "cd مع شرطة",
+          "explanation": "cd - يعيدك للمكان الذي كنت فيه."
+        },
+        {
+          "id": "d1w-008",
+          "prompt": "اكتب الأمر لإنشاء مجلد تدريب terminal-practice والدخول إليه (سطرين أو سطر واحد).",
+          "answers": [
+            "mkdir terminal-practice && cd terminal-practice",
+            "mkdir terminal-practice; cd terminal-practice"
+          ],
+          "hint": "mkdir ثم cd",
+          "explanation": "من تمرين اليوم 1 في الكتيب."
+        },
+        {
+          "id": "d1w-009",
+          "prompt": "اكتب الأمر لفتح دليل المساعدة لأمر ls.",
+          "answers": [
+            "man ls"
+          ],
+          "hint": "man + اسم الأمر",
+          "explanation": "man ls يفتح صفحة المساعدة."
+        },
+        {
+          "id": "d1w-010",
+          "prompt": "اكتب الأمر لمعرفة نوع أمر cd (builtin أم ملف).",
+          "answers": [
+            "type cd"
+          ],
+          "hint": "type + الأمر",
+          "explanation": "type يوضح إن كان الأمر builtin أو مسارًا."
+        },
+        {
+          "id": "d1w-011",
+          "prompt": "اكتب الأمر لعرض مساعدة الأمر الداخلي cd.",
+          "answers": [
+            "help cd"
+          ],
+          "hint": "help + الأمر",
+          "explanation": "help للأوامر builtin في الـ shell."
+        },
+        {
+          "id": "d1w-012",
+          "prompt": "اكتب الأمر لمعرفة مسار تنفيذ git على النظام.",
+          "answers": [
+            "which git"
+          ],
+          "hint": "which + الأمر",
+          "explanation": "which يعرض مسار البرنامج."
+        },
+        {
+          "id": "d1w-013",
+          "prompt": "اكتب الأمر لعرض إصدار Homebrew.",
+          "answers": [
+            "brew --version"
+          ],
+          "hint": "brew --version",
+          "explanation": "للتحقق من تثبيت brew على macOS."
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "id": "day02-files",
+      "title": "إنشاء ونسخ ونقل وحذف الملفات",
+      "titleEn": "Files and Directories",
+      "titleAr": "إنشاء ونسخ ونقل وحذف الملفات",
+      "slug": "files",
+      "goal": "تتعامل مع الملفات والمجلدات بثقة داخل workspace آمن.",
+      "commands": [
+        {
+          "id": "d2-mkdir-project",
+          "name": "mkdir",
+          "example": "mkdir project",
+          "flags": "project",
+          "target": "None",
+          "purpose": "ينشئ مجلدًا جديدًا."
+        },
+        {
+          "id": "d2-mkdir-p-project-src-components",
+          "name": "mkdir",
+          "example": "mkdir -p project/src/components",
+          "flags": "-p",
+          "target": "project/src/components",
+          "purpose": "ينشئ مسارًا كاملًا حتى لو بعض المجلدات غير موجودة."
+        },
+        {
+          "id": "d2-touch-file-txt",
+          "name": "touch",
+          "example": "touch file.txt",
+          "flags": "file.txt",
+          "target": "None",
+          "purpose": "ينشئ ملفًا فارغًا أو يحدّث وقت تعديله."
+        },
+        {
+          "id": "d2-touch-a-txt-b-txt-c-txt",
+          "name": "touch",
+          "example": "touch a.txt b.txt c.txt",
+          "flags": "a.txt b.txt",
+          "target": "c.txt",
+          "purpose": "ينشئ عدة ملفات مرة واحدة."
+        },
+        {
+          "id": "d2-cp-file-txt-copy-txt",
+          "name": "cp",
+          "example": "cp file.txt copy.txt",
+          "flags": "file.txt",
+          "target": "copy.txt",
+          "purpose": "ينسخ ملفًا إلى ملف جديد."
+        },
+        {
+          "id": "d2-cp-file-txt-project",
+          "name": "cp",
+          "example": "cp file.txt project/",
+          "flags": "file.txt",
+          "target": "project/",
+          "purpose": "ينسخ ملفًا إلى مجلد."
+        },
+        {
+          "id": "d2-cp-r-project-project-backup",
+          "name": "cp",
+          "example": "cp -r project project-backup",
+          "flags": "-r project",
+          "target": "project-backup",
+          "purpose": "ينسخ مجلدًا بكل محتواه."
+        },
+        {
+          "id": "d2-mv-old-txt-new-txt",
+          "name": "mv",
+          "example": "mv old.txt new.txt",
+          "flags": "old.txt",
+          "target": "new.txt",
+          "purpose": "يعيد تسمية ملف أو مجلد."
+        },
+        {
+          "id": "d2-mv-file-txt-project",
+          "name": "mv",
+          "example": "mv file.txt project/",
+          "flags": "file.txt",
+          "target": "project/",
+          "purpose": "ينقل ملفًا إلى مجلد."
+        },
+        {
+          "id": "d2-rm-file-txt",
+          "name": "rm",
+          "example": "rm file.txt",
+          "flags": "file.txt",
+          "target": "None",
+          "purpose": "يحذف ملفًا."
+        },
+        {
+          "id": "d2-rm-r-folder",
+          "name": "rm",
+          "example": "rm -r folder",
+          "flags": "-r",
+          "target": "folder",
+          "purpose": "يحذف مجلدًا ومحتوياته بحذر."
+        },
+        {
+          "id": "d2-rmdir-empty-folder",
+          "name": "rmdir",
+          "example": "rmdir empty-folder",
+          "flags": "empty-folder",
+          "target": "None",
+          "purpose": "يحذف مجلدًا فارغًا فقط."
+        },
+        {
+          "id": "d2-file-file-txt",
+          "name": "file",
+          "example": "file file.txt",
+          "flags": "file.txt",
+          "target": "None",
+          "purpose": "يعرض نوع الملف."
+        },
+        {
+          "id": "d2-stat-file-txt",
+          "name": "stat",
+          "example": "stat file.txt",
+          "flags": "file.txt",
+          "target": "None",
+          "purpose": "يعرض معلومات تفصيلية عن الملف (حجم، أوقات، inode)."
+        },
+        {
+          "id": "d2-rm-rf-folder",
+          "name": "rm",
+          "example": "rm -rf folder",
+          "flags": "-rf",
+          "target": "folder",
+          "purpose": "يحذف مجلدًا ومحتواه بالقوة. تحذير: حذف نهائي — تأكد من المسار."
+        }
+      ],
+      "practice": [
+        "mkdir day02",
+        "cd day02",
+        "touch notes.txt",
+        "cp notes.txt notes-copy.txt",
+        "mkdir backup",
+        "mv notes-copy.txt backup/",
+        "ls -lah",
+        "rm notes.txt"
+      ],
+      "writingPractice": [
+        {
+          "id": "d2w-014",
+          "prompt": "اكتب الأمر لإنشاء مجلد جديد باسم study.",
+          "answers": [
+            "mkdir study"
+          ],
+          "hint": "mkdir + اسم المجلد",
+          "explanation": "mkdir study ينشئ مجلدًا جديدًا."
+        },
+        {
+          "id": "d2w-015",
+          "prompt": "اكتب الأمر لإنشاء مسار project/src/components دفعة واحدة.",
+          "answers": [
+            "mkdir -p project/src/components"
+          ],
+          "hint": "mkdir -p",
+          "explanation": "mkdir -p ينشئ المجلدات الناقصة."
+        },
+        {
+          "id": "d2w-016",
+          "prompt": "اكتب الأمر لإنشاء ملف فارغ باسم Lesson1.txt.",
+          "answers": [
+            "touch Lesson1.txt"
+          ],
+          "hint": "touch + اسم الملف",
+          "explanation": "touch ينشئ ملفًا فارغًا."
+        },
+        {
+          "id": "d2w-017",
+          "prompt": "اكتب الأمر لإعادة تسمية photo.png إلى avatar.png.",
+          "answers": [
+            "mv photo.png avatar.png"
+          ],
+          "hint": "mv القديم الجديد",
+          "explanation": "mv للنقل أو إعادة التسمية."
+        },
+        {
+          "id": "d2w-018",
+          "prompt": "اكتب الأمر لنسخ file.txt إلى backup.txt.",
+          "answers": [
+            "cp file.txt backup.txt"
+          ],
+          "hint": "cp المصدر الوجهة",
+          "explanation": "cp ينسخ الملف."
+        },
+        {
+          "id": "d2w-019",
+          "prompt": "اكتب الأمر لنسخ notes.txt إلى مجلد backup/.",
+          "answers": [
+            "cp notes.txt backup/"
+          ],
+          "hint": "cp إلى مجلد",
+          "explanation": "من تمرين اليوم 2 في الكتيب."
+        },
+        {
+          "id": "d2w-020",
+          "prompt": "اكتب الأمر لحذف مجلد backup ومحتوياته.",
+          "answers": [
+            "rm -r backup",
+            "rm -rf backup"
+          ],
+          "hint": "rm -r",
+          "explanation": "rm -r يحذف المجلد متكررًا."
+        },
+        {
+          "id": "d2w-021",
+          "prompt": "اكتب الأمر لمعرفة نوع ملف script.sh.",
+          "answers": [
+            "file script.sh"
+          ],
+          "hint": "file + اسم الملف",
+          "explanation": "file يحدد نوع الملف."
+        },
+        {
+          "id": "d2w-022",
+          "prompt": "اكتب الأمر لعرض معلومات تفصيلية عن file.txt.",
+          "answers": [
+            "stat file.txt"
+          ],
+          "hint": "stat + الملف",
+          "explanation": "stat يعرض بيانات الملف التفصيلية."
+        },
+        {
+          "id": "d2w-023",
+          "prompt": "اكتب الأمر لنسخ مجلد project بالكامل إلى project-backup.",
+          "answers": [
+            "cp -r project project-backup"
+          ],
+          "hint": "cp -r",
+          "explanation": "cp -r ينسخ المجلد متكررًا."
+        },
+        {
+          "id": "d2w-024",
+          "prompt": "اكتب الأمر لحذف مجلد folder ومحتواه بالقوة (بحذر).",
+          "answers": [
+            "rm -rf folder"
+          ],
+          "hint": "rm -rf",
+          "explanation": "حذف نهائي — تأكد من المسار."
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "id": "day03-text",
+      "title": "قراءة النصوص والبحث داخل الملفات",
+      "titleEn": "Text Processing",
+      "titleAr": "قراءة النصوص والبحث داخل الملفات",
+      "slug": "text",
+      "goal": "تقرأ الملفات وتبحث داخل logs وتعد السطور والنتائج.",
+      "commands": [
+        {
+          "id": "d3-cat-file-txt",
+          "name": "cat",
+          "example": "cat file.txt",
+          "flags": "file.txt",
+          "target": "None",
+          "purpose": "يعرض محتوى ملف صغير."
+        },
+        {
+          "id": "d3-less-file-txt",
+          "name": "less",
+          "example": "less file.txt",
+          "flags": "file.txt",
+          "target": "None",
+          "purpose": "يفتح ملفًا طويلًا للتصفح والبحث."
+        },
+        {
+          "id": "d3-head-file-txt",
+          "name": "head",
+          "example": "head file.txt",
+          "flags": "file.txt",
+          "target": "None",
+          "purpose": "يعرض أول 10 أسطر."
+        },
+        {
+          "id": "d3-head-n-20-file-txt",
+          "name": "head",
+          "example": "head -n 20 file.txt",
+          "flags": "-n 20",
+          "target": "file.txt",
+          "purpose": "يعرض أول 20 سطرًا."
+        },
+        {
+          "id": "d3-tail-file-txt",
+          "name": "tail",
+          "example": "tail file.txt",
+          "flags": "file.txt",
+          "target": "None",
+          "purpose": "يعرض آخر 10 أسطر."
+        },
+        {
+          "id": "d3-tail-n-20-file-txt",
+          "name": "tail",
+          "example": "tail -n 20 file.txt",
+          "flags": "-n 20",
+          "target": "file.txt",
+          "purpose": "يعرض آخر 20 سطرًا."
+        },
+        {
+          "id": "d3-tail-f-app-log",
+          "name": "tail",
+          "example": "tail -f app.log",
+          "flags": "-f",
+          "target": "app.log",
+          "purpose": "يتابع ملف log لحظيًا."
+        },
+        {
+          "id": "d3-grep-error-app-log",
+          "name": "grep",
+          "example": "grep \"ERROR\" app.log",
+          "flags": "\"ERROR\"",
+          "target": "app.log",
+          "purpose": "يبحث عن كلمة ERROR داخل ملف."
+        },
+        {
+          "id": "d3-grep-i-error-app-log",
+          "name": "grep",
+          "example": "grep -i \"error\" app.log",
+          "flags": "-i \"error\"",
+          "target": "app.log",
+          "purpose": "يبحث بدون حساسية لحالة الأحرف."
+        },
+        {
+          "id": "d3-grep-n-error-app-log",
+          "name": "grep",
+          "example": "grep -n \"ERROR\" app.log",
+          "flags": "-n \"ERROR\"",
+          "target": "app.log",
+          "purpose": "يعرض نتائج البحث مع أرقام السطور."
+        },
+        {
+          "id": "d3-grep-r-todo",
+          "name": "grep",
+          "example": "grep -R \"TODO\" .",
+          "flags": "-R \"TODO\"",
+          "target": ".",
+          "purpose": "يبحث داخل المجلدات بشكل recursive."
+        },
+        {
+          "id": "d3-grep-rni-todo",
+          "name": "grep",
+          "example": "grep -Rni \"TODO\" .",
+          "flags": "-Rni \"TODO\"",
+          "target": ".",
+          "purpose": "بحث recursive مع رقم السطر وتجاهل case."
+        },
+        {
+          "id": "d3-wc-file-txt",
+          "name": "wc",
+          "example": "wc file.txt",
+          "flags": "file.txt",
+          "target": "None",
+          "purpose": "يعرض عدد السطور والكلمات والبايتات."
+        },
+        {
+          "id": "d3-wc-l-file-txt",
+          "name": "wc",
+          "example": "wc -l file.txt",
+          "flags": "-l",
+          "target": "file.txt",
+          "purpose": "يعرض عدد السطور فقط."
+        },
+        {
+          "id": "d3-cat-notes-txt",
+          "name": "cat",
+          "example": "cat > notes.txt",
+          "flags": ">",
+          "target": "notes.txt",
+          "purpose": "ينشئ ملفًا بالكتابة المباشرة؛ Ctrl+D للإنهاء."
+        },
+        {
+          "id": "d3-grep-q-error-app-log",
+          "name": "grep",
+          "example": "grep -q \"ERROR\" app.log",
+          "flags": "-q \"ERROR\"",
+          "target": "app.log",
+          "purpose": "يبحث بصمت؛ يعتمد على exit code (0 موجود، 1 لا)."
+        }
+      ],
+      "practice": [
+        "mkdir day03",
+        "cd day03",
+        "printf 'INFO app started\\nERROR database failed\\nINFO retrying\\nERROR timeout\\n' > app.log",
+        "cat app.log",
+        "grep \"ERROR\" app.log",
+        "grep -n \"ERROR\" app.log",
+        "grep \"ERROR\" app.log | wc -l"
+      ],
+      "writingPractice": [
+        {
+          "id": "d3w-025",
+          "prompt": "اكتب الأمر لعرض محتوى ملف app.log بالكامل.",
+          "answers": [
+            "cat app.log"
+          ],
+          "hint": "cat + الملف",
+          "explanation": "cat للملفات الصغيرة."
+        },
+        {
+          "id": "d3w-026",
+          "prompt": "اكتب الأمر لفتح app.log للتصفح التفاعلي.",
+          "answers": [
+            "less app.log"
+          ],
+          "hint": "less + الملف",
+          "explanation": "less للملفات الكبيرة."
+        },
+        {
+          "id": "d3w-027",
+          "prompt": "اكتب الأمر لعرض أول 10 أسطر من app.log.",
+          "answers": [
+            "head -n 10 app.log",
+            "head app.log"
+          ],
+          "hint": "head -n 10",
+          "explanation": "head يعرض أول الأسطر."
+        },
+        {
+          "id": "d3w-028",
+          "prompt": "اكتب الأمر لعرض آخر سطرين من app.log.",
+          "answers": [
+            "tail -n 2 app.log"
+          ],
+          "hint": "tail -n 2",
+          "explanation": "من تمرين اليوم 3 في الكتيب."
+        },
+        {
+          "id": "d3w-029",
+          "prompt": "اكتب الأمر للبحث عن ERROR داخل app.log.",
+          "answers": [
+            "grep \"ERROR\" app.log",
+            "grep ERROR app.log"
+          ],
+          "hint": "grep + النص",
+          "explanation": "grep يبحث داخل الملف."
+        },
+        {
+          "id": "d3w-030",
+          "prompt": "اكتب الأمر للبحث عن ERROR مع عرض أرقام الأسطر.",
+          "answers": [
+            "grep -n \"ERROR\" app.log"
+          ],
+          "hint": "grep -n",
+          "explanation": "grep -n يضيف أرقام الأسطر."
+        },
+        {
+          "id": "d3w-031",
+          "prompt": "اكتب الأمر لعدّ أسطر ملف app.log.",
+          "answers": [
+            "wc -l app.log"
+          ],
+          "hint": "wc -l",
+          "explanation": "wc -l يعدّ الأسطر."
+        },
+        {
+          "id": "d3w-035",
+          "prompt": "اكتب الأمر للتحقق بصمت إن كان ERROR موجودًا في app.log (بدون طباعة ناتج).",
+          "answers": [
+            "grep -q \"ERROR\" app.log",
+            "grep -q ERROR app.log",
+            "grep -q 'ERROR' app.log"
+          ],
+          "hint": "grep -q",
+          "explanation": "grep -q يعتمد على exit code فقط."
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "id": "day04-pipes-redirection",
+      "title": "Pipes و Redirection",
+      "titleEn": "Pipes and Redirection",
+      "titleAr": "Pipes و Redirection",
+      "slug": "pipes",
+      "goal": "توصل أوامر ببعض وتخزن النتائج وتتعامل مع الترتيب والتكرار والأعمدة.",
+      "commands": [
+        {
+          "id": "d4-command1-command2",
+          "name": "|",
+          "example": "command1 | command2",
+          "flags": "None",
+          "target": "None",
+          "purpose": "يمرر output من الأمر الأول كـ input للأمر الثاني."
+        },
+        {
+          "id": "d4-grep-error-app-log-wc-l",
+          "name": "grep",
+          "example": "grep \"ERROR\" app.log | wc -l",
+          "flags": "\"ERROR\" app.log | wc",
+          "target": "-l",
+          "purpose": "يعد عدد سطور ERROR."
+        },
+        {
+          "id": "d4-echo-hello-file-txt",
+          "name": "echo",
+          "example": "echo \"hello\" > file.txt",
+          "flags": "\"hello\" >",
+          "target": "file.txt",
+          "purpose": "يكتب الناتج في ملف ويمسح المحتوى القديم."
+        },
+        {
+          "id": "d4-echo-world-file-txt",
+          "name": "echo",
+          "example": "echo \"world\" >> file.txt",
+          "flags": "\"world\" >>",
+          "target": "file.txt",
+          "purpose": "يضيف الناتج في آخر الملف بدون مسح القديم."
+        },
+        {
+          "id": "d4-ls-not-found-2-errors-txt",
+          "name": "ls",
+          "example": "ls not-found 2> errors.txt",
+          "flags": "not-found 2>",
+          "target": "errors.txt",
+          "purpose": "يحفظ الأخطاء في ملف."
+        },
+        {
+          "id": "d4-command-output-txt-2-errors-txt",
+          "name": "command",
+          "example": "command > output.txt 2> errors.txt",
+          "flags": "> output.txt 2>",
+          "target": "errors.txt",
+          "purpose": "يحفظ الناتج العادي والأخطاء في ملفين منفصلين."
+        },
+        {
+          "id": "d4-command-all-txt-2-1",
+          "name": "command",
+          "example": "command > all.txt 2>&1",
+          "flags": "> all.txt",
+          "target": "2>&1",
+          "purpose": "يحفظ الناتج والأخطاء معًا في ملف واحد."
+        },
+        {
+          "id": "d4-sort-file-txt",
+          "name": "sort",
+          "example": "sort file.txt",
+          "flags": "file.txt",
+          "target": "None",
+          "purpose": "يرتب السطور أبجديًا."
+        },
+        {
+          "id": "d4-sort-n-numbers-txt",
+          "name": "sort",
+          "example": "sort -n numbers.txt",
+          "flags": "-n",
+          "target": "numbers.txt",
+          "purpose": "يرتب الأرقام ترتيبًا رقميًا."
+        },
+        {
+          "id": "d4-uniq-file-txt",
+          "name": "uniq",
+          "example": "uniq file.txt",
+          "flags": "file.txt",
+          "target": "None",
+          "purpose": "يحذف التكرار المتجاور."
+        },
+        {
+          "id": "d4-sort-file-txt-uniq",
+          "name": "sort",
+          "example": "sort file.txt | uniq",
+          "flags": "file.txt |",
+          "target": "uniq",
+          "purpose": "يرتب ثم يزيل التكرار."
+        },
+        {
+          "id": "d4-sort-file-txt-uniq-c",
+          "name": "sort",
+          "example": "sort file.txt | uniq -c",
+          "flags": "file.txt | uniq",
+          "target": "-c",
+          "purpose": "يعرض عدد تكرار كل قيمة."
+        },
+        {
+          "id": "d4-cut-d-f-1-etc-passwd",
+          "name": "cut",
+          "example": "cut -d ':' -f 1 /etc/passwd",
+          "flags": "-d ':' -f 1",
+          "target": "/etc/passwd",
+          "purpose": "يستخرج العمود الأول باستخدام : كفاصل."
+        },
+        {
+          "id": "d4-echo-hello-tr-a-z-a-z",
+          "name": "echo",
+          "example": "echo \"hello\" | tr 'a-z' 'A-Z'",
+          "flags": "\"hello\" | tr 'a-z'",
+          "target": "'A-Z'",
+          "purpose": "يحوّل الحروف الصغيرة إلى كبيرة."
+        },
+        {
+          "id": "d4-echo-a-b-c-tr-d",
+          "name": "echo",
+          "example": "echo \"a b c\" | tr -d ' '",
+          "flags": "\"a b c\" | tr -d '",
+          "target": "'",
+          "purpose": "يحذف المسافات."
+        }
+      ],
+      "practice": [
+        "mkdir day04",
+        "cd day04",
+        "echo \"ERROR\" > logs.txt",
+        "echo \"INFO\" >> logs.txt",
+        "echo \"ERROR\" >> logs.txt",
+        "echo \"DEBUG\" >> logs.txt",
+        "grep \"ERROR\" logs.txt | wc -l",
+        "sort logs.txt | uniq -c"
+      ],
+      "writingPractice": [
+        {
+          "id": "d4w-032",
+          "prompt": "اكتب الأمر لعدّ عدد أسطر ERROR في app.log باستخدام pipe.",
+          "answers": [
+            "grep \"ERROR\" app.log | wc -l",
+            "grep ERROR app.log | wc -l"
+          ],
+          "hint": "grep ثم | wc -l",
+          "explanation": "pipe يربط grep مع wc -l."
+        },
+        {
+          "id": "d4w-033",
+          "prompt": "اكتب الأمر لترتيب أسطر names.txt ثم حذف التكرار مع عدّ التكرارات.",
+          "answers": [
+            "sort names.txt | uniq -c"
+          ],
+          "hint": "sort | uniq -c",
+          "explanation": "uniq يعمل على أسطر متجاورة بعد sort."
+        },
+        {
+          "id": "d4w-034",
+          "prompt": "اكتب الأمر لتحويل hello إلى أحرف كبيرة باستخدام tr.",
+          "answers": [
+            "echo hello | tr 'a-z' 'A-Z'",
+            "echo \"hello\" | tr a-z A-Z"
+          ],
+          "hint": "tr مع pipe",
+          "explanation": "tr يحوّل الأحرف."
+        },
+        {
+          "id": "d4w-036",
+          "prompt": "اكتب أمرًا يقرأ file.txt ثم يبحث عن hello باستخدام Pipe.",
+          "answers": [
+            "cat file.txt | grep hello",
+            "cat file.txt|grep hello"
+          ],
+          "hint": "cat | grep",
+          "explanation": "| يمرر الناتج."
+        },
+        {
+          "id": "d4w-037",
+          "prompt": "اكتب أمرًا يحفظ ناتج ls داخل tolal_fals.txt مع مسح القديم.",
+          "answers": [
+            "ls > tolal_fals.txt"
+          ],
+          "hint": ">",
+          "explanation": "> يكتب ويمسح القديم."
+        },
+        {
+          "id": "d4w-038",
+          "prompt": "اكتب أمرًا يضيف hello في نهاية filename.txt.",
+          "answers": [
+            "echo hello >> filename.txt",
+            "echo \"hello\" >> filename.txt"
+          ],
+          "hint": ">>",
+          "explanation": ">> للإضافة."
+        },
+        {
+          "id": "d4w-039",
+          "prompt": "اكتب أمرًا يحفظ أخطاء أمر ls لملف غير موجود في errors.txt.",
+          "answers": [
+            "ls not-found 2> errors.txt"
+          ],
+          "hint": "2>",
+          "explanation": "2> يوجّه stderr."
+        },
+        {
+          "id": "d4w-040",
+          "prompt": "اكتب أمرًا يجمع stdout وstderr في all.txt (مثال: ls .).",
+          "answers": [
+            "ls . > all.txt 2>&1",
+            "ls > all.txt 2>&1"
+          ],
+          "hint": "> ملف 2>&1",
+          "explanation": "2>&1 يدمج التدفقات."
+        },
+        {
+          "id": "d4w-041",
+          "prompt": "اكتب أمرًا يعدّ أسطر ERROR في app.log.",
+          "answers": [
+            "grep \"ERROR\" app.log | wc -l"
+          ],
+          "hint": "grep | wc -l",
+          "explanation": "من تمرين اليوم 4 في الكتيب."
+        },
+        {
+          "id": "d4w-042",
+          "prompt": "اكتب أمرًا يعرض أول 10 أسطر ثم يعدّها.",
+          "answers": [
+            "head -n 10 questions-source.txt | wc -l",
+            "head questions-source.txt | wc -l"
+          ],
+          "hint": "head | wc -l",
+          "explanation": "pipeline بسيط."
+        },
+        {
+          "id": "d4w-043",
+          "prompt": "اكتب أمرًا يبحث عن (صح) ويضيف النتيجة لـ filename.txt.",
+          "answers": [
+            "grep -i \"(صح)\" questions-source.txt >> filename.txt",
+            "grep -i '(صح)' questions-source.txt >> filename.txt"
+          ],
+          "hint": "grep >>",
+          "explanation": "جمع بحث وإضافة."
+        },
+        {
+          "id": "d4w-044",
+          "prompt": "اكتب أمرًا يعرض الملفات المخفية ويحفظ الناتج في tolal_fals.txt.",
+          "answers": [
+            "ls -la > tolal_fals.txt",
+            "ls -lah > tolal_fals.txt"
+          ],
+          "hint": "ls -la >",
+          "explanation": "redirect بعد ls."
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "id": "day05-find-xargs",
+      "title": "البحث عن الملفات ومعالجة النتائج",
+      "titleEn": "Find and Xargs",
+      "titleAr": "البحث عن الملفات ومعالجة النتائج",
+      "slug": "find-xargs",
+      "goal": "تبحث عن ملفات ومجلدات وتنفذ أوامر على النتائج بأمان.",
+      "commands": [
+        {
+          "id": "d5-find-name-log",
+          "name": "find",
+          "example": "find . -name \"*.log\"",
+          "flags": ". -name",
+          "target": "\"*.log\"",
+          "purpose": "يبحث عن ملفات أو مجلدات تنتهي بـ .log."
+        },
+        {
+          "id": "d5-find-iname-readme-md",
+          "name": "find",
+          "example": "find . -iname \"readme.md\"",
+          "flags": ". -iname",
+          "target": "\"readme.md\"",
+          "purpose": "بحث بدون حساسية لحالة الأحرف."
+        },
+        {
+          "id": "d5-find-type-f",
+          "name": "find",
+          "example": "find . -type f",
+          "flags": ". -type",
+          "target": "f",
+          "purpose": "يعرض الملفات فقط."
+        },
+        {
+          "id": "d5-find-type-d",
+          "name": "find",
+          "example": "find . -type d",
+          "flags": ". -type",
+          "target": "d",
+          "purpose": "يعرض المجلدات فقط."
+        },
+        {
+          "id": "d5-find-type-f-name-txt",
+          "name": "find",
+          "example": "find . -type f -name \"*.txt\"",
+          "flags": ". -type f -name",
+          "target": "\"*.txt\"",
+          "purpose": "يبحث عن ملفات txt فقط."
+        },
+        {
+          "id": "d5-find-type-d-name-node-modules",
+          "name": "find",
+          "example": "find . -type d -name \"node_modules\"",
+          "flags": ". -type d -name",
+          "target": "\"node_modules\"",
+          "purpose": "يبحث عن مجلدات باسم node_modules."
+        },
+        {
+          "id": "d5-find-type-f-name-log-print",
+          "name": "find",
+          "example": "find . -type f -name \"*.log\" -print",
+          "flags": ". -type f -name \"*.log\"",
+          "target": "-print",
+          "purpose": "يعرض الملفات المستهدفة قبل أي حذف."
+        },
+        {
+          "id": "d5-find-type-f-name-log-delete",
+          "name": "find",
+          "example": "find . -type f -name \"*.log\" -delete",
+          "flags": ". -type f -name \"*.log\"",
+          "target": "-delete",
+          "purpose": "يحذف ملفات log المطابقة بعد التأكد."
+        },
+        {
+          "id": "d5-find-name-txt-xargs-cat",
+          "name": "find",
+          "example": "find . -name \"*.txt\" | xargs cat",
+          "flags": ". -name \"*.txt\" | xargs",
+          "target": "cat",
+          "purpose": "ينفذ cat على نتائج find."
+        },
+        {
+          "id": "d5-find-name-txt-print0-xargs-0-cat",
+          "name": "find",
+          "example": "find . -name \"*.txt\" -print0 | xargs -0 cat",
+          "flags": ". -name \"*.txt\" -print0 | xargs -0",
+          "target": "cat",
+          "purpose": "طريقة آمنة مع أسماء الملفات التي تحتوي مسافات."
+        }
+      ],
+      "practice": [
+        "mkdir -p day05/logs/old",
+        "cd day05",
+        "touch logs/a.log logs/b.log logs/old/c.log",
+        "touch notes.txt \"my file.txt\"",
+        "find . -name \"*.log\"",
+        "find . -type f -name \"*.log\" -print"
+      ],
+      "writingPractice": [
+        {
+          "id": "d5w-045",
+          "prompt": "اكتب الأمر للبحث عن كل ملفات .txt في المجلد الحالي.",
+          "answers": [
+            "find . -type f -name \"*.txt\"",
+            "find . -type f -name '*.txt'"
+          ],
+          "hint": "find . -type f",
+          "explanation": "find للبحث عن ملفات."
+        },
+        {
+          "id": "d5w-046",
+          "prompt": "اكتب الأمر للبحث عن مجلدات باسم node_modules.",
+          "answers": [
+            "find . -type d -name \"node_modules\"",
+            "find . -type d -name node_modules"
+          ],
+          "hint": "find -type d",
+          "explanation": "type d للمجلدات."
+        },
+        {
+          "id": "d5w-047",
+          "prompt": "اكتب الأمر لعرض مسارات ملفات .log قبل حذفها.",
+          "answers": [
+            "find . -name \"*.log\" -print",
+            "find . -type f -name \"*.log\" -print"
+          ],
+          "hint": "find -print",
+          "explanation": "معاينة قبل الحذف."
+        },
+        {
+          "id": "d5w-048",
+          "prompt": "اكتب الأمر لحذف كل ملفات .log في المجلد الحالي.",
+          "answers": [
+            "find . -type f -name \"*.log\" -delete",
+            "find . -name \"*.log\" -delete"
+          ],
+          "hint": "find -delete",
+          "explanation": "بعد التأكد بـ -print."
+        },
+        {
+          "id": "d5w-049",
+          "prompt": "اكتب أمرًا يعدّ ملفات txt باستخدام find و pipe.",
+          "answers": [
+            "find . -type f -name \"*.txt\" | wc -l"
+          ],
+          "hint": "find | wc -l",
+          "explanation": "عدّ النتائج."
+        },
+        {
+          "id": "d5w-050",
+          "prompt": "اكتب أمرًا يطبّق wc -l على كل ملف txt بـ xargs الآمن.",
+          "answers": [
+            "find . -name \"*.txt\" -print0 | xargs -0 wc -l",
+            "find . -type f -name \"*.txt\" -print0 | xargs -0 wc -l"
+          ],
+          "hint": "-print0 | xargs -0",
+          "explanation": "آمن مع المسافات."
+        },
+        {
+          "id": "d5w-051",
+          "prompt": "اكتب أمرًا يحذف ملفات .log باستخدام find و xargs (الشكل البسيط).",
+          "answers": [
+            "find . -name \"*.log\" | xargs rm"
+          ],
+          "hint": "find | xargs rm",
+          "explanation": "احذر من المسافات في الأسماء."
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "id": "day06-system-permissions",
+      "title": "الصلاحيات والعمليات والنظام",
+      "titleEn": "Permissions and System",
+      "titleAr": "الصلاحيات والعمليات والنظام",
+      "slug": "permissions",
+      "goal": "تفهم صلاحيات الملفات وتراقب العمليات والمساحة وحالة النظام.",
+      "commands": [
+        {
+          "id": "d6-whoami",
+          "name": "whoami",
+          "example": "whoami",
+          "flags": "None",
+          "target": "None",
+          "purpose": "يعرض اسم المستخدم الحالي."
+        },
+        {
+          "id": "d6-id",
+          "name": "id",
+          "example": "id",
+          "flags": "None",
+          "target": "None",
+          "purpose": "يعرض UID وGID والمجموعات."
+        },
+        {
+          "id": "d6-ls-l",
+          "name": "ls",
+          "example": "ls -l",
+          "flags": "-l",
+          "target": "None",
+          "purpose": "يعرض الصلاحيات والملكية."
+        },
+        {
+          "id": "d6-chmod-x-script-sh",
+          "name": "chmod",
+          "example": "chmod +x script.sh",
+          "flags": "+x",
+          "target": "script.sh",
+          "purpose": "يجعل السكربت قابلًا للتنفيذ."
+        },
+        {
+          "id": "d6-chmod-x-script-sh",
+          "name": "chmod",
+          "example": "chmod -x script.sh",
+          "flags": "-x",
+          "target": "script.sh",
+          "purpose": "يزيل صلاحية التنفيذ."
+        },
+        {
+          "id": "d6-chmod-644-file-txt",
+          "name": "chmod",
+          "example": "chmod 644 file.txt",
+          "flags": "644",
+          "target": "file.txt",
+          "purpose": "صلاحيات شائعة لملف عادي."
+        },
+        {
+          "id": "d6-chmod-755-script-sh",
+          "name": "chmod",
+          "example": "chmod 755 script.sh",
+          "flags": "755",
+          "target": "script.sh",
+          "purpose": "صلاحيات شائعة لسكربت قابل للتنفيذ."
+        },
+        {
+          "id": "d6-sudo-chown-user-file-txt",
+          "name": "chown",
+          "example": "sudo chown user file.txt",
+          "flags": "chown user",
+          "target": "file.txt",
+          "purpose": "يغير مالك الملف."
+        },
+        {
+          "id": "d6-sudo-chown-user-group-file-txt",
+          "name": "chown",
+          "example": "sudo chown user:group file.txt",
+          "flags": "chown user:group",
+          "target": "file.txt",
+          "purpose": "يغير المالك والمجموعة."
+        },
+        {
+          "id": "d6-sudo-chown-r-user-group-folder",
+          "name": "chown",
+          "example": "sudo chown -R user:group folder",
+          "flags": "chown -R user:group",
+          "target": "folder",
+          "purpose": "يغير ملكية مجلد ومحتواه بحذر."
+        },
+        {
+          "id": "d6-sudo-command",
+          "name": "sudo",
+          "example": "sudo command",
+          "flags": "None",
+          "target": "None",
+          "purpose": "يشغل أمرًا بصلاحيات المدير عند الحاجة."
+        },
+        {
+          "id": "d6-df-h",
+          "name": "df",
+          "example": "df -h",
+          "flags": "-h",
+          "target": "None",
+          "purpose": "يعرض مساحة الأقراص."
+        },
+        {
+          "id": "d6-du-sh-folder",
+          "name": "du",
+          "example": "du -sh folder",
+          "flags": "-sh",
+          "target": "folder",
+          "purpose": "يعرض حجم مجلد معين."
+        },
+        {
+          "id": "d6-du-sh",
+          "name": "du",
+          "example": "du -sh *",
+          "flags": "-sh",
+          "target": "*",
+          "purpose": "يعرض أحجام العناصر داخل المكان الحالي."
+        },
+        {
+          "id": "d6-ps-aux",
+          "name": "ps",
+          "example": "ps aux",
+          "flags": "aux",
+          "target": "None",
+          "purpose": "يعرض العمليات الجارية."
+        },
+        {
+          "id": "d6-ps-aux-grep-nginx",
+          "name": "ps",
+          "example": "ps aux | grep nginx",
+          "flags": "aux | grep",
+          "target": "nginx",
+          "purpose": "يبحث عن عملية باسم nginx."
+        },
+        {
+          "id": "d6-top",
+          "name": "top",
+          "example": "top",
+          "flags": "None",
+          "target": "None",
+          "purpose": "يراقب العمليات لحظيًا."
+        },
+        {
+          "id": "d6-kill-pid",
+          "name": "kill",
+          "example": "kill PID",
+          "flags": "PID",
+          "target": "None",
+          "purpose": "يرسل إشارة إيقاف عادية لعملية."
+        },
+        {
+          "id": "d6-kill-9-pid",
+          "name": "kill",
+          "example": "kill -9 PID",
+          "flags": "-9",
+          "target": "PID",
+          "purpose": "إيقاف قوي كحل أخير."
+        },
+        {
+          "id": "d6-sleep-100",
+          "name": "sleep",
+          "example": "sleep 100 &",
+          "flags": "100",
+          "target": "&",
+          "purpose": "يشغل أمرًا في الخلفية."
+        },
+        {
+          "id": "d6-jobs",
+          "name": "jobs",
+          "example": "jobs",
+          "flags": "None",
+          "target": "None",
+          "purpose": "يعرض المهام الخلفية في الجلسة الحالية."
+        },
+        {
+          "id": "d6-fg",
+          "name": "fg",
+          "example": "fg",
+          "flags": "None",
+          "target": "None",
+          "purpose": "يعيد مهمة للخلفية إلى الواجهة."
+        },
+        {
+          "id": "d6-bg",
+          "name": "bg",
+          "example": "bg",
+          "flags": "None",
+          "target": "None",
+          "purpose": "يكمل مهمة متوقفة في الخلفية."
+        }
+      ],
+      "practice": [
+        "mkdir day06",
+        "cd day06",
+        "touch script.sh",
+        "ls -l script.sh",
+        "chmod +x script.sh",
+        "ls -l script.sh",
+        "whoami",
+        "id",
+        "df -h"
+      ],
+      "writingPractice": [
+        {
+          "id": "d6w-052",
+          "prompt": "اكتب الأمر لعرض الملفات مع صلاحيات rwx.",
+          "answers": [
+            "ls -l",
+            "ls -la",
+            "ls -lah"
+          ],
+          "hint": "ls -l",
+          "explanation": "ls -l يعرض الصلاحيات."
+        },
+        {
+          "id": "d6w-053",
+          "prompt": "اكتب الأمر لمعرفة المستخدم الحالي.",
+          "answers": [
+            "whoami"
+          ],
+          "hint": "whoami",
+          "explanation": "whoami يطبع اسم المستخدم."
+        },
+        {
+          "id": "d6w-054",
+          "prompt": "اكتب الأمر لعرض uid والمجموعات للمستخدم الحالي.",
+          "answers": [
+            "id"
+          ],
+          "hint": "id",
+          "explanation": "id يعرض تفاصيل الهوية."
+        },
+        {
+          "id": "d6w-055",
+          "prompt": "اكتب الأمر لجعل build_practice.py قابلًا للتنفيذ.",
+          "answers": [
+            "chmod +x build_practice.py"
+          ],
+          "hint": "chmod +x",
+          "explanation": "chmod +x يضيف x."
+        },
+        {
+          "id": "d6w-056",
+          "prompt": "اكتب الأمر لضبط صلاحيات script.sh إلى 755.",
+          "answers": [
+            "chmod 755 script.sh"
+          ],
+          "hint": "chmod 755",
+          "explanation": "755 شائع للسكربتات."
+        },
+        {
+          "id": "d6w-057",
+          "prompt": "اكتب صيغة تشغيل apt update بصلاحيات المدير.",
+          "answers": [
+            "sudo apt update"
+          ],
+          "hint": "sudo",
+          "explanation": "sudo للأوامر الإدارية."
+        },
+        {
+          "id": "d6w-058",
+          "prompt": "اكتب الأمر لتغيير مالك file.txt إلى ahmed والمجموعة staff.",
+          "answers": [
+            "sudo chown ahmed:staff file.txt",
+            "chown ahmed:staff file.txt"
+          ],
+          "hint": "chown user:group",
+          "explanation": "غالبًا يحتاج sudo."
+        },
+        {
+          "id": "d6w-df",
+          "prompt": "اكتب الأمر لعرض مساحة الأقراص بأحجام مقروءة.",
+          "answers": [
+            "df -h"
+          ],
+          "hint": "df -h",
+          "explanation": "df -h يعرض استخدام القرص.",
+          "relatedCommandId": "d6-df-h"
+        },
+        {
+          "id": "d6w-du",
+          "prompt": "اكتب الأمر لعرض حجم مجلد folder بشكل مختصر.",
+          "answers": [
+            "du -sh folder"
+          ],
+          "hint": "du -sh",
+          "explanation": "du -sh يعرض الحجم الإجمالي.",
+          "relatedCommandId": "d6-du-sh-folder"
+        },
+        {
+          "id": "d6w-ps",
+          "prompt": "اكتب الأمر لعرض العمليات الجارية بتفاصيل.",
+          "answers": [
+            "ps aux"
+          ],
+          "hint": "ps aux",
+          "explanation": "ps aux يعرض قائمة العمليات.",
+          "relatedCommandId": "d6-ps-aux"
+        },
+        {
+          "id": "d6w-kill",
+          "prompt": "اكتب الأمر لإيقاف عملية برقم PID (إشارة عادية).",
+          "answers": [
+            "kill PID",
+            "kill 1234"
+          ],
+          "hint": "kill PID",
+          "explanation": "استبدل PID برقم العملية الفعلي.",
+          "relatedCommandId": "d6-kill-pid"
+        }
+      ]
+    },
+    {
+      "day": 7,
+      "id": "day07-scripting",
+      "title": "السكربتات و Cross-platform",
+      "titleEn": "Scripting",
+      "titleAr": "السكربتات و Cross-platform",
+      "slug": "scripting",
+      "goal": "تكتب سكربت Bash بسيط يعمل على Linux وmacOS وتتجنب الأخطاء الشائعة.",
+      "commands": [
+        {
+          "id": "d7-touch-info-sh",
+          "name": "touch",
+          "example": "touch info.sh",
+          "flags": "info.sh",
+          "target": "None",
+          "purpose": "ينشئ ملف سكربت."
+        },
+        {
+          "id": "d7-chmod-x-info-sh",
+          "name": "chmod",
+          "example": "chmod +x info.sh",
+          "flags": "+x",
+          "target": "info.sh",
+          "purpose": "يجعل السكربت قابلًا للتنفيذ."
+        },
+        {
+          "id": "d7-usr-bin-env-bash",
+          "name": "#!/usr/bin/env bash",
+          "example": "#!/usr/bin/env bash",
+          "flags": "bash",
+          "target": "None",
+          "purpose": "Shebang portable لتشغيل Bash من PATH."
+        },
+        {
+          "id": "d7-set-euo-pipefail",
+          "name": "set -euo pipefail",
+          "example": "set -euo pipefail",
+          "flags": "-euo",
+          "target": "pipefail",
+          "purpose": "وضع أمان شائع في سكربتات Bash."
+        },
+        {
+          "id": "d7-name-ahmed",
+          "name": "name",
+          "example": "name=\"Ahmed\"",
+          "flags": "None",
+          "target": "None",
+          "purpose": "تعريف متغير نصي."
+        },
+        {
+          "id": "d7-echo-name",
+          "name": "echo",
+          "example": "echo \"$name\"",
+          "flags": "متغير",
+          "target": "None",
+          "purpose": "طباعة متغير مع quotes لتجنب مشاكل المسافات."
+        },
+        {
+          "id": "d7-echo-0",
+          "name": "echo",
+          "example": "echo \"$0\"",
+          "flags": "متغير",
+          "target": "None",
+          "purpose": "يعرض اسم السكربت."
+        },
+        {
+          "id": "d7-echo-1-guest",
+          "name": "echo",
+          "example": "echo \"${1:-guest}\"",
+          "flags": "${1:-guest}",
+          "target": "None",
+          "purpose": "يعرض أول argument أو قيمة افتراضية."
+        },
+        {
+          "id": "d7-if-f-file-txt-then-echo-file-exists-else",
+          "name": "if",
+          "example": "if [ -f \"file.txt\" ]; then echo \"File exists\"; else echo \"Not found\"; fi",
+          "flags": "None",
+          "target": "None",
+          "purpose": "شرط للتحقق من وجود ملف."
+        },
+        {
+          "id": "d7-case-uname-s-in-linux-echo-linux-darwin",
+          "name": "case",
+          "example": "case \"$(uname -s)\" in Linux) echo \"Linux\" ;; Darwin) echo \"macOS\" ;; *) echo \"Unknown\" ;; esac",
+          "flags": "None",
+          "target": "None",
+          "purpose": "تحديد النظام Linux أو macOS."
+        },
+        {
+          "id": "d7-for-file-in-txt-do-echo-file-done",
+          "name": "for",
+          "example": "for file in *.txt; do echo \"$file\"; done",
+          "flags": "None",
+          "target": "None",
+          "purpose": "حلقة على ملفات txt."
+        },
+        {
+          "id": "d7-while-read-r-line-do-echo-line-done-file",
+          "name": "while",
+          "example": "while read -r line; do echo \"$line\"; done < file.txt",
+          "flags": "None",
+          "target": "None",
+          "purpose": "قراءة ملف سطرًا بسطر."
+        },
+        {
+          "id": "d7-log-echo-info",
+          "name": "log",
+          "example": "log() { echo \"[INFO] $*\"; }",
+          "flags": "{ echo \"[INFO] $*\";",
+          "target": "}",
+          "purpose": "تعريف function بسيطة."
+        },
+        {
+          "id": "d7-tmpfile-mktemp",
+          "name": "mktemp",
+          "example": "tmpfile=\"$(mktemp)\"",
+          "flags": "None",
+          "target": "None",
+          "purpose": "إنشاء ملف مؤقت آمن."
+        },
+        {
+          "id": "d7-info-sh",
+          "name": "./info.sh",
+          "example": "./info.sh",
+          "flags": "None",
+          "target": "None",
+          "purpose": "تشغيل السكربت من المجلد الحالي."
+        },
+        {
+          "id": "d7-uname-s",
+          "name": "uname",
+          "example": "uname -s",
+          "flags": "-s",
+          "target": "None",
+          "purpose": "يعرض اسم النظام: Linux أو Darwin."
+        },
+        {
+          "id": "d7-bash-script-sh",
+          "name": "bash",
+          "example": "bash script.sh",
+          "flags": "script.sh",
+          "target": "None",
+          "purpose": "يشغّل السكربت بدون chmod +x."
+        },
+        {
+          "id": "d7-echo-home",
+          "name": "echo",
+          "example": "echo $HOME",
+          "flags": "$HOME",
+          "target": "None",
+          "purpose": "يعرض مسار مجلد البيت من متغير البيئة."
+        },
+        {
+          "id": "d7-echo",
+          "name": "echo",
+          "example": "echo $?",
+          "flags": "$?",
+          "target": "None",
+          "purpose": "يعرض كود خروج آخر أمر (0 نجاح)."
+        },
+        {
+          "id": "d7-date-y-m-d-h-m-s",
+          "name": "date",
+          "example": "date \"+%Y-%m-%d %H:%M:%S\"",
+          "flags": "\"+%Y-%m-%d",
+          "target": "%H:%M:%S\"",
+          "purpose": "يعرض التاريخ والوقت بتنسيق strftime."
+        },
+        {
+          "id": "d7-date-d-tomorrow-y-m-d",
+          "name": "date",
+          "example": "date -d \"tomorrow\" \"+%Y-%m-%d\"",
+          "flags": "-d \"tomorrow\"",
+          "target": "\"+%Y-%m-%d\"",
+          "purpose": "على Linux (GNU): حساب تاريخ نسبي مثل الغد."
+        },
+        {
+          "id": "d7-date-v-1d-y-m-d",
+          "name": "date",
+          "example": "date -v+1d \"+%Y-%m-%d\"",
+          "flags": "-v+1d",
+          "target": "\"+%Y-%m-%d\"",
+          "purpose": "على macOS (BSD): إضافة يوم للتاريخ الحالي."
+        }
+      ],
+      "practice": [
+        "mkdir day07",
+        "cd day07",
+        "touch info.sh",
+        "chmod +x info.sh",
+        "printf '#!/usr/bin/env bash\\nset -euo pipefail\\necho \"User: $(whoami)\"\\necho \"OS: $(uname -s)\"\\necho \"Current directory: $(pwd)\"\\n' > info.sh",
+        "./info.sh"
+      ],
+      "writingPractice": [
+        {
+          "id": "d7w-059",
+          "prompt": "اكتب أمرًا ينشئ study وينتقل إليه في سطر واحد.",
+          "answers": [
+            "mkdir study && cd study"
+          ],
+          "hint": "&&",
+          "explanation": "&& يربط أمرين."
+        },
+        {
+          "id": "d7w-060",
+          "prompt": "اكتب سطر Shebang المحمول لسكربت bash.",
+          "answers": [
+            "#!/usr/bin/env bash"
+          ],
+          "hint": "#!/usr/bin/env",
+          "explanation": "أفضل من #!/bin/bash للتنقل بين الأنظمة."
+        },
+        {
+          "id": "d7w-061",
+          "prompt": "اكتب سطر وضع الأمان في بداية سكربت bash.",
+          "answers": [
+            "set -euo pipefail"
+          ],
+          "hint": "set -euo",
+          "explanation": "يوقف عند الخطأ ويحمي المتغيرات."
+        },
+        {
+          "id": "d7w-062",
+          "prompt": "اكتب الأمر لتشغيل script.sh باستخدام bash.",
+          "answers": [
+            "bash script.sh"
+          ],
+          "hint": "bash script.sh",
+          "explanation": "لا يحتاج chmod +x."
+        },
+        {
+          "id": "d7w-063",
+          "prompt": "اكتب الأمر لعرض مسار البيت من متغير البيئة.",
+          "answers": [
+            "echo $HOME",
+            "echo \"$HOME\""
+          ],
+          "hint": "echo $HOME",
+          "explanation": "HOME متغير بيئة."
+        },
+        {
+          "id": "d7w-064",
+          "prompt": "اكتب الأمر لعرض كود خروج آخر أمر.",
+          "answers": [
+            "echo $?"
+          ],
+          "hint": "echo $?",
+          "explanation": "0 نجاح، غيره فشل."
+        },
+        {
+          "id": "d7w-065",
+          "prompt": "اكتب الأمر لجعل script.sh قابلًا للتشغيل بـ ./script.sh.",
+          "answers": [
+            "chmod +x script.sh"
+          ],
+          "hint": "chmod +x",
+          "explanation": "صلاحية تنفيذ."
+        },
+        {
+          "id": "d7w-066",
+          "prompt": "اكتب الأمر لتشغيل script.sh من المجلد الحالي.",
+          "answers": [
+            "./script.sh"
+          ],
+          "hint": "./",
+          "explanation": "يتطلب chmod +x."
+        },
+        {
+          "id": "d7w-067",
+          "prompt": "اكتب أمرًا يعرض تاريخ الغد على Linux (GNU date).",
+          "answers": [
+            "date -d \"tomorrow\" \"+%Y-%m-%d\"",
+            "date -d tomorrow +%Y-%m-%d"
+          ],
+          "hint": "date -d tomorrow",
+          "explanation": "من سكربت portable في الكتيب — Linux."
+        },
+        {
+          "id": "d7w-068",
+          "prompt": "اكتب أمرًا يعرض تاريخ الغد على macOS (BSD date).",
+          "answers": [
+            "date -v+1d \"+%Y-%m-%d\""
+          ],
+          "hint": "date -v+1d",
+          "explanation": "من سكربت portable في الكتيب — macOS."
+        },
+        {
+          "id": "d7w-069",
+          "prompt": "اكتب أمرًا لإنشاء ملف مؤقت وحفظ مساره في متغير tmpfile.",
+          "answers": [
+            "tmpfile=\"$(mktemp)\"",
+            "tmpfile=$(mktemp)"
+          ],
+          "hint": "mktemp",
+          "explanation": "mktemp لملف مؤقت آمن."
+        },
+        {
+          "id": "d7w-070",
+          "prompt": "اكتب الأمر لعرض التاريخ والوقت بصيغة YYYY-MM-DD HH:MM:SS.",
+          "answers": [
+            "date \"+%Y-%m-%d %H:%M:%S\"",
+            "date +\"%Y-%m-%d %H:%M:%S\""
+          ],
+          "hint": "date \"+%Y-%m-%d\"",
+          "explanation": "تنسيق date بصيغة strftime."
+        },
+        {
+          "id": "d7w-071",
+          "prompt": "اكتب بداية شرط if للتحقق من وجود ملف config.txt.",
+          "answers": [
+            "if [ -f \"config.txt\" ]; then",
+            "if [ -f config.txt ]; then",
+            "if [ -f \"config.txt\" ]"
+          ],
+          "hint": "if [ -f",
+          "explanation": "-f يتحقق من وجود ملف."
+        },
+        {
+          "id": "d7w-072",
+          "prompt": "اكتب بداية حلقة for على كل ملفات txt في المجلد.",
+          "answers": [
+            "for file in *.txt; do",
+            "for file in *.txt;do"
+          ],
+          "hint": "for file in *.txt",
+          "explanation": "حلقة for على glob."
+        },
+        {
+          "id": "d7w-073",
+          "prompt": "اكتب بداية حلقة while لقراءة file.txt سطرًا بسطر.",
+          "answers": [
+            "while read -r line; do",
+            "while read -r line;do"
+          ],
+          "hint": "while read -r",
+          "explanation": "read -r مع while شائع في السكربتات."
+        },
+        {
+          "id": "d7w-074",
+          "prompt": "اكتب تعريف دالة log تطبع رسالة ببادئة INFO.",
+          "answers": [
+            "log() { echo \"[INFO] $*\"; }",
+            "log() { echo \"[INFO] $*\";}"
+          ],
+          "hint": "log() { echo",
+          "explanation": "دالة bash بسيطة."
+        }
+      ]
+    }
+  ]
+}
