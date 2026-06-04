@@ -1,0 +1,2251 @@
+# Terminal Handbook for macOS & Linux
+
+## من الصفر إلى الاحتراف العملي
+
+### الفلسفة: **تعلّم المشترك أولًا، ثم افهم الاختلافات وتجنب الأخطاء**
+
+> هذا الكتيب مكتوب لك كمبتدئ يريد أن **يفهم التيرمنال** وليس فقط يحفظ أوامر.  
+> سنشرح: الأمر يعمل ماذا؟ تركيبه؟ مثال؟ الناتج؟ الأخطاء الشائعة؟ والفرق بين Linux وmacOS عند الحاجة.
+
+***
+
+# الفهرس
+
+1. عقلية التيرمنال وتجهيز البيئة
+2. فهم شكل الأوامر والمسارات
+3. أوامر الملفات والمجلدات
+4. الصلاحيات والمستخدمين
+5. التعامل مع النصوص والبيانات
+6. Pipes و Redirection
+7. البحث عن الملفات ومعالجة النتائج
+8. العمليات والنظام
+9. إدارة الحزم والبرامج
+10. GNU/Linux vs BSD/macOS
+11. Bash/Zsh Scripting
+12. SSH وأساسيات DevOps
+13. جدول الطوارئ السريع
+14. خطة تدريب عملية وتمارين
+
+***
+
+# 1. عقلية التيرمنال وتجهيز البيئة
+
+## 1.1 ما هو Terminal؟ وما هو Shell؟
+
+الـ **Terminal** هو النافذة التي تكتب فيها الأوامر.
+
+الـ **Shell** هو البرنامج الذي يقرأ الأمر ويفهمه وينفذه.
+
+أمثلة على الـ Shell:
+
+```bash
+bash
+zsh
+sh
+```
+
+على Linux غالبًا ستجد Bash.  
+على macOS الحديث غالبًا الافتراضي هو Zsh.
+
+لمعرفة الـ shell الحالي:
+
+```bash
+echo "$SHELL"
+```
+
+لمعرفة اسم النظام:
+
+```bash
+uname -s
+```
+
+الناتج غالبًا:
+
+```text
+Linux
+```
+
+أو:
+
+```text
+Darwin
+```
+
+`Darwin` يعني macOS.
+
+***
+
+## 1.2 الفرق بين Linux وmacOS في التيرمنال
+
+Linux غالبًا يستخدم أدوات GNU.
+
+macOS يستخدم أدوات BSD افتراضيًا.
+
+الأمر قد يكون بنفس الاسم، مثل:
+
+```bash
+sed
+date
+grep
+find
+```
+
+لكن بعض الخيارات تختلف بين النظامين.
+
+الفكرة المهمة:
+
+> الأوامر الأساسية غالبًا مشتركة، لكن الأوامر المتقدمة قد تختلف في التفاصيل.
+
+***
+
+## 1.3 جعل البيئتين متشابهتين قدر الإمكان
+
+### على macOS ثبت Homebrew
+
+Homebrew هو مدير حزم شائع على macOS.
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+بعد التثبيت:
+
+```bash
+brew doctor
+brew --version
+```
+
+### تثبيت أدوات GNU على macOS
+
+```bash
+brew install coreutils findutils gnu-sed gawk grep
+```
+
+بعدها ستجد نسخ GNU بأسماء مثل:
+
+```bash
+gsed
+gawk
+ggrep
+gdate
+```
+
+مثال:
+
+```bash
+gdate --version
+gsed --version
+```
+
+***
+
+# 2. فهم شكل الأوامر والمسارات
+
+## 2.1 شكل الأمر العام
+
+معظم الأوامر شكلها هكذا:
+
+```bash
+command [options] [arguments]
+```
+
+مثال:
+
+```bash
+ls -lah /tmp
+```
+
+المعنى:
+
+```text
+ls       الأمر
+-lah     خيارات
+/tmp     المسار أو الهدف
+```
+
+بعض الخيارات قصيرة:
+
+```bash
+ls -l
+```
+
+وبعضها طويلة:
+
+```bash
+ls --help
+```
+
+أحيانًا يمكن دمج الخيارات القصيرة:
+
+```bash
+ls -l -a -h
+```
+
+نفس:
+
+```bash
+ls -lah
+```
+
+***
+
+## 2.2 المسارات Paths
+
+### المسار المطلق Absolute Path
+
+يبدأ من جذر النظام `/`.
+
+على Linux:
+
+```bash
+/home/ahmed/projects
+```
+
+على macOS:
+
+```bash
+/Users/ahmed/projects
+```
+
+### المسار النسبي Relative Path
+
+يبدأ من مكانك الحالي.
+
+```bash
+./app
+../backup
+docs/file.txt
+```
+
+رموز مهمة:
+
+```text
+/    جذر النظام
+~    مجلد المستخدم الحالي
+.    المجلد الحالي
+..   المجلد الأب
+```
+
+أمثلة:
+
+```bash
+cd ~
+cd ..
+cd ./src
+cd /tmp
+```
+
+***
+
+## 2.3 كيف تطلب المساعدة؟
+
+### man
+
+```bash
+man ls
+```
+
+داخل صفحة `man`:
+
+```text
+q       خروج
+/word   بحث
+n       النتيجة التالية
+```
+
+### help
+
+بعض الأوامر داخلية في الـ shell مثل `cd`.
+
+```bash
+help cd
+```
+
+### type
+
+يعرفك الأمر ده نوعه إيه ومكانه فين.
+
+```bash
+type cd
+type ls
+type python3
+```
+
+مثال ناتج:
+
+```text
+cd is a shell builtin
+ls is /bin/ls
+```
+
+### which و command -v
+
+```bash
+which git
+```
+
+أو الأفضل في السكربتات:
+
+```bash
+command -v git
+```
+
+***
+
+# 3. أوامر الملفات والمجلدات
+
+## 3.1 pwd — اعرف مكانك الحالي
+
+### الوظيفة
+
+يعرض المسار الحالي.
+
+```bash
+pwd
+```
+
+مثال ناتج:
+
+```text
+/home/ahmed/projects
+```
+
+أو:
+
+```text
+/Users/ahmed/projects
+```
+
+***
+
+## 3.2 ls — عرض الملفات والمجلدات
+
+### الوظيفة
+
+يعرض محتوى مجلد.
+
+```bash
+ls
+```
+
+عرض تفصيلي:
+
+```bash
+ls -l
+```
+
+عرض المخفي:
+
+```bash
+ls -a
+```
+
+عرض تفصيلي ومخفي وبأحجام مفهومة:
+
+```bash
+ls -lah
+```
+
+### فهم الناتج
+
+```text
+-rw-r--r--  1 ahmed staff  1200 Jun 4 notes.txt
+```
+
+المعنى:
+
+```text
+-rw-r--r--   الصلاحيات
+1            عدد الروابط
+ahmed        المالك
+staff        المجموعة
+1200         الحجم
+Jun 4        آخر تعديل
+notes.txt    اسم الملف
+```
+
+### خطأ شائع
+
+لو اسم الملف فيه مسافة:
+
+```bash
+ls my file.txt
+```
+
+ده غلط لأنه سيفهمها كملفين.
+
+الصحيح:
+
+```bash
+ls "my file.txt"
+```
+
+أو:
+
+```bash
+ls my\ file.txt
+```
+
+***
+
+## 3.3 cd — التنقل بين المجلدات
+
+الذهاب لمجلد:
+
+```bash
+cd Documents
+```
+
+الذهاب للبيت:
+
+```bash
+cd ~
+```
+
+الصعود مستوى:
+
+```bash
+cd ..
+```
+
+الرجوع للمكان السابق:
+
+```bash
+cd -
+```
+
+مثال:
+
+```bash
+cd ~/Documents
+pwd
+```
+
+***
+
+## 3.4 mkdir — إنشاء مجلد
+
+إنشاء مجلد:
+
+```bash
+mkdir project
+```
+
+إنشاء أكثر من مجلد:
+
+```bash
+mkdir src tests docs
+```
+
+إنشاء مسار كامل:
+
+```bash
+mkdir -p project/src/components
+```
+
+`-p` معناها: أنشئ المجلدات الناقصة ولا تعطيني خطأ لو موجودة.
+
+***
+
+## 3.5 touch — إنشاء ملف فارغ أو تحديث وقته
+
+```bash
+touch notes.txt
+```
+
+إنشاء عدة ملفات:
+
+```bash
+touch a.txt b.txt c.txt
+```
+
+***
+
+## 3.6 cp — نسخ
+
+نسخ ملف:
+
+```bash
+cp file.txt copy.txt
+```
+
+نسخ ملف إلى مجلد:
+
+```bash
+cp file.txt backup/
+```
+
+نسخ مجلد:
+
+```bash
+cp -r project project-backup
+```
+
+`-r` معناها recursive، أي انسخ كل ما داخل المجلد.
+
+***
+
+## 3.7 mv — نقل أو إعادة تسمية
+
+إعادة تسمية:
+
+```bash
+mv old.txt new.txt
+```
+
+نقل ملف:
+
+```bash
+mv file.txt ~/Documents/
+```
+
+نقل مجلد:
+
+```bash
+mv project ~/Desktop/
+```
+
+***
+
+## 3.8 rm — حذف
+
+حذف ملف:
+
+```bash
+rm file.txt
+```
+
+حذف مجلد ومحتواه:
+
+```bash
+rm -r folder
+```
+
+حذف بالقوة:
+
+```bash
+rm -rf folder
+```
+
+> تحذير مهم:  
+> `rm -rf` لا يرسل الملفات إلى سلة المهملات. استخدمه بحذر.
+
+قبل الحذف يمكنك تجربة:
+
+```bash
+ls folder
+```
+
+أو:
+
+```bash
+find folder
+```
+
+لكي ترى ما سيتم حذفه.
+
+***
+
+## 3.9 file — معرفة نوع الملف
+
+```bash
+file image.png
+file script.sh
+file archive.tar.gz
+```
+
+مثال ناتج:
+
+```text
+script.sh: Bourne-Again shell script text executable
+```
+
+***
+
+## 3.10 stat — معلومات تفصيلية عن الملف
+
+على Linux:
+
+```bash
+stat file.txt
+```
+
+على macOS:
+
+```bash
+stat file.txt
+```
+
+لكن صيغة الإخراج والخيارات المتقدمة تختلف بين GNU وBSD.
+
+لو تريد تجنب الاختلافات في السكربتات، استخدم أوامر أبسط مثل:
+
+```bash
+ls -l file.txt
+```
+
+أو Python عند الحاجة.
+
+***
+
+# 4. الصلاحيات والمستخدمين
+
+## 4.1 فهم الصلاحيات
+
+نفذ:
+
+```bash
+ls -l
+```
+
+مثال:
+
+```text
+-rwxr-xr--  1 ahmed staff  1200 Jun 4 script.sh
+```
+
+أول جزء:
+
+```text
+-rwxr-xr--
+```
+
+ينقسم إلى:
+
+```text
+-     نوع الملف
+rwx   صلاحيات المالك
+r-x   صلاحيات المجموعة
+r--   صلاحيات الآخرين
+```
+
+الحروف:
+
+```text
+r = read    قراءة
+w = write   كتابة
+x = execute تنفيذ
+```
+
+***
+
+## 4.2 chmod — تغيير الصلاحيات
+
+جعل سكربت قابل للتنفيذ:
+
+```bash
+chmod +x script.sh
+```
+
+إزالة التنفيذ:
+
+```bash
+chmod -x script.sh
+```
+
+استخدام الأرقام:
+
+```bash
+chmod 755 script.sh
+```
+
+المعنى:
+
+```text
+7 = read + write + execute
+5 = read + execute
+5 = read + execute
+```
+
+أشهر القيم:
+
+```text
+644  ملف عادي
+755  سكربت أو برنامج قابل للتنفيذ
+700  خاص بالمالك فقط
+```
+
+***
+
+## 4.3 chown — تغيير المالك
+
+تغيير مالك ملف:
+
+```bash
+sudo chown ahmed file.txt
+```
+
+تغيير المالك والمجموعة:
+
+```bash
+sudo chown ahmed:staff file.txt
+```
+
+تغيير مجلد وكل محتواه:
+
+```bash
+sudo chown -R ahmed:staff project
+```
+
+> انتبه:  
+> `chown -R` خطير إذا استخدمته على مسار غلط.
+
+***
+
+## 4.4 sudo — تنفيذ كمدير
+
+```bash
+sudo command
+```
+
+مثال Linux:
+
+```bash
+sudo apt update
+```
+
+مثال macOS:
+
+```bash
+sudo softwareupdate -l
+```
+
+قاعدة مهمة:
+
+> لا تستخدم `sudo` لمجرد أن الأمر فشل. اقرأ رسالة الخطأ أولًا.
+
+***
+
+## 4.5 whoami و id
+
+معرفة المستخدم الحالي:
+
+```bash
+whoami
+```
+
+معرفة المستخدم والمجموعات:
+
+```bash
+id
+```
+
+***
+
+# 5. التعامل مع النصوص والبيانات
+
+## 5.1 cat — عرض محتوى ملف
+
+```bash
+cat file.txt
+```
+
+مناسب للملفات الصغيرة.
+
+لإنشاء ملف سريعًا:
+
+```bash
+cat > notes.txt
+```
+
+اكتب النص، ثم اضغط:
+
+```text
+Ctrl + D
+```
+
+***
+
+## 5.2 less — قراءة ملف كبير
+
+```bash
+less app.log
+```
+
+داخل less:
+
+```text
+Space  صفحة للأسفل
+b      صفحة للأعلى
+/word  بحث
+n      التالي
+q      خروج
+```
+
+***
+
+## 5.3 head — أول أسطر
+
+```bash
+head file.txt
+```
+
+أول 20 سطر:
+
+```bash
+head -n 20 file.txt
+```
+
+***
+
+## 5.4 tail — آخر أسطر
+
+```bash
+tail file.txt
+```
+
+آخر 50 سطر:
+
+```bash
+tail -n 50 file.txt
+```
+
+متابعة ملف لحظيًا:
+
+```bash
+tail -f app.log
+```
+
+مفيد جدًا في logs.
+
+***
+
+## 5.5 grep — البحث داخل النصوص
+
+بحث عادي:
+
+```bash
+grep "error" app.log
+```
+
+بدون حساسية لحالة الأحرف:
+
+```bash
+grep -i "error" app.log
+```
+
+مع رقم السطر:
+
+```bash
+grep -n "error" app.log
+```
+
+بحث recursively داخل مجلد:
+
+```bash
+grep -R "TODO" .
+```
+
+بحث مع تجاهل case ورقم السطر:
+
+```bash
+grep -Rni "TODO" .
+```
+
+### grep -q في السكربتات
+
+```bash
+if grep -q "ERROR" app.log; then
+  echo "Errors found"
+else
+  echo "No errors"
+fi
+```
+
+`-q` معناها quiet، لا تطبع الناتج، فقط اعتمد على كود النجاح أو الفشل.
+
+***
+
+## 5.6 wc — العد
+
+```bash
+wc file.txt
+```
+
+يعرض:
+
+```text
+lines words bytes
+```
+
+عدد السطور:
+
+```bash
+wc -l file.txt
+```
+
+مثال عملي:
+
+```bash
+grep "ERROR" app.log | wc -l
+```
+
+***
+
+## 5.7 sort — الترتيب
+
+```bash
+sort names.txt
+```
+
+ترتيب عكسي:
+
+```bash
+sort -r names.txt
+```
+
+ترتيب رقمي:
+
+```bash
+sort -n numbers.txt
+```
+
+***
+
+## 5.8 uniq — حذف التكرار المتجاور
+
+```bash
+uniq names.txt
+```
+
+لكن غالبًا تستخدمه مع `sort`:
+
+```bash
+sort names.txt | uniq
+```
+
+عدّ التكرارات:
+
+```bash
+sort names.txt | uniq -c
+```
+
+***
+
+## 5.9 cut — استخراج أعمدة
+
+مثال من `/etc/passwd`:
+
+```bash
+cut -d ':' -f 1 /etc/passwd
+```
+
+المعنى:
+
+```text
+-d ':'   الفاصل هو :
+-f 1     العمود الأول
+```
+
+***
+
+## 5.10 tr — تحويل أو حذف حروف
+
+تحويل إلى uppercase:
+
+```bash
+echo "hello" | tr 'a-z' 'A-Z'
+```
+
+حذف المسافات:
+
+```bash
+echo "a b c" | tr -d ' '
+```
+
+***
+
+# 6. Pipes و Redirection
+
+## 6.1 Pipe
+
+الـ pipe يأخذ output من أمر ويدخله input للأمر التالي.
+
+```bash
+command1 | command2
+```
+
+مثال:
+
+```bash
+grep "404" access.log | wc -l
+```
+
+المعنى:
+
+1. ابحث عن السطور التي تحتوي `404`.
+2. عدّ عددها.
+
+مثال أقوى:
+
+```bash
+cat access.log | grep "ERROR" | sort | uniq -c
+```
+
+لكن الأفضل:
+
+```bash
+grep "ERROR" access.log | sort | uniq -c
+```
+
+لأن `grep` يستطيع قراءة الملف مباشرة.
+
+***
+
+## 6.2 Redirection
+
+### كتابة الناتج في ملف
+
+```bash
+echo "hello" > file.txt
+```
+
+`>` يمسح القديم ويكتب من جديد.
+
+### الإضافة على ملف
+
+```bash
+echo "world" >> file.txt
+```
+
+`>>` يضيف في آخر الملف.
+
+### حفظ الأخطاء في ملف
+
+```bash
+ls not-found 2> errors.txt
+```
+
+### حفظ الناتج والأخطاء
+
+```bash
+command > output.txt 2> errors.txt
+```
+
+أو جمع الاثنين:
+
+```bash
+command > all.txt 2>&1
+```
+
+***
+
+# 7. البحث عن الملفات ومعالجة النتائج
+
+## 7.1 find — البحث عن الملفات
+
+بحث باسم:
+
+```bash
+find . -name "*.log"
+```
+
+بحث عن ملفات فقط:
+
+```bash
+find . -type f -name "*.txt"
+```
+
+بحث عن مجلدات فقط:
+
+```bash
+find . -type d -name "node_modules"
+```
+
+بحث بدون حساسية لحالة الأحرف:
+
+```bash
+find . -iname "readme.md"
+```
+
+حذف ملفات log بحذر:
+
+```bash
+find . -type f -name "*.log" -print
+```
+
+بعد التأكد:
+
+```bash
+find . -type f -name "*.log" -delete
+```
+
+> ملاحظة:  
+> خيارات `find` المتقدمة قد تختلف بين GNU وBSD، لذلك اختبر الأمر قبل استخدامه في سكربت مهم.
+
+***
+
+## 7.2 xargs — تنفيذ أمر على نتائج أمر آخر
+
+مثال:
+
+```bash
+find . -name "*.log" | xargs rm
+```
+
+لكن لو أسماء الملفات فيها مسافات، استخدم:
+
+```bash
+find . -name "*.log" -print0 | xargs -0 rm
+```
+
+هذه الطريقة أكثر أمانًا.
+
+***
+
+# 8. العمليات والنظام
+
+## 8.1 ps — عرض العمليات
+
+```bash
+ps aux
+```
+
+البحث عن عملية:
+
+```bash
+ps aux | grep nginx
+```
+
+لكن سيظهر أمر grep نفسه أحيانًا.
+
+حل بسيط:
+
+```bash
+ps aux | grep "[n]ginx"
+```
+
+***
+
+## 8.2 top و htop
+
+عرض العمليات لحظيًا:
+
+```bash
+top
+```
+
+لو مثبت `htop`:
+
+```bash
+htop
+```
+
+تثبيته:
+
+Ubuntu/Debian:
+
+```bash
+sudo apt install htop
+```
+
+macOS:
+
+```bash
+brew install htop
+```
+
+Arch:
+
+```bash
+sudo pacman -S htop
+```
+
+***
+
+## 8.3 kill — إيقاف عملية
+
+إيقاف عادي:
+
+```bash
+kill PID
+```
+
+مثال:
+
+```bash
+kill 1234
+```
+
+إيقاف قوي:
+
+```bash
+kill -9 1234
+```
+
+> `kill -9` آخر حل، لأنه لا يعطي البرنامج فرصة ينظف نفسه أو يحفظ بياناته.
+
+***
+
+## 8.4 jobs و fg و bg
+
+تشغيل أمر في الخلفية:
+
+```bash
+sleep 100 &
+```
+
+عرض jobs:
+
+```bash
+jobs
+```
+
+إرجاع job للأمام:
+
+```bash
+fg
+```
+
+استكماله في الخلفية:
+
+```bash
+bg
+```
+
+إيقاف مؤقت لعملية في foreground:
+
+```text
+Ctrl + Z
+```
+
+إيقاف نهائي غالبًا:
+
+```text
+Ctrl + C
+```
+
+***
+
+## 8.5 df و du — المساحة
+
+مساحة الأقراص:
+
+```bash
+df -h
+```
+
+حجم مجلد:
+
+```bash
+du -sh project
+```
+
+أكبر عناصر داخل مجلد:
+
+```bash
+du -sh * | sort -h
+```
+
+> `sort -h` يعمل في GNU، وقد لا يتوفر بنفس الشكل في macOS القديم. لو واجهت مشكلة على macOS، استخدم `brew install coreutils` ثم `gsort`.
+
+***
+
+# 9. إدارة الحزم والبرامج
+
+## 9.1 Ubuntu/Debian — apt
+
+تحديث الفهارس:
+
+```bash
+sudo apt update
+```
+
+ترقية الحزم:
+
+```bash
+sudo apt upgrade
+```
+
+تثبيت برنامج:
+
+```bash
+sudo apt install nginx
+```
+
+حذف برنامج:
+
+```bash
+sudo apt remove nginx
+```
+
+حذف مع ملفات الإعداد:
+
+```bash
+sudo apt purge nginx
+```
+
+تنظيف الاعتمادات غير المستخدمة:
+
+```bash
+sudo apt autoremove
+```
+
+***
+
+## 9.2 Arch Linux — pacman
+
+تحديث النظام:
+
+```bash
+sudo pacman -Syu
+```
+
+تثبيت برنامج:
+
+```bash
+sudo pacman -S nginx
+```
+
+حذف برنامج:
+
+```bash
+sudo pacman -R nginx
+```
+
+حذف مع الاعتمادات غير المستخدمة:
+
+```bash
+sudo pacman -Rs nginx
+```
+
+البحث:
+
+```bash
+pacman -Ss nginx
+```
+
+معلومات عن حزمة:
+
+```bash
+pacman -Si nginx
+```
+
+***
+
+## 9.3 macOS — Homebrew
+
+تحديث Homebrew:
+
+```bash
+brew update
+```
+
+تثبيت أداة:
+
+```bash
+brew install wget
+```
+
+تثبيت تطبيق GUI:
+
+```bash
+brew install --cask firefox
+```
+
+ترقية البرامج:
+
+```bash
+brew upgrade
+```
+
+عرض المثبت:
+
+```bash
+brew list
+```
+
+حذف برنامج:
+
+```bash
+brew uninstall wget
+```
+
+تنظيف:
+
+```bash
+brew cleanup
+```
+
+***
+
+# 10. GNU/Linux vs BSD/macOS
+
+## 10.1 sed
+
+استبدال نص وعرض الناتج فقط:
+
+```bash
+sed 's/old/new/g' file.txt
+```
+
+### التعديل داخل الملف
+
+Linux GNU sed:
+
+```bash
+sed -i 's/old/new/g' file.txt
+```
+
+macOS BSD sed:
+
+```bash
+sed -i '' 's/old/new/g' file.txt
+```
+
+### طريقة آمنة تعمل على الاثنين
+
+```bash
+sed 's/old/new/g' file.txt > file.tmp && mv file.tmp file.txt
+```
+
+***
+
+## 10.2 awk
+
+عرض العمود الأول:
+
+```bash
+awk '{print $1}' file.txt
+```
+
+استخدام فاصل:
+
+```bash
+awk -F ':' '{print $1}' /etc/passwd
+```
+
+غالبًا الأساسيات تعمل على النظامين.
+
+لو احتجت GNU awk على macOS:
+
+```bash
+brew install gawk
+```
+
+ثم:
+
+```bash
+gawk '{print $1}' file.txt
+```
+
+***
+
+## 10.3 date
+
+عرض التاريخ:
+
+```bash
+date
+```
+
+تنسيق التاريخ:
+
+```bash
+date "+%Y-%m-%d %H:%M:%S"
+```
+
+### تاريخ الغد
+
+Linux:
+
+```bash
+date -d "tomorrow" "+%Y-%m-%d"
+```
+
+macOS:
+
+```bash
+date -v+1d "+%Y-%m-%d"
+```
+
+### تاريخ بعد يوم من تاريخ معين
+
+Linux:
+
+```bash
+date -d "2026-06-04 +1 day" "+%Y-%m-%d"
+```
+
+macOS:
+
+```bash
+date -j -v+1d -f "%Y-%m-%d" "2026-06-04" "+%Y-%m-%d"
+```
+
+### حل portable باستخدام Python
+
+```bash
+python3 - <<'PY'
+from datetime import datetime, timedelta
+d = datetime.strptime("2026-06-04", "%Y-%m-%d")
+print((d + timedelta(days=1)).strftime("%Y-%m-%d"))
+PY
+```
+
+***
+
+## 10.4 grep
+
+الأساسيات مشتركة:
+
+```bash
+grep -Rni "TODO" .
+```
+
+لكن انتبه:  
+`grep -P` غير مضمون على macOS لأنه يعتمد على PCRE وقد لا يكون متاحًا.
+
+بدلًا من:
+
+```bash
+grep -P "\d+" file.txt
+```
+
+استخدم:
+
+```bash
+grep -E "[0-9]+" file.txt
+```
+
+***
+
+## 10.5 stat
+
+Linux:
+
+```bash
+stat -c "%s" file.txt
+```
+
+macOS:
+
+```bash
+stat -f "%z" file.txt
+```
+
+لو تريد حجم ملف بطريقة أبسط:
+
+```bash
+wc -c < file.txt
+```
+
+***
+
+# 11. Bash/Zsh Scripting
+
+## 11.1 أول سكربت
+
+أنشئ ملف:
+
+```bash
+touch hello.sh
+chmod +x hello.sh
+```
+
+اكتب:
+
+```bash
+#!/usr/bin/env bash
+
+echo "Hello"
+echo "User: $(whoami)"
+echo "Directory: $(pwd)"
+echo "OS: $(uname -s)"
+```
+
+شغله:
+
+```bash
+./hello.sh
+```
+
+استخدام:
+
+```bash
+#!/usr/bin/env bash
+```
+
+أفضل من:
+
+```bash
+#!/bin/bash
+```
+
+لأن مكان Bash قد يختلف.
+
+***
+
+## 11.2 وضع الأمان
+
+```bash
+set -euo pipefail
+```
+
+مثال:
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+name="${1:-guest}"
+echo "Hello $name"
+```
+
+المعنى:
+
+```text
+-e        أوقف عند الخطأ
+-u        امنع استخدام متغير غير معرف
+pipefail  فشل الـ pipeline إذا فشل أي أمر داخله
+```
+
+***
+
+## 11.3 المتغيرات
+
+```bash
+name="Ahmed"
+echo "$name"
+```
+
+مهم جدًا:
+
+```bash
+echo "$name"
+```
+
+وليس:
+
+```bash
+echo $name
+```
+
+لأن الاقتباس يحمي من المسافات والمشاكل.
+
+***
+
+## 11.4 Arguments
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "Script name: $0"
+echo "First arg: ${1:-none}"
+echo "Second arg: ${2:-none}"
+```
+
+تشغيل:
+
+```bash
+./script.sh hello world
+```
+
+***
+
+## 11.5 if
+
+```bash
+if [ -f "config.txt" ]; then
+  echo "File exists"
+else
+  echo "File not found"
+fi
+```
+
+اختبارات مهمة:
+
+```text
+-f ملف
+-d مجلد
+-e موجود
+-z نص فارغ
+-n نص غير فارغ
+```
+
+***
+
+## 11.6 case
+
+مفيد للتعامل مع الأنظمة:
+
+```bash
+case "$(uname -s)" in
+  Linux)
+    echo "Linux"
+    ;;
+  Darwin)
+    echo "macOS"
+    ;;
+  *)
+    echo "Unknown OS"
+    ;;
+esac
+```
+
+***
+
+## 11.7 loops
+
+### for
+
+```bash
+for file in *.txt; do
+  echo "File: $file"
+done
+```
+
+### while
+
+```bash
+while read -r line; do
+  echo "Line: $line"
+done < file.txt
+```
+
+استخدم `read -r` حتى لا يتعامل مع backslash بطريقة غريبة.
+
+***
+
+## 11.8 functions
+
+```bash
+log() {
+  echo "[INFO] $*"
+}
+
+log "Starting script"
+```
+
+***
+
+## 11.9 exit codes
+
+كل أمر يرجع كود.
+
+نجاح:
+
+```text
+0
+```
+
+فشل:
+
+```text
+غير 0
+```
+
+اعرض كود آخر أمر:
+
+```bash
+echo $?
+```
+
+مثال:
+
+```bash
+ls file.txt
+echo $?
+```
+
+في السكربت:
+
+```bash
+if grep -q "ERROR" app.log; then
+  echo "Errors found"
+else
+  echo "No errors"
+fi
+```
+
+***
+
+## 11.10 ملفات مؤقتة
+
+```bash
+tmpfile="$(mktemp)"
+echo "hello" > "$tmpfile"
+cat "$tmpfile"
+rm "$tmpfile"
+```
+
+مجلد مؤقت:
+
+```bash
+tmpdir="$(mktemp -d)"
+echo "$tmpdir"
+rm -rf "$tmpdir"
+```
+
+***
+
+## 11.11 سكربت portable كامل
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+log() {
+  echo "[INFO] $*"
+}
+
+get_tomorrow() {
+  case "$(uname -s)" in
+    Linux)
+      date -d "tomorrow" "+%Y-%m-%d"
+      ;;
+    Darwin)
+      date -v+1d "+%Y-%m-%d"
+      ;;
+    *)
+      python3 - <<'PY'
+from datetime import datetime, timedelta
+print((datetime.now() + timedelta(days=1)).strftime("%Y-%m-%d"))
+PY
+      ;;
+  esac
+}
+
+main() {
+  log "OS: $(uname -s)"
+  log "User: $(whoami)"
+  log "Tomorrow: $(get_tomorrow)"
+}
+
+main "$@"
+```
+
+***
+
+## 11.12 حساسية الأحرف Case Sensitivity
+
+Linux غالبًا يفرق بين:
+
+```text
+App.js
+app.js
+```
+
+macOS غالبًا لا يفرق افتراضيًا، حسب نظام الملفات.
+
+نصائح:
+
+* لا تنشئ ملفين يختلفان فقط في الحروف الكبيرة والصغيرة.
+* استخدم نمط ثابت:
+
+```text
+lowercase-with-dashes
+```
+
+أو:
+
+```text
+snake_case
+```
+
+لو Git لم يلتقط تغيير الاسم من `App.js` إلى `app.js`:
+
+```bash
+git mv App.js temp.js
+git mv temp.js app.js
+git commit -m "Rename App.js to app.js"
+```
+
+***
+
+# 12. SSH وأساسيات DevOps
+
+## 12.1 ssh — الاتصال بسيرفر
+
+```bash
+ssh user@server-ip
+```
+
+مثال:
+
+```bash
+ssh ubuntu@192.168.1.10
+```
+
+تحديد port:
+
+```bash
+ssh -p 2222 user@server-ip
+```
+
+***
+
+## 12.2 ssh-keygen — إنشاء مفتاح
+
+```bash
+ssh-keygen
+```
+
+غالبًا سيُنشئ:
+
+```text
+~/.ssh/id_rsa
+~/.ssh/id_rsa.pub
+```
+
+أو مفاتيح أحدث مثل ed25519:
+
+```bash
+ssh-keygen -t ed25519
+```
+
+***
+
+## 12.3 نسخ المفتاح للسيرفر
+
+على Linux غالبًا:
+
+```bash
+ssh-copy-id user@server-ip
+```
+
+لو غير متاح على macOS، يمكنك استخدام:
+
+```bash
+cat ~/.ssh/id_ed25519.pub | ssh user@server-ip 'mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys'
+```
+
+***
+
+## 12.4 scp — نسخ ملفات عبر SSH
+
+نسخ ملف إلى السيرفر:
+
+```bash
+scp file.txt user@server-ip:/home/user/
+```
+
+نسخ من السيرفر لجهازك:
+
+```bash
+scp user@server-ip:/home/user/file.txt .
+```
+
+نسخ مجلد:
+
+```bash
+scp -r project user@server-ip:/home/user/
+```
+
+***
+
+## 12.5 curl و wget
+
+### curl
+
+عرض response:
+
+```bash
+curl https://example.com
+```
+
+حفظ في ملف:
+
+```bash
+curl -o page.html https://example.com
+```
+
+عرض headers:
+
+```bash
+curl -I https://example.com
+```
+
+### wget
+
+```bash
+wget https://example.com/file.zip
+```
+
+على macOS قد تحتاج:
+
+```bash
+brew install wget
+```
+
+***
+
+## 12.6 tar و gzip
+
+ضغط مجلد:
+
+```bash
+tar -czf project.tar.gz project
+```
+
+فك الضغط:
+
+```bash
+tar -xzf project.tar.gz
+```
+
+عرض المحتوى بدون فك:
+
+```bash
+tar -tzf project.tar.gz
+```
+
+***
+
+# 13. جدول الطوارئ السريع
+
+| المهمة             | Linux                        | macOS                | ملاحظات        |
+| ------------------ | ---------------------------- | -------------------- | -------------- |
+| معرفة المسار       | `pwd`                        | `pwd`                | مشترك          |
+| عرض الملفات        | `ls -lah`                    | `ls -lah`            | مشترك غالبًا   |
+| تغيير مجلد         | `cd path`                    | `cd path`            | مشترك          |
+| إنشاء مجلد         | `mkdir -p path`              | `mkdir -p path`      | مشترك          |
+| نسخ مجلد           | `cp -r src dst`              | `cp -r src dst`      | مشترك          |
+| حذف مجلد           | `rm -r folder`               | `rm -r folder`       | احذر           |
+| نوع ملف            | `file file.txt`              | `file file.txt`      | مشترك          |
+| صلاحيات            | `chmod +x script.sh`         | `chmod +x script.sh` | مشترك          |
+| تنفيذ كمدير        | `sudo command`               | `sudo command`       | مشترك          |
+| تثبيت برنامج       | `apt install` / `pacman -S`  | `brew install`       | مختلف          |
+| تحديث الحزم        | `apt update` / `pacman -Syu` | `brew update`        | مختلف          |
+| البحث في نص        | `grep -Rni text .`           | `grep -Rni text .`   | تجنب `grep -P` |
+| تعديل sed داخل ملف | `sed -i`                     | `sed -i ''`          | فرق مهم        |
+| تاريخ الغد         | `date -d tomorrow`           | `date -v+1d`         | فرق مهم        |
+| حجم ملف بـ stat    | `stat -c "%s"`               | `stat -f "%z"`       | مختلف          |
+| اسم النظام         | `uname -s`                   | `uname -s`           | Linux/Darwin   |
+
+***
+
+# 14. خطة تدريب عملية
+
+## اليوم 1: التنقل والمسارات
+
+نفذ:
+
+```bash
+pwd
+ls
+cd ~
+mkdir terminal-practice
+cd terminal-practice
+pwd
+```
+
+تمرين:
+
+* أنشئ مجلد `day1`
+* ادخله
+* أنشئ 3 ملفات
+* اعرضهم بالتفصيل
+
+حل:
+
+```bash
+mkdir day1
+cd day1
+touch a.txt b.txt c.txt
+ls -lah
+```
+
+***
+
+## اليوم 2: النسخ والنقل والحذف
+
+تمرين:
+
+```bash
+mkdir backup
+touch notes.txt
+cp notes.txt backup/
+mv notes.txt renamed.txt
+ls -lah
+ls -lah backup
+```
+
+حذف:
+
+```bash
+rm renamed.txt
+rm -r backup
+```
+
+***
+
+## اليوم 3: قراءة النصوص
+
+أنشئ ملف:
+
+```bash
+cat > app.log
+INFO app started
+ERROR database failed
+INFO retrying
+ERROR timeout
+```
+
+اضغط `Ctrl + D`.
+
+تدرب:
+
+```bash
+cat app.log
+grep "ERROR" app.log
+grep -n "ERROR" app.log
+wc -l app.log
+tail -n 2 app.log
+```
+
+***
+
+## اليوم 4: Pipes
+
+```bash
+grep "ERROR" app.log | wc -l
+grep "INFO" app.log | sort
+```
+
+تمرين:
+
+* عدّ عدد سطور ERROR.
+* اعرض أرقام السطور التي تحتوي ERROR.
+
+حل:
+
+```bash
+grep "ERROR" app.log | wc -l
+grep -n "ERROR" app.log
+```
+
+***
+
+## اليوم 5: find و xargs
+
+```bash
+mkdir -p logs/old
+touch logs/a.log logs/b.log logs/old/c.log
+find . -name "*.log"
+```
+
+حذف بعد التأكد:
+
+```bash
+find . -name "*.log" -print
+find . -name "*.log" -delete
+```
+
+***
+
+## اليوم 6: سكربت صغير
+
+أنشئ:
+
+```bash
+touch info.sh
+chmod +x info.sh
+```
+
+اكتب:
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "User: $(whoami)"
+echo "OS: $(uname -s)"
+echo "Current directory: $(pwd)"
+```
+
+شغّل:
+
+```bash
+./info.sh
+```
+
+***
+
+## اليوم 7: سكربت portable
+
+اكتب سكربت يعرض تاريخ الغد على Linux وmacOS:
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+case "$(uname -s)" in
+  Linux)
+    date -d "tomorrow" "+%Y-%m-%d"
+    ;;
+  Darwin)
+    date -v+1d "+%Y-%m-%d"
+    ;;
+  *)
+    echo "Unsupported OS"
+    exit 1
+    ;;
+esac
+```
+
+***
+
+# قواعد ذهبية لازم تحفظها بالفهم
+
+1. اقرأ رسالة الخطأ قبل ما تستخدم `sudo`.
+2. أي متغير في سكربت ضعه بين quotes:
+
+```bash
+"$var"
+```
+
+3. لا تستخدم `rm -rf` إلا وأنت متأكد من المسار.
+4. استخدم `man`, `help`, `type` بدل الحفظ الأعمى.
+5. افهم الفرق بين:
+
+```bash
+>
+```
+
+و:
+
+```bash
+>>
+```
+
+6. افهم أن `|` ينقل output من أمر إلى input لأمر آخر.
+7. لو السكربت سيعمل على Linux وmacOS، احذر من:
+
+```text
+sed
+date
+stat
+find
+grep
+```
+
+8. استخدم:
+
+```bash
+uname -s
+```
+
+للتفريق بين الأنظمة.
+
+9. في macOS، Homebrew صديقك.
+10. في Linux، مدير الحزم يعتمد على التوزيعة.
+11. لا تنشئ ملفات تختلف فقط في الحروف الكبيرة والصغيرة.
+12. جرّب الأمر على ملفات اختبار قبل تشغيله على ملفات مهمة.
+
+***
+
+## الخلاصة
+
+لو مشيت على هذا الكتيب بالترتيب، أنت مش هتحفظ أوامر فقط؛ هتفهم:
+
+* التيرمنال بيفكر إزاي.
+* النظام بيشوف الملفات إزاي.
+* الأوامر بتاخد input وتطلع output إزاي.
+* إمتى الأمر يبقى portable بين Linux وmacOS.
+* إزاي تكتب سكربتات عملية بدون ما تتكسر بسبب فروقات GNU وBSD.
+
+أفضل طريقة للتعلم:  
+افتح Terminal، واعمل مجلد تدريب، وطبق كل أمر بنفسك.  
+الفهم الحقيقي بييجي من التجربة، الغلط، قراءة الخطأ، وتصحيحه.
