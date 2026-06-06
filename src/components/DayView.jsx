@@ -1,21 +1,27 @@
+import { lazy, Suspense } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, BookOpen, ListChecks, Keyboard, Route } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getDay, formatDayLabel } from "@/data/curriculum";
-import LearnMode from "@/components/LearnMode";
-import QuizMode from "@/components/QuizMode";
-import PracticeMode from "@/components/PracticeMode";
-import LabMode from "@/components/LabMode";
+import { useParams, useNavigate } from "react-router-dom";
 
-export default function DayView({ dayId, mode, onModeChange, onBack, onProgressUpdate }) {
-  const day = getDay(dayId);
+const LearnMode = lazy(() => import("@/components/LearnMode"));
+const QuizMode = lazy(() => import("@/components/QuizMode"));
+const PracticeMode = lazy(() => import("@/components/PracticeMode"));
+const LabMode = lazy(() => import("@/components/LabMode"));
+
+export default function DayView() {
+  const { dayId, mode = "learn" } = useParams();
+  const navigate = useNavigate();
+  const parsedDayId = parseInt(dayId, 10);
+  const day = getDay(parsedDayId);
 
   const handleMode = (m) => {
-    onModeChange(m);
+    navigate(`/day/${dayId}/${m}`);
   };
 
-  const notifyProgress = () => {
-    onProgressUpdate?.();
+  const handleBack = () => {
+    navigate("/");
   };
 
   if (!day) return null;
@@ -23,7 +29,7 @@ export default function DayView({ dayId, mode, onModeChange, onBack, onProgressU
   return (
     <div className="space-y-6">
       <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
-        <Button onClick={onBack} className="rounded-2xl bg-slate-800">
+        <Button onClick={handleBack} className="rounded-2xl bg-slate-800">
           <ArrowRight className="ml-2 h-4 w-4" /> المسار التدريبي
         </Button>
         <div>
@@ -52,7 +58,7 @@ export default function DayView({ dayId, mode, onModeChange, onBack, onProgressU
             <ListChecks className="ml-2 h-4 w-4" /> اختبار
           </Button>
           <Button
-            onClick={() => handleMode("practice")}
+            onClick={() => navigate(`/day/${dayId}/practice`)}
             className={`rounded-2xl ${mode === "practice" ? "bg-emerald-600" : "bg-slate-800"}`}
           >
             <Keyboard className="ml-2 h-4 w-4" /> تدريب كتابة
@@ -66,32 +72,31 @@ export default function DayView({ dayId, mode, onModeChange, onBack, onProgressU
         </div>
       </motion.div>
 
-      {mode === "learn" && <LearnMode dayId={dayId} />}
-      {mode === "quiz" && (
-        <QuizMode
-          key={`quiz-${dayId}`}
-          dayId={dayId}
-          onBackToDay={() => handleMode("learn")}
-          onProgressUpdate={notifyProgress}
-          onStartPractice={() => {
-            notifyProgress();
-            handleMode("practice");
-          }}
-        />
-      )}
-      {mode === "practice" && (
-        <PracticeMode
-          key={`practice-${dayId}`}
-          dayId={dayId}
-          onBackToDay={() => handleMode("learn")}
-          onProgressUpdate={notifyProgress}
-          onStartQuiz={() => {
-            notifyProgress();
-            handleMode("quiz");
-          }}
-        />
-      )}
-      {mode === "lab" && <LabMode key={`lab-${dayId}`} dayId={dayId} />}
+      <Suspense fallback={
+        <div className="flex justify-center items-center py-20">
+          <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-emerald-500"></div>
+          <span className="mr-3 text-slate-400">جاري التحميل...</span>
+        </div>
+      }>
+        {mode === "learn" && <LearnMode dayId={parsedDayId} />}
+        {mode === "quiz" && (
+          <QuizMode
+            key={`quiz-${parsedDayId}`}
+            dayId={parsedDayId}
+            onBackToDay={() => handleMode("learn")}
+            onStartPractice={() => handleMode("practice")}
+          />
+        )}
+        {mode === "practice" && (
+          <PracticeMode
+            key={`practice-${parsedDayId}`}
+            dayId={parsedDayId}
+            onBackToDay={() => handleMode("learn")}
+            onStartQuiz={() => handleMode("quiz")}
+          />
+        )}
+        {mode === "lab" && <LabMode key={`lab-${parsedDayId}`} dayId={parsedDayId} />}
+      </Suspense>
     </div>
   );
 }

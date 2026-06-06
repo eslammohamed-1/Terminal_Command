@@ -11,10 +11,11 @@ export function normalizeAnswer(value) {
     .replace(/\s*;\s*do\s*$/i, "")
     .replace(/\s+/g, " ")
     .replace(/\s*\|\s*/g, " | ")
-    .replace(/\s*>>\s*/g, " >> ")
+    .replace(/\s*>>\s*/g, " __APPEND_REDIRECT__ ")
     .replace(/\s*2>\s*&\s*1\s*/gi, " 2>&1 ")
     .replace(/\s*2>\s*/g, " 2> ")
     .replace(/\s*>\s*/g, " > ")
+    .replace(/__APPEND_REDIRECT__/g, ">>")
     .replace(/\s*;\s*/g, " ; ")
     .replace(/\s+/g, " ")
     .trim();

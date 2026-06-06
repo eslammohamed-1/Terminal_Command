@@ -1,8 +1,8 @@
 {
   "schemaVersion": 2,
-  "title": "Terminal Commands 7-Day Learning Plan",
+  "title": "Terminal Commands 9-Day Learning Plan",
   "language": "ar",
-  "description": "قائمة أوامر Terminal مقسّمة على 7 أيام للتدريب العملي على macOS وLinux.",
+  "description": "قائمة أوامر Terminal مقسّمة على 9 أيام للتدريب العملي على macOS وLinux.",
   "_editInstructions": "أوامر: scripts/curriculum-base.json | أسئلة: src/data/questions.v2.ar.json — ثم python3 scripts/build-curriculum-json.py",
   "_sourceOfTruth": "src/data/curriculum.ar.json",
   "_questionsSource": "src/data/questions.v2.ar.json",
@@ -22,7 +22,8 @@
           "example": "pwd",
           "flags": "None",
           "target": "None",
-          "purpose": "يعرض المسار الحالي."
+          "purpose": "يعرض المسار الحالي.",
+          "proTip": "💡 لو ضعت في المجلدات، pwd هو أول حاجة تكتبها. في السكربتات، استخدم $(pwd) علشان تحفظ المسار الحالي في متغير."
         },
         {
           "id": "d1-ls",
@@ -30,7 +31,8 @@
           "example": "ls",
           "flags": "None",
           "target": "None",
-          "purpose": "يعرض الملفات والمجلدات في المكان الحالي."
+          "purpose": "يعرض الملفات والمجلدات في المكان الحالي.",
+          "proTip": "💡 ls لوحده كويس للنظرة السريعة، بس في الشغل الحقيقي هتلاقي نفسك دايمًا بتستخدم ls -la علشان تشوف كل حاجة."
         },
         {
           "id": "d1-ls-l",
@@ -38,7 +40,8 @@
           "example": "ls -l",
           "flags": "-l",
           "target": "None",
-          "purpose": "يعرض الملفات بتفاصيل مثل الصلاحيات والمالك والحجم."
+          "purpose": "يعرض الملفات بتفاصيل مثل الصلاحيات والمالك والحجم.",
+          "proTip": "💡 أول عمود في ls -l بيقولك الصلاحيات (rwx). لو شايف - مكان x يبقى الملف مش executable — هتحتاج chmod +x."
         },
         {
           "id": "d1-ls-a",
@@ -46,7 +49,8 @@
           "example": "ls -a",
           "flags": "-a",
           "target": "None",
-          "purpose": "يعرض الملفات المخفية أيضًا."
+          "purpose": "يعرض الملفات المخفية أيضًا.",
+          "proTip": "💡 ملفات زي .env و .gitignore مش بتظهر غير بـ -a. لو عندك مشكلة في config ومش لاقي الملف، جرّب ls -a الأول."
         },
         {
           "id": "d1-ls-lah",
@@ -54,7 +58,8 @@
           "example": "ls -lah",
           "flags": "-lah",
           "target": "None",
-          "purpose": "عرض تفصيلي شامل مع أحجام مقروءة."
+          "purpose": "عرض تفصيلي شامل مع أحجام مقروءة.",
+          "proTip": "💡 الـ h بتحوّل الأحجام من bytes لـ KB/MB/GB. الأمر ده هو صاحبك لما تدور على ملف كبير بياكل المساحة."
         },
         {
           "id": "d1-cd-folder-name",
@@ -62,7 +67,8 @@
           "example": "cd folder-name",
           "flags": "folder-name",
           "target": "None",
-          "purpose": "يدخل إلى مجلد معين."
+          "purpose": "يدخل إلى مجلد معين.",
+          "proTip": "💡 استخدم Tab للـ auto-complete علشان متغلطش في اسم المجلد. لو اسم المجلد فيه مسافات، حطه بين quotes."
         },
         {
           "id": "d1-cd",
@@ -70,7 +76,8 @@
           "example": "cd ..",
           "flags": "..",
           "target": "None",
-          "purpose": "يرجع للمجلد الأب."
+          "purpose": "يرجع للمجلد الأب.",
+          "proTip": "💡 ممكن تعمل cd ../.. علشان تطلع مستويين مرة واحدة بدل ما تكتب cd .. مرتين."
         },
         {
           "id": "d1-cd",
@@ -78,7 +85,8 @@
           "example": "cd ~",
           "flags": "~",
           "target": "None",
-          "purpose": "يرجع لمجلد المستخدم الرئيسي."
+          "purpose": "يرجع لمجلد المستخدم الرئيسي.",
+          "proTip": "💡 ~ هو shortcut لـ /Users/username على macOS أو /home/username على Linux. كتابة cd لوحدها بدون أي حاجة بتعمل نفس الحاجة."
         },
         {
           "id": "d1-cd",
@@ -86,7 +94,8 @@
           "example": "cd -",
           "flags": "-",
           "target": "None",
-          "purpose": "يرجع للمسار السابق."
+          "purpose": "يرجع للمسار السابق.",
+          "proTip": "💡 زي Alt+Tab بس للمجلدات! لو بتتنقل بين مجلدين كتير، cd - أسرع من إنك تكتب المسار كل مرة."
         },
         {
           "id": "d1-type-ls",
@@ -94,7 +103,8 @@
           "example": "type ls",
           "flags": "ls",
           "target": "None",
-          "purpose": "يعرفك نوع الأمر وهل هو built-in أم برنامج خارجي."
+          "purpose": "يعرفك نوع الأمر وهل هو built-in أم برنامج خارجي.",
+          "proTip": "💡 لو أمر مش شغال زي ما تتوقع، type بيقولك لو فيه alias بيغير سلوكه. مثلاً ممكن تلاقي ls عليه alias بألوان."
         },
         {
           "id": "d1-which-bash",
@@ -102,7 +112,8 @@
           "example": "which bash",
           "flags": "bash",
           "target": "None",
-          "purpose": "يعرض مكان برنامج bash."
+          "purpose": "يعرض مكان برنامج bash.",
+          "proTip": "💡 مفيد لما يكون عندك أكتر من نسخة من برنامج (مثلاً Python) وعايز تعرف أنهي واحدة بتشتغل."
         },
         {
           "id": "d1-command-v-git",
@@ -110,7 +121,8 @@
           "example": "command -v git",
           "flags": "None",
           "target": "git",
-          "purpose": "يعرض مكان الأمر بطريقة مناسبة للسكربتات."
+          "purpose": "يعرض مكان الأمر بطريقة مناسبة للسكربتات.",
+          "proTip": "💡 في السكربتات استخدم command -v بدل which لأنها أكثر portability. لو الأمر مش موجود، الـ exit code بيبقى 1."
         },
         {
           "id": "d1-man-ls",
@@ -118,7 +130,8 @@
           "example": "man ls",
           "flags": "ls",
           "target": "None",
-          "purpose": "يفتح دليل استخدام الأمر ls."
+          "purpose": "يفتح دليل استخدام الأمر ls.",
+          "proTip": "💡 جوه man اضغط / وبعدين اكتب كلمة علشان تبحث. اضغط q للخروج. لو عايز نسخة أبسط جرّب tldr ls."
         },
         {
           "id": "d1-help-cd",
@@ -126,7 +139,8 @@
           "example": "help cd",
           "flags": "cd",
           "target": "None",
-          "purpose": "يعرض مساعدة لأوامر shell الداخلية مثل cd."
+          "purpose": "يعرض مساعدة لأوامر shell الداخلية مثل cd.",
+          "proTip": "💡 help بتشتغل بس مع أوامر الـ shell الداخلية زي cd, echo, export. لو جربتها على أمر خارجي مش هتلاقي حاجة."
         },
         {
           "id": "d1-echo-shell",
@@ -134,7 +148,8 @@
           "example": "echo $SHELL",
           "flags": "$SHELL",
           "target": "None",
-          "purpose": "يطبع نوع الـ Shell الحالي (zsh أو bash)."
+          "purpose": "يطبع نوع الـ Shell الحالي (zsh أو bash).",
+          "proTip": "💡 لو $SHELL بيقول zsh بس أنت شغال في bash (أو العكس)، ده لأن $SHELL بيعرض الـ default مش الحالي. استخدم echo $0 للـ shell الفعلي."
         },
         {
           "id": "d1-uname-s",
@@ -142,7 +157,8 @@
           "example": "uname -s",
           "flags": "-s",
           "target": "None",
-          "purpose": "يعرض اسم نظام التشغيل: Darwin على macOS أو Linux."
+          "purpose": "يعرض اسم نظام التشغيل: Darwin على macOS أو Linux.",
+          "proTip": "💡 استخدمه في السكربتات علشان تفرّق بين macOS وLinux. Darwin = macOS. جرّب uname -a لمعلومات أكتر."
         },
         {
           "id": "d1-brew-version",
@@ -150,7 +166,8 @@
           "example": "brew --version",
           "flags": "--version",
           "target": "None",
-          "purpose": "يعرض إصدار Homebrew على macOS."
+          "purpose": "يعرض إصدار Homebrew على macOS.",
+          "proTip": "💡 لو الأمر ده رجّع command not found، يبقى Homebrew مش متنصب. روح على brew.sh وثبته — هتحتاجه لأي أداة على macOS."
         },
         {
           "id": "d1-brew-doctor",
@@ -158,7 +175,8 @@
           "example": "brew doctor",
           "flags": "doctor",
           "target": "None",
-          "purpose": "يفحص إعداد Homebrew على macOS."
+          "purpose": "يفحص إعداد Homebrew على macOS.",
+          "proTip": "💡 شغّله لما حاجة من brew تعطّل. بيقولك لو فيه مشاكل في الـ PATH أو packages قديمة محتاجة تتحدث."
         },
         {
           "id": "d1-brew-install-wget",
@@ -166,16 +184,32 @@
           "example": "brew install wget",
           "flags": "اسم الحزمة",
           "target": "wget",
-          "purpose": "يثبت برنامجًا على macOS عبر Homebrew."
+          "purpose": "يثبت برنامجًا على macOS عبر Homebrew.",
+          "proTip": "💡 قبل ما تثبت، جرّب brew search اسم_البرنامج علشان تتأكد إنه موجود. وبعد التثبيت، brew list بيعرضلك كل اللي مثبت."
         }
       ],
       "practice": [
-        "mkdir day01",
-        "cd day01",
         "pwd",
+        "echo $SHELL",
+        "uname -s",
+        "ls /",
+        "cd /etc",
+        "ls -la",
+        "cd /var/log",
         "ls -lah",
-        "cd .."
-      ]
+        "cd ~",
+        "pwd",
+        "which bash",
+        "which git",
+        "command -v node",
+        "type ls",
+        "brew --version",
+        "cd -"
+      ],
+      "labScenario": {
+        "title": "استكشاف النظام",
+        "description": "هنتنقل بين مجلدات النظام ونكتشف البيئة اللي شغالين عليها — نعرف الـ Shell والنظام ونشوف الأدوات المتاحة."
+      }
     },
     {
       "day": 2,
@@ -192,7 +226,8 @@
           "example": "mkdir project",
           "flags": "project",
           "target": "None",
-          "purpose": "ينشئ مجلدًا جديدًا."
+          "purpose": "ينشئ مجلدًا جديدًا.",
+          "proTip": "💡 عادة بنسمي المجلدات بحروف صغيرة وداشات مش مسافات (my-project مش My Project) علشان نتجنب مشاكل في التيرمنال."
         },
         {
           "id": "d2-mkdir-p-project-src-components",
@@ -200,7 +235,8 @@
           "example": "mkdir -p project/src/components",
           "flags": "-p",
           "target": "project/src/components",
-          "purpose": "ينشئ مسارًا كاملًا حتى لو بعض المجلدات غير موجودة."
+          "purpose": "ينشئ مسارًا كاملًا حتى لو بعض المجلدات غير موجودة.",
+          "proTip": "💡 -p مش بس بينشئ المسار الكامل، كمان مش بيشتكي لو المجلد موجود أصلاً. مفيد جدًا في السكربتات."
         },
         {
           "id": "d2-touch-file-txt",
@@ -208,7 +244,8 @@
           "example": "touch file.txt",
           "flags": "file.txt",
           "target": "None",
-          "purpose": "ينشئ ملفًا فارغًا أو يحدّث وقت تعديله."
+          "purpose": "ينشئ ملفًا فارغًا أو يحدّث وقت تعديله.",
+          "proTip": "💡 touch على ملف موجود مش بيمسح محتواه — بس بيحدّث الـ timestamp. مفيد لما تعوز تخلي make يعيد بناء ملف."
         },
         {
           "id": "d2-touch-a-txt-b-txt-c-txt",
@@ -216,7 +253,8 @@
           "example": "touch a.txt b.txt c.txt",
           "flags": "a.txt b.txt",
           "target": "c.txt",
-          "purpose": "ينشئ عدة ملفات مرة واحدة."
+          "purpose": "ينشئ عدة ملفات مرة واحدة.",
+          "proTip": "💡 لو عايز تعمل ملفات بأسامي متسلسلة، جرّب touch file{1..5}.txt — ده هيعمل file1.txt لحد file5.txt."
         },
         {
           "id": "d2-cp-file-txt-copy-txt",
@@ -224,7 +262,8 @@
           "example": "cp file.txt copy.txt",
           "flags": "file.txt",
           "target": "copy.txt",
-          "purpose": "ينسخ ملفًا إلى ملف جديد."
+          "purpose": "ينسخ ملفًا إلى ملف جديد.",
+          "proTip": "💡 cp بيكتب فوق الملف لو موجود من غير ما يسأل! استخدم cp -i علشان يسألك الأول قبل ما يكتب فوق حاجة."
         },
         {
           "id": "d2-cp-file-txt-project",
@@ -232,7 +271,8 @@
           "example": "cp file.txt project/",
           "flags": "file.txt",
           "target": "project/",
-          "purpose": "ينسخ ملفًا إلى مجلد."
+          "purpose": "ينسخ ملفًا إلى مجلد.",
+          "proTip": "💡 لو نسيت الـ / في آخر اسم المجلد وهو مش موجود، cp هيفتكر إنك عايز تعمل ملف باسمه. خلّي بالك."
         },
         {
           "id": "d2-cp-r-project-project-backup",
@@ -240,7 +280,8 @@
           "example": "cp -r project project-backup",
           "flags": "-r project",
           "target": "project-backup",
-          "purpose": "ينسخ مجلدًا بكل محتواه."
+          "purpose": "ينسخ مجلدًا بكل محتواه.",
+          "proTip": "💡 -r يعني recursive. من غيرها cp مش بيعرف ينسخ مجلدات. لو عايز تحافظ على الصلاحيات والأوقات استخدم cp -a."
         },
         {
           "id": "d2-mv-old-txt-new-txt",
@@ -248,7 +289,8 @@
           "example": "mv old.txt new.txt",
           "flags": "old.txt",
           "target": "new.txt",
-          "purpose": "يعيد تسمية ملف أو مجلد."
+          "purpose": "يعيد تسمية ملف أو مجلد.",
+          "proTip": "💡 mv بيشتغل كـ rename وكـ move في نفس الوقت. الفرق: لو الوجهة مجلد بينقل، لو اسم ملف بيعمل rename."
         },
         {
           "id": "d2-mv-file-txt-project",
@@ -256,7 +298,8 @@
           "example": "mv file.txt project/",
           "flags": "file.txt",
           "target": "project/",
-          "purpose": "ينقل ملفًا إلى مجلد."
+          "purpose": "ينقل ملفًا إلى مجلد.",
+          "proTip": "💡 عايز تنقل أكتر من ملف؟ mv *.txt project/ بينقل كل ملفات txt. أو mv file1.txt file2.txt project/ لملفات محددة."
         },
         {
           "id": "d2-rm-file-txt",
@@ -264,7 +307,8 @@
           "example": "rm file.txt",
           "flags": "file.txt",
           "target": "None",
-          "purpose": "يحذف ملفًا."
+          "purpose": "يحذف ملفًا.",
+          "proTip": "💡 rm مفيش منه رجوع — مفيش Trash! لو خايف، استخدم rm -i علشان يسألك قبل كل حذف، أو ثبّت trash-cli."
         },
         {
           "id": "d2-rm-r-folder",
@@ -272,7 +316,8 @@
           "example": "rm -r folder",
           "flags": "-r",
           "target": "folder",
-          "purpose": "يحذف مجلدًا ومحتوياته بحذر."
+          "purpose": "يحذف مجلدًا ومحتوياته بحذر.",
+          "proTip": "💡 دايمًا اعمل ls على المجلد الأول قبل ما تحذفه علشان تتأكد إنه الصح. rm -r مش بيسأل ومفيش undo."
         },
         {
           "id": "d2-rmdir-empty-folder",
@@ -280,7 +325,8 @@
           "example": "rmdir empty-folder",
           "flags": "empty-folder",
           "target": "None",
-          "purpose": "يحذف مجلدًا فارغًا فقط."
+          "purpose": "يحذف مجلدًا فارغًا فقط.",
+          "proTip": "💡 rmdir أأمن من rm -r لأنه بيرفض يحذف لو فيه أي حاجة جوه. استخدمه لما تكون عايز تتأكد إن المجلد فاضي."
         },
         {
           "id": "d2-file-file-txt",
@@ -288,7 +334,8 @@
           "example": "file file.txt",
           "flags": "file.txt",
           "target": "None",
-          "purpose": "يعرض نوع الملف."
+          "purpose": "يعرض نوع الملف.",
+          "proTip": "💡 مفيد لما تلاقي ملف من غير extension. file بيقرأ الـ header ويقولك هو إيه فعلاً — صورة، binary، text، إلخ."
         },
         {
           "id": "d2-stat-file-txt",
@@ -296,7 +343,8 @@
           "example": "stat file.txt",
           "flags": "file.txt",
           "target": "None",
-          "purpose": "يعرض معلومات تفصيلية عن الملف (حجم، أوقات، inode)."
+          "purpose": "يعرض معلومات تفصيلية عن الملف (حجم، أوقات، inode).",
+          "proTip": "💡 stat بيديك تفاصيل أكتر من ls -l — زي الـ inode number وعدد الـ hard links. مفيد في الـ debugging."
         },
         {
           "id": "d2-rm-rf-folder",
@@ -304,19 +352,32 @@
           "example": "rm -rf folder",
           "flags": "-rf",
           "target": "folder",
-          "purpose": "يحذف مجلدًا ومحتواه بالقوة. تحذير: حذف نهائي — تأكد من المسار."
+          "purpose": "يحذف مجلدًا ومحتواه بالقوة. تحذير: حذف نهائي — تأكد من المسار.",
+          "proTip": "💡 ⚠️ أخطر أمر في اللسته! متعملش rm -rf / أبدًا. دايمًا echo الأمر الأول أو استخدم rm -ri علشان يسأل على كل ملف."
         }
       ],
       "practice": [
-        "mkdir day02",
-        "cd day02",
-        "touch notes.txt",
-        "cp notes.txt notes-copy.txt",
-        "mkdir backup",
-        "mv notes-copy.txt backup/",
-        "ls -lah",
-        "rm notes.txt"
-      ]
+        "mkdir my-react-app",
+        "cd my-react-app",
+        "mkdir -p src/components src/hooks src/utils",
+        "mkdir -p public/assets/images public/assets/fonts",
+        "mkdir lib",
+        "touch src/index.js src/App.js",
+        "touch src/components/Header.js src/components/Footer.js src/components/Sidebar.js",
+        "touch src/hooks/useAuth.js src/utils/helpers.js",
+        "touch public/index.html public/assets/images/.gitkeep",
+        "touch .gitignore README.md package.json",
+        "ls -R",
+        "cp src/App.js src/App.backup.js",
+        "mv src/App.backup.js lib/",
+        "rm lib/App.backup.js",
+        "stat src/index.js",
+        "file src/index.js"
+      ],
+      "labScenario": {
+        "title": "بناء هيكل مشروع React",
+        "description": "هنبني هيكل مشروع React كامل من الصفر باستخدام أوامر التيرمنال — مجلدات src وcomponents وpublic وملفات أساسية."
+      }
     },
     {
       "day": 3,
@@ -333,7 +394,8 @@
           "example": "cat file.txt",
           "flags": "file.txt",
           "target": "None",
-          "purpose": "يعرض محتوى ملف صغير."
+          "purpose": "يعرض محتوى ملف صغير.",
+          "proTip": "💡 cat كويس بس للملفات الصغيرة. لو الملف كبير هيغرق التيرمنال — استخدم less أو head بدله."
         },
         {
           "id": "d3-less-file-txt",
@@ -341,7 +403,8 @@
           "example": "less file.txt",
           "flags": "file.txt",
           "target": "None",
-          "purpose": "يفتح ملفًا طويلًا للتصفح والبحث."
+          "purpose": "يفتح ملفًا طويلًا للتصفح والبحث.",
+          "proTip": "💡 جوه less: Space للصفحة الجاية، b للرجوع، /كلمة للبحث، n للنتيجة الجاية، q للخروج. أحسن من cat لأي ملف أكتر من 50 سطر."
         },
         {
           "id": "d3-head-file-txt",
@@ -349,7 +412,8 @@
           "example": "head file.txt",
           "flags": "file.txt",
           "target": "None",
-          "purpose": "يعرض أول 10 أسطر."
+          "purpose": "يعرض أول 10 أسطر.",
+          "proTip": "💡 مفيد علشان تشوف هيكل ملف CSV أو JSON بسرعة. أول 10 سطور بيقولوك كتير عن شكل البيانات."
         },
         {
           "id": "d3-head-n-20-file-txt",
@@ -357,7 +421,8 @@
           "example": "head -n 20 file.txt",
           "flags": "-n 20",
           "target": "file.txt",
-          "purpose": "يعرض أول 20 سطرًا."
+          "purpose": "يعرض أول 20 سطرًا.",
+          "proTip": "💡 ممكن تستخدم head -n 1 علشان تشوف أول سطر بس — مفيد لما تعوز تقرأ header ملف CSV."
         },
         {
           "id": "d3-tail-file-txt",
@@ -365,7 +430,8 @@
           "example": "tail file.txt",
           "flags": "file.txt",
           "target": "None",
-          "purpose": "يعرض آخر 10 أسطر."
+          "purpose": "يعرض آخر 10 أسطر.",
+          "proTip": "💡 الأخطاء غالبًا بتكون في آخر الـ log. tail بيوريك آخر حاجة حصلت — ده أول أمر تكتبه لما حاجة تقع."
         },
         {
           "id": "d3-tail-n-20-file-txt",
@@ -373,7 +439,8 @@
           "example": "tail -n 20 file.txt",
           "flags": "-n 20",
           "target": "file.txt",
-          "purpose": "يعرض آخر 20 سطرًا."
+          "purpose": "يعرض آخر 20 سطرًا.",
+          "proTip": "💡 لو عايز تشوف كل حاجة ماعدا أول سطر (مثلاً تشيل header)، جرّب tail -n +2 file.txt."
         },
         {
           "id": "d3-tail-f-app-log",
@@ -381,7 +448,8 @@
           "example": "tail -f app.log",
           "flags": "-f",
           "target": "app.log",
-          "purpose": "يتابع ملف log لحظيًا."
+          "purpose": "يتابع ملف log لحظيًا.",
+          "proTip": "💡 ده أهم أمر في الـ debugging! شغّله في تاب وافتح الأبلكيشن في تاب تاني وشوف اللي بيحصل live. Ctrl+C للإيقاف."
         },
         {
           "id": "d3-grep-error-app-log",
@@ -389,7 +457,8 @@
           "example": "grep \"ERROR\" app.log",
           "flags": "\"ERROR\"",
           "target": "app.log",
-          "purpose": "يبحث عن كلمة ERROR داخل ملف."
+          "purpose": "يبحث عن كلمة ERROR داخل ملف.",
+          "proTip": "💡 grep بيرجع كل سطر فيه الكلمة. لو عايز تشوف سطرين قبل وبعد كل نتيجة، استخدم grep -B2 -A2."
         },
         {
           "id": "d3-grep-i-error-app-log",
@@ -397,7 +466,8 @@
           "example": "grep -i \"error\" app.log",
           "flags": "-i \"error\"",
           "target": "app.log",
-          "purpose": "يبحث بدون حساسية لحالة الأحرف."
+          "purpose": "يبحث بدون حساسية لحالة الأحرف.",
+          "proTip": "💡 بعض البرامج بتكتب Error وبعضها ERROR. الـ -i بيجيبلك الاتنين — استخدمه ديفولت لو مش متأكد من الحالة."
         },
         {
           "id": "d3-grep-n-error-app-log",
@@ -405,7 +475,8 @@
           "example": "grep -n \"ERROR\" app.log",
           "flags": "-n \"ERROR\"",
           "target": "app.log",
-          "purpose": "يعرض نتائج البحث مع أرقام السطور."
+          "purpose": "يعرض نتائج البحث مع أرقام السطور.",
+          "proTip": "💡 رقم السطر بيساعدك تروح للمكان بالظبط في الـ editor. جرّب vim +42 app.log علشان تفتح الملف على سطر 42."
         },
         {
           "id": "d3-grep-r-todo",
@@ -413,7 +484,8 @@
           "example": "grep -R \"TODO\" .",
           "flags": "-R \"TODO\"",
           "target": ".",
-          "purpose": "يبحث داخل المجلدات بشكل recursive."
+          "purpose": "يبحث داخل المجلدات بشكل recursive.",
+          "proTip": "💡 لو بتدور على TODO في مشروع كبير، grep -Rni أسرع من أي IDE. جرّب ripgrep (rg) لو عايز سرعة خارقة."
         },
         {
           "id": "d3-grep-rni-todo",
@@ -421,7 +493,8 @@
           "example": "grep -Rni \"TODO\" .",
           "flags": "-Rni \"TODO\"",
           "target": ".",
-          "purpose": "بحث recursive مع رقم السطر وتجاهل case."
+          "purpose": "بحث recursive مع رقم السطر وتجاهل case.",
+          "proTip": "💡 ده الـ combo المثالي: -R recursive، -n أرقام السطور، -i تجاهل الحالة. حفظه كـ alias في .zshrc."
         },
         {
           "id": "d3-wc-file-txt",
@@ -429,7 +502,8 @@
           "example": "wc file.txt",
           "flags": "file.txt",
           "target": "None",
-          "purpose": "يعرض عدد السطور والكلمات والبايتات."
+          "purpose": "يعرض عدد السطور والكلمات والبايتات.",
+          "proTip": "💡 الترتيب: سطور كلمات بايتات اسم_الملف. لو بتعد records في CSV، wc -l هو صاحبك."
         },
         {
           "id": "d3-wc-l-file-txt",
@@ -437,7 +511,8 @@
           "example": "wc -l file.txt",
           "flags": "-l",
           "target": "file.txt",
-          "purpose": "يعرض عدد السطور فقط."
+          "purpose": "يعرض عدد السطور فقط.",
+          "proTip": "💡 لو عايز تعد نتائج أمر، مرّره في pipe: grep ERROR app.log | wc -l — ده بيديك العدد بس."
         },
         {
           "id": "d3-cat-notes-txt",
@@ -445,7 +520,8 @@
           "example": "cat > notes.txt",
           "flags": ">",
           "target": "notes.txt",
-          "purpose": "ينشئ ملفًا بالكتابة المباشرة؛ Ctrl+D للإنهاء."
+          "purpose": "ينشئ ملفًا بالكتابة المباشرة؛ Ctrl+D للإنهاء.",
+          "proTip": "💡 مفيد لملفات صغيرة بسرعة. بس خلي بالك > بتمسح المحتوى القديم! لو عايز تضيف استخدم >> بدل >."
         },
         {
           "id": "d3-grep-q-error-app-log",
@@ -453,18 +529,31 @@
           "example": "grep -q \"ERROR\" app.log",
           "flags": "-q \"ERROR\"",
           "target": "app.log",
-          "purpose": "يبحث بصمت؛ يعتمد على exit code (0 موجود، 1 لا)."
+          "purpose": "يبحث بصمت؛ يعتمد على exit code (0 موجود، 1 لا).",
+          "proTip": "💡 مثالي للسكربتات: if grep -q 'ERROR' app.log; then echo 'فيه مشكلة!'; fi — مش بيطبع حاجة، بس بيرجع true/false."
         }
       ],
       "practice": [
-        "mkdir day03",
-        "cd day03",
-        "printf 'INFO app started\\nERROR database failed\\nINFO retrying\\nERROR timeout\\n' > app.log",
+        "mkdir day03-lab",
+        "cd day03-lab",
+        "printf '2024-01-15 08:00:01 INFO Application started\\n2024-01-15 08:00:05 INFO Database connected\\n2024-01-15 08:01:12 WARNING High memory usage: 85%%\\n2024-01-15 08:02:33 ERROR Connection timeout to Redis\\n2024-01-15 08:02:34 ERROR Retry failed: Redis unreachable\\n2024-01-15 08:03:00 INFO Fallback to local cache\\n2024-01-15 08:05:45 WARNING Disk usage above 90%%\\n2024-01-15 08:10:22 ERROR OutOfMemoryError in worker-3\\n2024-01-15 08:10:23 INFO Restarting worker-3\\n2024-01-15 08:15:00 INFO Health check passed\\n' > app.log",
         "cat app.log",
-        "grep \"ERROR\" app.log",
-        "grep -n \"ERROR\" app.log",
-        "grep \"ERROR\" app.log | wc -l"
-      ]
+        "head -n 3 app.log",
+        "tail -n 3 app.log",
+        "grep 'ERROR' app.log",
+        "grep -n 'ERROR' app.log",
+        "grep -i 'error' app.log | wc -l",
+        "grep 'WARNING' app.log",
+        "grep -c 'ERROR' app.log > report.txt",
+        "echo '---' >> report.txt",
+        "grep 'ERROR' app.log >> report.txt",
+        "cat report.txt",
+        "wc -l app.log"
+      ],
+      "labScenario": {
+        "title": "تحليل ملف Log",
+        "description": "هنعمل ملف log وهمي ونبحث فيه عن أخطاء ونحلل النتائج ونطلّع تقرير — زي ما بتعمل في السيرفر الحقيقي."
+      }
     },
     {
       "day": 4,
@@ -481,7 +570,8 @@
           "example": "command1 | command2",
           "flags": "None",
           "target": "None",
-          "purpose": "يمرر output من الأمر الأول كـ input للأمر الثاني."
+          "purpose": "يمرر output من الأمر الأول كـ input للأمر الثاني.",
+          "proTip": "💡 الـ pipe هو أقوى مفهوم في Unix. كل أمر بيعمل حاجة واحدة بس، والـ pipe بيخليهم يشتغلوا مع بعض زي الفريق."
         },
         {
           "id": "d4-grep-error-app-log-wc-l",
@@ -489,7 +579,8 @@
           "example": "grep \"ERROR\" app.log | wc -l",
           "flags": "\"ERROR\" app.log | wc",
           "target": "-l",
-          "purpose": "يعد عدد سطور ERROR."
+          "purpose": "يعد عدد سطور ERROR.",
+          "proTip": "💡 الـ pattern ده بتستخدمه كتير في الشغل: فلتر بـ grep وبعدين عدّ بـ wc -l. ممكن تحطه في alias لو بتكرره."
         },
         {
           "id": "d4-echo-hello-file-txt",
@@ -497,7 +588,8 @@
           "example": "echo \"hello\" > file.txt",
           "flags": "\"hello\" >",
           "target": "file.txt",
-          "purpose": "يكتب الناتج في ملف ويمسح المحتوى القديم."
+          "purpose": "يكتب الناتج في ملف ويمسح المحتوى القديم.",
+          "proTip": "💡 > بتمسح الملف كله وتكتب من الأول! ده أكتر غلطة شائعة. لو عايز تضيف بدون مسح، استخدم >> دايمًا."
         },
         {
           "id": "d4-echo-world-file-txt",
@@ -505,7 +597,8 @@
           "example": "echo \"world\" >> file.txt",
           "flags": "\"world\" >>",
           "target": "file.txt",
-          "purpose": "يضيف الناتج في آخر الملف بدون مسح القديم."
+          "purpose": "يضيف الناتج في آخر الملف بدون مسح القديم.",
+          "proTip": "💡 مثالي لبناء ملفات log أو reports خطوة بخطوة. كل أمر بيضيف سطر جديد في آخر الملف."
         },
         {
           "id": "d4-ls-not-found-2-errors-txt",
@@ -513,7 +606,8 @@
           "example": "ls not-found 2> errors.txt",
           "flags": "not-found 2>",
           "target": "errors.txt",
-          "purpose": "يحفظ الأخطاء في ملف."
+          "purpose": "يحفظ الأخطاء في ملف.",
+          "proTip": "💡 2 ده stderr (الأخطاء). لو عايز تشوف الناتج على الشاشة بس تحفظ الأخطاء، ده الأمر المناسب."
         },
         {
           "id": "d4-command-output-txt-2-errors-txt",
@@ -521,7 +615,8 @@
           "example": "command > output.txt 2> errors.txt",
           "flags": "> output.txt 2>",
           "target": "errors.txt",
-          "purpose": "يحفظ الناتج العادي والأخطاء في ملفين منفصلين."
+          "purpose": "يحفظ الناتج العادي والأخطاء في ملفين منفصلين.",
+          "proTip": "💡 ده pattern شائع في الـ cron jobs. بتشغل الأمر وتراجع الملفين بعدين — واحد للنتائج وواحد للمشاكل."
         },
         {
           "id": "d4-command-all-txt-2-1",
@@ -529,7 +624,8 @@
           "example": "command > all.txt 2>&1",
           "flags": "> all.txt",
           "target": "2>&1",
-          "purpose": "يحفظ الناتج والأخطاء معًا في ملف واحد."
+          "purpose": "يحفظ الناتج والأخطاء معًا في ملف واحد.",
+          "proTip": "💡 ترتيب الـ redirection مهم! 2>&1 لازم ييجي بعد > output.txt. أو استخدم الشكل الحديث: command &> all.txt."
         },
         {
           "id": "d4-sort-file-txt",
@@ -537,7 +633,8 @@
           "example": "sort file.txt",
           "flags": "file.txt",
           "target": "None",
-          "purpose": "يرتب السطور أبجديًا."
+          "purpose": "يرتب السطور أبجديًا.",
+          "proTip": "💡 sort بيرتب نصيًا ديفولت، يعني 9 بييجي بعد 80! لو عندك أرقام استخدم sort -n دايمًا."
         },
         {
           "id": "d4-sort-n-numbers-txt",
@@ -545,7 +642,8 @@
           "example": "sort -n numbers.txt",
           "flags": "-n",
           "target": "numbers.txt",
-          "purpose": "يرتب الأرقام ترتيبًا رقميًا."
+          "purpose": "يرتب الأرقام ترتيبًا رقميًا.",
+          "proTip": "💡 لو عايز ترتيب من الأكبر للأصغر، زوّد -r: sort -nr. مفيد لما تعوز تعرف أكبر قيم."
         },
         {
           "id": "d4-uniq-file-txt",
@@ -553,7 +651,8 @@
           "example": "uniq file.txt",
           "flags": "file.txt",
           "target": "None",
-          "purpose": "يحذف التكرار المتجاور."
+          "purpose": "يحذف التكرار المتجاور.",
+          "proTip": "💡 uniq بيشيل التكرار المتجاور بس! يعني لازم تعمل sort الأول علشان التكرار يبقى جنب بعضه."
         },
         {
           "id": "d4-sort-file-txt-uniq",
@@ -561,7 +660,8 @@
           "example": "sort file.txt | uniq",
           "flags": "file.txt |",
           "target": "uniq",
-          "purpose": "يرتب ثم يزيل التكرار."
+          "purpose": "يرتب ثم يزيل التكرار.",
+          "proTip": "💡 بديل أسرع: sort -u بيعمل sort و unique في أمر واحد. بس sort | uniq -c أقوى لما تعوز العدد."
         },
         {
           "id": "d4-sort-file-txt-uniq-c",
@@ -569,7 +669,8 @@
           "example": "sort file.txt | uniq -c",
           "flags": "file.txt | uniq",
           "target": "-c",
-          "purpose": "يعرض عدد تكرار كل قيمة."
+          "purpose": "يعرض عدد تكرار كل قيمة.",
+          "proTip": "💡 عايز تعرف أكتر error متكرر؟ grep ERROR log | sort | uniq -c | sort -nr | head -5 — ده الـ one-liner السحري."
         },
         {
           "id": "d4-cut-d-f-1-etc-passwd",
@@ -577,7 +678,8 @@
           "example": "cut -d ':' -f 1 /etc/passwd",
           "flags": "-d ':' -f 1",
           "target": "/etc/passwd",
-          "purpose": "يستخرج العمود الأول باستخدام : كفاصل."
+          "purpose": "يستخرج العمود الأول باستخدام : كفاصل.",
+          "proTip": "💡 لو عندك CSV بفاصلة: cut -d',' -f2 data.csv بيجيبلك العمود التاني. بس لو البيانات معقدة استخدم awk أحسن."
         },
         {
           "id": "d4-echo-hello-tr-a-z-a-z",
@@ -585,7 +687,8 @@
           "example": "echo \"hello\" | tr 'a-z' 'A-Z'",
           "flags": "\"hello\" | tr 'a-z'",
           "target": "'A-Z'",
-          "purpose": "يحوّل الحروف الصغيرة إلى كبيرة."
+          "purpose": "يحوّل الحروف الصغيرة إلى كبيرة.",
+          "proTip": "💡 مفيد في السكربتات لما تعوز تقارن strings بدون case sensitivity. أو لما تعوز تنظف input من المستخدم."
         },
         {
           "id": "d4-echo-a-b-c-tr-d",
@@ -593,19 +696,31 @@
           "example": "echo \"a b c\" | tr -d ' '",
           "flags": "\"a b c\" | tr -d '",
           "target": "'",
-          "purpose": "يحذف المسافات."
+          "purpose": "يحذف المسافات.",
+          "proTip": "💡 tr -d بيحذف أي character تحدده. مثلاً tr -d '\\n' بيشيل كل الـ newlines ويخلي كل حاجة في سطر واحد."
         }
       ],
       "practice": [
-        "mkdir day04",
-        "cd day04",
-        "echo \"ERROR\" > logs.txt",
-        "echo \"INFO\" >> logs.txt",
-        "echo \"ERROR\" >> logs.txt",
-        "echo \"DEBUG\" >> logs.txt",
-        "grep \"ERROR\" logs.txt | wc -l",
-        "sort logs.txt | uniq -c"
-      ]
+        "mkdir day04-lab",
+        "cd day04-lab",
+        "printf 'name,department,sales\\nAhmed,Engineering,15000\\nMona,Marketing,22000\\nKarim,Engineering,18000\\nSara,Marketing,25000\\nAli,Engineering,12000\\nNour,Sales,30000\\nOmar,Sales,28000\\nAhmed,Engineering,15000\\n' > sales.csv",
+        "cat sales.csv",
+        "head -n 1 sales.csv",
+        "tail -n +2 sales.csv | sort",
+        "cut -d',' -f2 sales.csv | tail -n +2 | sort | uniq -c | sort -nr",
+        "cut -d',' -f3 sales.csv | tail -n +2 | sort -n",
+        "grep 'Engineering' sales.csv | wc -l",
+        "grep 'Engineering' sales.csv | cut -d',' -f1,3",
+        "tail -n +2 sales.csv | sort -t',' -k3 -nr | head -3 > top_sales.txt",
+        "cat top_sales.txt",
+        "echo 'Total records:' > report.txt",
+        "tail -n +2 sales.csv | wc -l >> report.txt",
+        "cat report.txt"
+      ],
+      "labScenario": {
+        "title": "معالجة بيانات CSV",
+        "description": "هنعمل ملف CSV فيه بيانات مبيعات ونستخدم pipes علشان نرتب ونحلل ونطلّع إحصائيات — زي ما بتعمل في data analysis."
+      }
     },
     {
       "day": 5,
@@ -622,7 +737,8 @@
           "example": "find . -name \"*.log\"",
           "flags": ". -name",
           "target": "\"*.log\"",
-          "purpose": "يبحث عن ملفات أو مجلدات تنتهي بـ .log."
+          "purpose": "يبحث عن ملفات أو مجلدات تنتهي بـ .log.",
+          "proTip": "💡 find بيدور في كل المجلدات الفرعية. لو المشروع كبير وفيه node_modules، استخدم -not -path '*/node_modules/*' علشان تتجنبه."
         },
         {
           "id": "d5-find-iname-readme-md",
@@ -630,7 +746,8 @@
           "example": "find . -iname \"readme.md\"",
           "flags": ". -iname",
           "target": "\"readme.md\"",
-          "purpose": "بحث بدون حساسية لحالة الأحرف."
+          "purpose": "بحث بدون حساسية لحالة الأحرف.",
+          "proTip": "💡 في macOS الـ filesystem مش case-sensitive ديفولت، بس على Linux لازم تستخدم -iname لو مش متأكد من الـ casing."
         },
         {
           "id": "d5-find-type-f",
@@ -638,7 +755,8 @@
           "example": "find . -type f",
           "flags": ". -type",
           "target": "f",
-          "purpose": "يعرض الملفات فقط."
+          "purpose": "يعرض الملفات فقط.",
+          "proTip": "💡 عايز تعرف عدد الملفات في مشروعك؟ find . -type f | wc -l. لو كتير أوي، ممكن يكون فيه مجلد dependencies كبير."
         },
         {
           "id": "d5-find-type-d",
@@ -646,7 +764,8 @@
           "example": "find . -type d",
           "flags": ". -type",
           "target": "d",
-          "purpose": "يعرض المجلدات فقط."
+          "purpose": "يعرض المجلدات فقط.",
+          "proTip": "💡 مفيد لما تعوز تفهم هيكل مشروع جديد. جرّب find . -type d -maxdepth 2 علشان تشوف أول مستويين بس."
         },
         {
           "id": "d5-find-type-f-name-txt",
@@ -654,7 +773,8 @@
           "example": "find . -type f -name \"*.txt\"",
           "flags": ". -type f -name",
           "target": "\"*.txt\"",
-          "purpose": "يبحث عن ملفات txt فقط."
+          "purpose": "يبحث عن ملفات txt فقط.",
+          "proTip": "💡 ممكن تضيف أكتر من نوع: find . -type f \\( -name '*.txt' -o -name '*.md' \\) — ده بيجيب txt و md."
         },
         {
           "id": "d5-find-type-d-name-node-modules",
@@ -662,7 +782,8 @@
           "example": "find . -type d -name \"node_modules\"",
           "flags": ". -type d -name",
           "target": "\"node_modules\"",
-          "purpose": "يبحث عن مجلدات باسم node_modules."
+          "purpose": "يبحث عن مجلدات باسم node_modules.",
+          "proTip": "💡 عايز تحرر مساحة؟ find . -type d -name 'node_modules' -exec du -sh {} \\; بيوريك حجم كل node_modules."
         },
         {
           "id": "d5-find-type-f-name-log-print",
@@ -670,7 +791,8 @@
           "example": "find . -type f -name \"*.log\" -print",
           "flags": ". -type f -name \"*.log\"",
           "target": "-print",
-          "purpose": "يعرض الملفات المستهدفة قبل أي حذف."
+          "purpose": "يعرض الملفات المستهدفة قبل أي حذف.",
+          "proTip": "💡 دايمًا اعمل -print الأول قبل ما تستخدم -delete! ده أهم عادة أمان في التيرمنال — شوف الأول واحذف بعدين."
         },
         {
           "id": "d5-find-type-f-name-log-delete",
@@ -678,7 +800,8 @@
           "example": "find . -type f -name \"*.log\" -delete",
           "flags": ". -type f -name \"*.log\"",
           "target": "-delete",
-          "purpose": "يحذف ملفات log المطابقة بعد التأكد."
+          "purpose": "يحذف ملفات log المطابقة بعد التأكد.",
+          "proTip": "💡 -delete مش بيسأل ومفيش undo! لو عايز تتأكد أكتر، استخدم -exec rm -i {} \\; بدل -delete — ده بيسأل على كل ملف."
         },
         {
           "id": "d5-find-name-txt-xargs-cat",
@@ -686,7 +809,8 @@
           "example": "find . -name \"*.txt\" | xargs cat",
           "flags": ". -name \"*.txt\" | xargs",
           "target": "cat",
-          "purpose": "ينفذ cat على نتائج find."
+          "purpose": "ينفذ cat على نتائج find.",
+          "proTip": "💡 xargs بياخد الناتج من pipe ويحوله لـ arguments. بدل ما تكتب cat file1.txt file2.txt...، xargs بيعملها أوتوماتيك."
         },
         {
           "id": "d5-find-name-txt-print0-xargs-0-cat",
@@ -694,26 +818,98 @@
           "example": "find . -name \"*.txt\" -print0 | xargs -0 cat",
           "flags": ". -name \"*.txt\" -print0 | xargs -0",
           "target": "cat",
-          "purpose": "طريقة آمنة مع أسماء الملفات التي تحتوي مسافات."
+          "purpose": "طريقة آمنة مع أسماء الملفات التي تحتوي مسافات.",
+          "proTip": "💡 -print0 و -0 بيستخدموا null character كفاصل بدل newline. ده بيحل مشكلة الملفات اللي فيها مسافات أو أحرف غريبة."
+        },
+        {
+          "id": "d5-tar-czvf-archive-tar-gz-folder",
+          "name": "tar",
+          "example": "tar -czvf archive.tar.gz folder/",
+          "flags": "-czvf archive.tar.gz",
+          "target": "folder/",
+          "purpose": "يضغط مجلدًا معينًا بصيغة tar.gz.",
+          "proTip": "💡 c=create, z=gzip, v=verbose, f=file. لو عايز ضغط أقوى استخدم tar -cjvf archive.tar.bz2 (الـ j بتستخدم bzip2)."
+        },
+        {
+          "id": "d5-tar-xzvf-archive-tar-gz",
+          "name": "tar",
+          "example": "tar -xzvf archive.tar.gz",
+          "flags": "-xzvf",
+          "target": "archive.tar.gz",
+          "purpose": "يفك ضغط ملف tar.gz.",
+          "proTip": "💡 عايز تشوف محتوى الأرشيف من غير ما تفكه؟ استخدم tar -tzvf archive.tar.gz — الـ t بتعرض المحتويات بس."
+        },
+        {
+          "id": "d5-ln-s-target-file-link-name",
+          "name": "ln",
+          "example": "ln -s target_file link_name",
+          "flags": "-s target_file",
+          "target": "link_name",
+          "purpose": "ينشئ رابطًا رمزيًا (Symbolic Link) لملف أو مجلد.",
+          "proTip": "💡 Symlinks زي shortcuts. مفيدين لما يكون عندك config file في مكان وعايز تستخدمه من مكان تاني بدون نسخ."
+        },
+        {
+          "id": "d5-ripgrep-rg-pattern",
+          "name": "ripgrep",
+          "example": "ripgrep (rg) pattern",
+          "flags": "(rg)",
+          "target": "pattern",
+          "purpose": "بديل فائق السرعة لـ grep للبحث عن الكلمات داخل المجلدات.",
+          "proTip": "💡 rg بيتجاهل .gitignore أوتوماتيك وأسرع 10x من grep. ثبته بـ brew install ripgrep — مش هترجع لـ grep تاني."
+        },
+        {
+          "id": "d5-bat-file-txt",
+          "name": "bat",
+          "example": "bat file.txt",
+          "flags": "file.txt",
+          "target": "None",
+          "purpose": "بديل ملون وحديث لـ cat يدعم إظهار ترقيم السطور والـ syntax highlighting.",
+          "proTip": "💡 bat بيعرض الملفات بألوان syntax highlighting وأرقام سطور. ثبته بـ brew install bat وحط alias cat=bat في .zshrc."
+        },
+        {
+          "id": "d5-fd-pattern",
+          "name": "fd",
+          "example": "fd pattern",
+          "flags": "pattern",
+          "target": "None",
+          "purpose": "بديل بسيط وسريع جداً لـ find للبحث عن الملفات.",
+          "proTip": "💡 fd أبسط كتير من find: بدل find . -name '*.js' اكتب fd '.js' وخلاص. ثبته بـ brew install fd."
         }
       ],
       "practice": [
-        "mkdir -p day05/logs/old",
-        "cd day05",
-        "touch logs/a.log logs/b.log logs/old/c.log",
-        "touch notes.txt \"my file.txt\"",
-        "find . -name \"*.log\"",
-        "find . -type f -name \"*.log\" -print"
-      ]
+        "mkdir -p old-project/src old-project/logs old-project/tmp old-project/dist old-project/.cache",
+        "cd old-project",
+        "touch src/app.js src/utils.js src/old-feature.js.bak",
+        "touch logs/app.log logs/error.log logs/debug.log",
+        "touch tmp/temp1.tmp tmp/temp2.tmp tmp/session.tmp",
+        "touch dist/bundle.js dist/bundle.js.map",
+        "touch .cache/data.cache .DS_Store",
+        "find . -type f | wc -l",
+        "find . -name '*.log' -print",
+        "find . -name '*.tmp' -print",
+        "find . -name '*.bak' -print",
+        "find . -name '.DS_Store' -print",
+        "find . -type d -empty",
+        "tar -czvf src-backup.tar.gz src/",
+        "find . -name '*.log' -delete",
+        "find . -name '*.tmp' -delete",
+        "find . -name '.DS_Store' -delete",
+        "find . -type f | wc -l",
+        "ls -lah src-backup.tar.gz"
+      ],
+      "labScenario": {
+        "title": "تنظيف مشروع قديم",
+        "description": "هنتعامل مع مشروع قديم فيه ملفات مؤقتة وlogs ومجلدات فاضية — هندور عليهم ونحذفهم ونضغط اللي محتاجينه."
+      }
     },
     {
       "day": 6,
-      "id": "day06-system-permissions",
-      "title": "الصلاحيات والعمليات والنظام",
-      "titleEn": "Permissions and System",
-      "titleAr": "الصلاحيات والعمليات والنظام",
+      "id": "day06-permissions",
+      "title": "الصلاحيات والملكية",
+      "titleEn": "Permissions and Ownership",
+      "titleAr": "الصلاحيات والملكية",
       "slug": "permissions",
-      "goal": "تفهم صلاحيات الملفات وتراقب العمليات والمساحة وحالة النظام.",
+      "goal": "تفهم صلاحيات الملفات وتتحكم في مين يقدر يقرأ وينفذ ويعدّل.",
       "commands": [
         {
           "id": "d6-whoami",
@@ -721,7 +917,8 @@
           "example": "whoami",
           "flags": "None",
           "target": "None",
-          "purpose": "يعرض اسم المستخدم الحالي."
+          "purpose": "يعرض اسم المستخدم الحالي.",
+          "proTip": "💡 مهم تعرف أنت شغال بأنهي user — خصوصًا لو بتشتغل على سيرفر ومش عايز تعمل حاجة بالـ root بالغلط."
         },
         {
           "id": "d6-id",
@@ -729,7 +926,8 @@
           "example": "id",
           "flags": "None",
           "target": "None",
-          "purpose": "يعرض UID وGID والمجموعات."
+          "purpose": "يعرض UID وGID والمجموعات.",
+          "proTip": "💡 لو عايز تعرف أنت في أنهي groups، id أسرع طريقة. الـ groups بتحدد إيه اللي تقدر تعمله على الملفات."
         },
         {
           "id": "d6-ls-l",
@@ -737,7 +935,8 @@
           "example": "ls -l",
           "flags": "-l",
           "target": "None",
-          "purpose": "يعرض الصلاحيات والملكية."
+          "purpose": "يعرض الصلاحيات والملكية.",
+          "proTip": "💡 أول عمود: drwxr-xr-x — الـ d يعني مجلد، بعدها 3 مجموعات rwx: المالك، المجموعة، الكل. اتعلم تقراهم!"
         },
         {
           "id": "d6-chmod-x-script-sh",
@@ -745,7 +944,8 @@
           "example": "chmod +x script.sh",
           "flags": "+x",
           "target": "script.sh",
-          "purpose": "يجعل السكربت قابلًا للتنفيذ."
+          "purpose": "يجعل السكربت قابلًا للتنفيذ.",
+          "proTip": "💡 أول حاجة بعد ما تكتب سكربت bash: chmod +x — من غيرها السكربت مش هيشتغل لما تكتب ./script.sh"
         },
         {
           "id": "d6-chmod-x-script-sh",
@@ -753,7 +953,8 @@
           "example": "chmod -x script.sh",
           "flags": "-x",
           "target": "script.sh",
-          "purpose": "يزيل صلاحية التنفيذ."
+          "purpose": "يزيل صلاحية التنفيذ.",
+          "proTip": "💡 لو عندك ملف اتعملّه execute بالغلط (زي ملف config)، شيل الـ x. ده بيحمي من تشغيل ملفات مش المفروض تتشغل."
         },
         {
           "id": "d6-chmod-644-file-txt",
@@ -761,7 +962,8 @@
           "example": "chmod 644 file.txt",
           "flags": "644",
           "target": "file.txt",
-          "purpose": "صلاحيات شائعة لملف عادي."
+          "purpose": "صلاحيات شائعة لملف عادي.",
+          "proTip": "💡 644 = المالك يقرأ ويكتب (6=rw)، الباقي يقرأوا بس (4=r). ده الديفولت المناسب لمعظم الملفات العادية."
         },
         {
           "id": "d6-chmod-755-script-sh",
@@ -769,7 +971,8 @@
           "example": "chmod 755 script.sh",
           "flags": "755",
           "target": "script.sh",
-          "purpose": "صلاحيات شائعة لسكربت قابل للتنفيذ."
+          "purpose": "صلاحيات شائعة لسكربت قابل للتنفيذ.",
+          "proTip": "💡 755 = المالك كل حاجة (7=rwx)، الباقي يقرأوا وينفذوا (5=rx). ده الستاندرد لأي سكربت على السيرفر."
         },
         {
           "id": "d6-sudo-chown-user-file-txt",
@@ -777,7 +980,8 @@
           "example": "sudo chown user file.txt",
           "flags": "chown user",
           "target": "file.txt",
-          "purpose": "يغير مالك الملف."
+          "purpose": "يغير مالك الملف.",
+          "proTip": "💡 لو نزلت ملفات من سيرفر أو Docker وجت بـ owner غلط، chown بيصلح الموضوع. لازم sudo لأنك بتغير ملكية."
         },
         {
           "id": "d6-sudo-chown-user-group-file-txt",
@@ -785,7 +989,8 @@
           "example": "sudo chown user:group file.txt",
           "flags": "chown user:group",
           "target": "file.txt",
-          "purpose": "يغير المالك والمجموعة."
+          "purpose": "يغير المالك والمجموعة.",
+          "proTip": "💡 على السيرفر، غالبًا بتعمل chown www-data:www-data لملفات الويب علشان الـ web server يقدر يوصلها."
         },
         {
           "id": "d6-sudo-chown-r-user-group-folder",
@@ -793,7 +998,8 @@
           "example": "sudo chown -R user:group folder",
           "flags": "chown -R user:group",
           "target": "folder",
-          "purpose": "يغير ملكية مجلد ومحتواه بحذر."
+          "purpose": "يغير ملكية مجلد ومحتواه بحذر.",
+          "proTip": "💡 -R بيغير الملكية recursively. خلي بالك متعملش sudo chown -R على / أو /etc — ممكن تكسر النظام!"
         },
         {
           "id": "d6-sudo-command",
@@ -801,120 +1007,235 @@
           "example": "sudo command",
           "flags": "None",
           "target": "None",
-          "purpose": "يشغل أمرًا بصلاحيات المدير عند الحاجة."
-        },
+          "purpose": "يشغل أمرًا بصلاحيات المدير عند الحاجة.",
+          "proTip": "💡 القاعدة الذهبية: متستخدمش sudo إلا لما الأمر يرفض يشتغل من غيره. وافهم الأمر الأول قبل ما تديله root access."
+        }
+      ],
+      "practice": [
+        "mkdir deploy-project",
+        "cd deploy-project",
+        "whoami",
+        "id",
+        "touch deploy.sh rollback.sh config.env .env.production",
+        "ls -l",
+        "echo '#!/usr/bin/env bash' > deploy.sh",
+        "echo 'echo \"Deploying...\"' >> deploy.sh",
+        "echo '#!/usr/bin/env bash' > rollback.sh",
+        "echo 'echo \"Rolling back...\"' >> rollback.sh",
+        "chmod +x deploy.sh rollback.sh",
+        "ls -l deploy.sh rollback.sh",
+        "chmod 755 deploy.sh",
+        "chmod 644 config.env .env.production",
+        "ls -la",
+        "./deploy.sh",
+        "chmod -x rollback.sh",
+        "ls -l rollback.sh"
+      ],
+      "labScenario": {
+        "title": "تجهيز سكربت Deploy",
+        "description": "هنعمل سكربتات deploy ونضبط صلاحياتها — مين يقدر يشغلها ومين يقدر يعدلها — زي ما بتجهز سيرفر حقيقي."
+      }
+    },
+    {
+      "day": 7,
+      "id": "day07-system-networking",
+      "title": "مراقبة النظام والشبكات",
+      "titleEn": "System and Networking",
+      "titleAr": "مراقبة النظام والشبكات",
+      "slug": "system",
+      "goal": "تراقب العمليات والمساحة وحالة النظام وتتعامل مع الشبكة والمتغيرات.",
+      "commands": [
         {
-          "id": "d6-df-h",
+          "id": "d7-df-h",
           "name": "df",
           "example": "df -h",
           "flags": "-h",
           "target": "None",
-          "purpose": "يعرض مساحة الأقراص."
+          "purpose": "يعرض مساحة الأقراص.",
+          "proTip": "💡 لو السيرفر وقف فجأة، أول حاجة شيكها المساحة. df -h بيوريك لو الديسك اتملى — وده سبب شائع جدًا للمشاكل."
         },
         {
-          "id": "d6-du-sh-folder",
+          "id": "d7-du-sh-folder",
           "name": "du",
           "example": "du -sh folder",
           "flags": "-sh",
           "target": "folder",
-          "purpose": "يعرض حجم مجلد معين."
+          "purpose": "يعرض حجم مجلد معين.",
+          "proTip": "💡 عايز تعرف node_modules أخد قد إيه؟ du -sh node_modules. لو الرقم مرعب (وغالبًا بيكون)، ده طبيعي 😅."
         },
         {
-          "id": "d6-du-sh",
+          "id": "d7-du-sh",
           "name": "du",
           "example": "du -sh *",
           "flags": "-sh",
           "target": "*",
-          "purpose": "يعرض أحجام العناصر داخل المكان الحالي."
+          "purpose": "يعرض أحجام العناصر داخل المكان الحالي.",
+          "proTip": "💡 لو عايز ترتبهم من الأكبر: du -sh * | sort -rh. ده بيوريك أكبر مجلد/ملف الأول — مفيد لتنظيف المساحة."
         },
         {
-          "id": "d6-ps-aux",
+          "id": "d7-ps-aux",
           "name": "ps",
           "example": "ps aux",
           "flags": "aux",
           "target": "None",
-          "purpose": "يعرض العمليات الجارية."
+          "purpose": "يعرض العمليات الجارية.",
+          "proTip": "💡 ps aux بيجيب كل العمليات لكل المستخدمين. لو الليستة طويلة، مرّرها في grep: ps aux | grep node."
         },
         {
-          "id": "d6-ps-aux-grep-nginx",
+          "id": "d7-ps-aux-grep-nginx",
           "name": "ps",
           "example": "ps aux | grep nginx",
           "flags": "aux | grep",
           "target": "nginx",
-          "purpose": "يبحث عن عملية باسم nginx."
+          "purpose": "يبحث عن عملية باسم nginx.",
+          "proTip": "💡 هتلاقي grep نفسه في النتايج! علشان تشيله استخدم: ps aux | grep '[n]ginx' — التريك ده بيخفي grep من النتايج."
         },
         {
-          "id": "d6-top",
+          "id": "d7-top",
           "name": "top",
           "example": "top",
           "flags": "None",
           "target": "None",
-          "purpose": "يراقب العمليات لحظيًا."
+          "purpose": "يراقب العمليات لحظيًا.",
+          "proTip": "💡 جوه top: اضغط q للخروج، M للترتيب بالميموري، P بالـ CPU. على macOS جرّب htop (brew install htop) لشكل أحسن."
         },
         {
-          "id": "d6-kill-pid",
+          "id": "d7-kill-pid",
           "name": "kill",
           "example": "kill PID",
           "flags": "PID",
           "target": "None",
-          "purpose": "يرسل إشارة إيقاف عادية لعملية."
+          "purpose": "يرسل إشارة إيقاف عادية لعملية.",
+          "proTip": "💡 kill بيبعت SIGTERM — بيقول للبرنامج 'اقفل نفسك بالراحة'. ده بيدي البرنامج فرصة يحفظ البيانات قبل ما يقفل."
         },
         {
-          "id": "d6-kill-9-pid",
+          "id": "d7-kill-9-pid",
           "name": "kill",
           "example": "kill -9 PID",
           "flags": "-9",
           "target": "PID",
-          "purpose": "إيقاف قوي كحل أخير."
+          "purpose": "إيقاف قوي كحل أخير.",
+          "proTip": "💡 kill -9 بيبعت SIGKILL — بيقتل العملية فورًا من غير ما يديها فرصة تنضّف. استخدمه بس لما kill العادي مينفعش."
         },
         {
-          "id": "d6-sleep-100",
+          "id": "d7-sleep-100",
           "name": "sleep",
           "example": "sleep 100 &",
           "flags": "100",
           "target": "&",
-          "purpose": "يشغل أمرًا في الخلفية."
+          "purpose": "يشغل أمرًا في الخلفية.",
+          "proTip": "💡 الـ & في الآخر بيشغل أي أمر في الـ background. مفيد لما تشغل سيرفر وعايز تفضل تستخدم نفس التيرمنال."
         },
         {
-          "id": "d6-jobs",
+          "id": "d7-jobs",
           "name": "jobs",
           "example": "jobs",
           "flags": "None",
           "target": "None",
-          "purpose": "يعرض المهام الخلفية في الجلسة الحالية."
+          "purpose": "يعرض المهام الخلفية في الجلسة الحالية.",
+          "proTip": "💡 كل job ليه رقم [1], [2]. استخدم fg %1 علشان ترجّع job رقم 1 للواجهة، أو kill %1 علشان توقفه."
         },
         {
-          "id": "d6-fg",
+          "id": "d7-fg",
           "name": "fg",
           "example": "fg",
           "flags": "None",
           "target": "None",
-          "purpose": "يعيد مهمة للخلفية إلى الواجهة."
+          "purpose": "يعيد مهمة للخلفية إلى الواجهة.",
+          "proTip": "💡 لو ضغطت Ctrl+Z بالغلط على أمر (مثلاً vim)، fg بيرجعك ليه. من غير fg، الأمر بيفضل متعلق في الـ background."
         },
         {
-          "id": "d6-bg",
+          "id": "d7-bg",
           "name": "bg",
           "example": "bg",
           "flags": "None",
           "target": "None",
-          "purpose": "يكمل مهمة متوقفة في الخلفية."
+          "purpose": "يكمل مهمة متوقفة في الخلفية.",
+          "proTip": "💡 Ctrl+Z بيوقف الأمر، bg بيكمّله في الخلفية. الترتيب ده مفيد لو نسيت تحط & وعايز الأمر يكمل في الباك."
+        },
+        {
+          "id": "d7-curl-i-https-google-com",
+          "name": "curl",
+          "example": "curl -I https://google.com",
+          "flags": "-I",
+          "target": "https://google.com",
+          "purpose": "يجلب بيانات الـ HTTP Headers فقط لمعاينة حالة السيرفر.",
+          "proTip": "💡 -I بيجيب الـ headers بس من غير الـ body. لو شايف 301/302 يبقى فيه redirect، 200 يبقى تمام، 500 يبقى مشكلة في السيرفر."
+        },
+        {
+          "id": "d7-curl-x-post-h-content-type-application-j",
+          "name": "curl",
+          "example": "curl -X POST -H \"Content-Type: application/json\" -d '{\"key\":\"val\"}' https://api.com/post",
+          "flags": "-X POST -H \"Content-Type: application/json\" -d '{\"key\":\"val\"}'",
+          "target": "https://api.com/post",
+          "purpose": "يرسل طلب POST request تفاعلي مع بيانات بصيغة JSON.",
+          "proTip": "💡 curl أسهل طريقة تتست API من غير Postman. لو عايز تشوف الـ response كامل مع headers، زوّد -v."
+        },
+        {
+          "id": "d7-ping-c-4-google-com",
+          "name": "ping",
+          "example": "ping -c 4 google.com",
+          "flags": "-c 4",
+          "target": "google.com",
+          "purpose": "يفحص سرعة الاستجابة والاتصال بخادم معين لـ 4 مرات فقط.",
+          "proTip": "💡 -c 4 مهم لأن ping على Linux بيفضل شغال لحد ما توقفه! لو الـ ping عالي (>100ms)، فيه مشكلة في الشبكة."
+        },
+        {
+          "id": "d7-lsof-i-3000",
+          "name": "lsof",
+          "example": "lsof -i :3000",
+          "flags": "-i",
+          "target": ":3000",
+          "purpose": "يكشف عن البرنامج أو العملية التي تحجز المنفذ (Port) 3000.",
+          "proTip": "💡 لو شغّلت React أو Express وقالك 'port already in use'، lsof -i :3000 بيقولك مين ماسك البورت وتقدر تعمله kill."
+        },
+        {
+          "id": "d7-export-api-key-secret",
+          "name": "export",
+          "example": "export API_KEY=\"secret\"",
+          "flags": "API_KEY=\"secret\"",
+          "target": "None",
+          "purpose": "يعين متغير بيئة جديد للـ Terminal Session الحالية.",
+          "proTip": "💡 export بيخلي المتغير متاح للـ child processes. لو عايزه دايم، حطه في ~/.zshrc أو ~/.bashrc. متحطش secrets في الكود!"
+        },
+        {
+          "id": "d7-printenv",
+          "name": "printenv",
+          "example": "printenv",
+          "flags": "None",
+          "target": "None",
+          "purpose": "يعرض جميع متغيرات البيئة المعينة حالياً في النظام.",
+          "proTip": "💡 عايز تشوف متغير معين؟ printenv PATH أو echo $PATH. لو عندك مشكلة في برنامج مش لاقيه، غالبًا الـ PATH هو السبب."
         }
       ],
       "practice": [
-        "mkdir day06",
-        "cd day06",
-        "touch script.sh",
-        "ls -l script.sh",
-        "chmod +x script.sh",
-        "ls -l script.sh",
-        "whoami",
-        "id",
-        "df -h"
-      ]
+        "df -h",
+        "du -sh *",
+        "du -sh /tmp",
+        "ps aux | head -5",
+        "ps aux | grep -i 'node\\|python' | head -5",
+        "sleep 300 &",
+        "sleep 200 &",
+        "jobs",
+        "kill %1",
+        "jobs",
+        "fg %2",
+        "curl -I https://httpbin.org/status/200",
+        "curl -I https://httpbin.org/status/404",
+        "ping -c 4 google.com",
+        "lsof -i :3000",
+        "export TEST_VAR=\"hello_from_day07\"",
+        "echo $TEST_VAR",
+        "printenv | grep TEST_VAR"
+      ],
+      "labScenario": {
+        "title": "فحص سيرفر",
+        "description": "هنفحص السيرفر — نشوف المساحة والعمليات الشغالة ونفحص البورتات والاتصال بالشبكة — زي ما بتعمل لما حاجة تقع في Production."
+      }
     },
     {
-      "day": 7,
-      "id": "day07-scripting",
+      "day": 8,
+      "id": "day08-scripting",
       "title": "السكربتات و Cross-platform",
       "titleEn": "Scripting",
       "titleAr": "السكربتات و Cross-platform",
@@ -922,190 +1243,431 @@
       "goal": "تكتب سكربت Bash بسيط يعمل على Linux وmacOS وتتجنب الأخطاء الشائعة.",
       "commands": [
         {
-          "id": "d7-touch-info-sh",
+          "id": "d8-touch-info-sh",
           "name": "touch",
           "example": "touch info.sh",
           "flags": "info.sh",
           "target": "None",
-          "purpose": "ينشئ ملف سكربت."
+          "purpose": "ينشئ ملف سكربت.",
+          "proTip": "💡 خلّي اسم السكربت يوصف اللي بيعمله: backup.sh, deploy.sh, cleanup.sh. متسميش حاجة script.sh — مش هتفتكر بيعمل إيه بعد أسبوع."
         },
         {
-          "id": "d7-chmod-x-info-sh",
+          "id": "d8-chmod-x-info-sh",
           "name": "chmod",
           "example": "chmod +x info.sh",
           "flags": "+x",
           "target": "info.sh",
-          "purpose": "يجعل السكربت قابلًا للتنفيذ."
+          "purpose": "يجعل السكربت قابلًا للتنفيذ.",
+          "proTip": "💡 كل سكربت جديد محتاج chmod +x مرة واحدة بس. لو git clone مشروع ولقيت السكربت مش شغال، ده أول حاجة تعملها."
         },
         {
-          "id": "d7-usr-bin-env-bash",
+          "id": "d8-usr-bin-env-bash",
           "name": "#!/usr/bin/env bash",
           "example": "#!/usr/bin/env bash",
           "flags": "bash",
           "target": "None",
-          "purpose": "Shebang portable لتشغيل Bash من PATH."
+          "purpose": "Shebang portable لتشغيل Bash من PATH.",
+          "proTip": "💡 استخدم env bash بدل /bin/bash لأن bash ممكن يكون في مكان مختلف على كل نظام. ده الـ best practice."
         },
         {
-          "id": "d7-set-euo-pipefail",
+          "id": "d8-set-euo-pipefail",
           "name": "set -euo pipefail",
           "example": "set -euo pipefail",
           "flags": "-euo",
           "target": "pipefail",
-          "purpose": "وضع أمان شائع في سكربتات Bash."
+          "purpose": "وضع أمان شائع في سكربتات Bash.",
+          "proTip": "💡 -e بيوقف عند أي خطأ، -u بيشتكي من متغيرات مش معرّفة، -o pipefail بيمسك أخطاء في pipes. حطه في كل سكربت!"
         },
         {
-          "id": "d7-name-ahmed",
+          "id": "d8-name-ahmed",
           "name": "name",
           "example": "name=\"Ahmed\"",
           "flags": "None",
           "target": "None",
-          "purpose": "تعريف متغير نصي."
+          "purpose": "تعريف متغير نصي.",
+          "proTip": "💡 مفيش مسافات حوالين الـ =! يعني name = \"Ahmed\" غلط. ده من أكتر الأخطاء الشائعة في Bash."
         },
         {
-          "id": "d7-echo-name",
+          "id": "d8-echo-name",
           "name": "echo",
           "example": "echo \"$name\"",
           "flags": "متغير",
           "target": "None",
-          "purpose": "طباعة متغير مع quotes لتجنب مشاكل المسافات."
+          "purpose": "طباعة متغير مع quotes لتجنب مشاكل المسافات.",
+          "proTip": "💡 دايمًا حط المتغيرات بين double quotes. من غيرها لو المتغير فيه مسافة، Bash هيفتكرها أكتر من argument."
         },
         {
-          "id": "d7-echo-0",
+          "id": "d8-echo-0",
           "name": "echo",
           "example": "echo \"$0\"",
           "flags": "متغير",
           "target": "None",
-          "purpose": "يعرض اسم السكربت."
+          "purpose": "يعرض اسم السكربت.",
+          "proTip": "💡 $0 اسم السكربت، $1 أول argument، $# عدد الـ arguments، $@ كل الـ arguments. احفظ دول — هتحتاجهم كتير."
         },
         {
-          "id": "d7-echo-1-guest",
+          "id": "d8-echo-1-guest",
           "name": "echo",
           "example": "echo \"${1:-guest}\"",
           "flags": "${1:-guest}",
           "target": "None",
-          "purpose": "يعرض أول argument أو قيمة افتراضية."
+          "purpose": "يعرض أول argument أو قيمة افتراضية.",
+          "proTip": "💡 ${var:-default} بيرجع default لو المتغير فاضي أو مش موجود. مفيد علشان السكربت يشتغل حتى لو المستخدم منزلش arguments."
         },
         {
-          "id": "d7-if-f-file-txt-then-echo-file-exists-else",
+          "id": "d8-if-f-file-txt-then-echo-file-exists-else",
           "name": "if",
           "example": "if [ -f \"file.txt\" ]; then echo \"File exists\"; else echo \"Not found\"; fi",
           "flags": "None",
           "target": "None",
-          "purpose": "شرط للتحقق من وجود ملف."
+          "purpose": "شرط للتحقق من وجود ملف.",
+          "proTip": "💡 -f ملف موجود، -d مجلد موجود، -z string فاضي، -n string مش فاضي. حطهم في cheat sheet جنبك."
         },
         {
-          "id": "d7-case-uname-s-in-linux-echo-linux-darwin",
+          "id": "d8-case-uname-s-in-linux-echo-linux-darwin",
           "name": "case",
           "example": "case \"$(uname -s)\" in Linux) echo \"Linux\" ;; Darwin) echo \"macOS\" ;; *) echo \"Unknown\" ;; esac",
           "flags": "None",
           "target": "None",
-          "purpose": "تحديد النظام Linux أو macOS."
+          "purpose": "تحديد النظام Linux أو macOS.",
+          "proTip": "💡 case أنظف من if/elif لما يكون عندك أكتر من حالتين. مثالي لسكربتات cross-platform."
         },
         {
-          "id": "d7-for-file-in-txt-do-echo-file-done",
+          "id": "d8-for-file-in-txt-do-echo-file-done",
           "name": "for",
           "example": "for file in *.txt; do echo \"$file\"; done",
           "flags": "None",
           "target": "None",
-          "purpose": "حلقة على ملفات txt."
+          "purpose": "حلقة على ملفات txt.",
+          "proTip": "💡 لو مفيش ملفات txt، الـ glob بيرجع '*.txt' كـ string! حط shopt -s nullglob في أول السكربت لتجنب المشكلة دي."
         },
         {
-          "id": "d7-while-read-r-line-do-echo-line-done-file",
+          "id": "d8-while-read-r-line-do-echo-line-done-file",
           "name": "while",
           "example": "while read -r line; do echo \"$line\"; done < file.txt",
           "flags": "None",
           "target": "None",
-          "purpose": "قراءة ملف سطرًا بسطر."
+          "purpose": "قراءة ملف سطرًا بسطر.",
+          "proTip": "💡 -r بيمنع bash من تفسير الـ backslashes. ده مهم لما تقرأ ملفات فيها paths أو special characters."
         },
         {
-          "id": "d7-log-echo-info",
+          "id": "d8-log-echo-info",
           "name": "log",
           "example": "log() { echo \"[INFO] $*\"; }",
           "flags": "{ echo \"[INFO] $*\";",
           "target": "}",
-          "purpose": "تعريف function بسيطة."
+          "purpose": "تعريف function بسيطة.",
+          "proTip": "💡 اعمل functions لأي كود بتكرره. حتى لو السكربت صغير، functions بتخلي الكود أوضح وأسهل في الـ debugging."
         },
         {
-          "id": "d7-tmpfile-mktemp",
+          "id": "d8-tmpfile-mktemp",
           "name": "mktemp",
           "example": "tmpfile=\"$(mktemp)\"",
           "flags": "None",
           "target": "None",
-          "purpose": "إنشاء ملف مؤقت آمن."
+          "purpose": "إنشاء ملف مؤقت آمن.",
+          "proTip": "💡 mktemp بيعمل ملف باسم فريد في /tmp. دايمًا امسحه في الآخر: trap 'rm -f $tmpfile' EXIT — ده بيشتغل حتى لو السكربت crash."
         },
         {
-          "id": "d7-info-sh",
+          "id": "d8-info-sh",
           "name": "./info.sh",
           "example": "./info.sh",
           "flags": "None",
           "target": "None",
-          "purpose": "تشغيل السكربت من المجلد الحالي."
+          "purpose": "تشغيل السكربت من المجلد الحالي.",
+          "proTip": "💡 الـ ./ مهم لأن المجلد الحالي مش في الـ PATH ديفولت. بدونها، bash هيدور على info.sh في مجلدات الـ PATH بس."
         },
         {
-          "id": "d7-uname-s",
+          "id": "d8-uname-s",
           "name": "uname",
           "example": "uname -s",
           "flags": "-s",
           "target": "None",
-          "purpose": "يعرض اسم النظام: Linux أو Darwin."
+          "purpose": "يعرض اسم النظام: Linux أو Darwin.",
+          "proTip": "💡 في السكربتات، استخدم OS=$(uname -s) وبعدين if/case عليه. كده السكربت بيشتغل على أي نظام."
         },
         {
-          "id": "d7-bash-script-sh",
+          "id": "d8-bash-script-sh",
           "name": "bash",
           "example": "bash script.sh",
           "flags": "script.sh",
           "target": "None",
-          "purpose": "يشغّل السكربت بدون chmod +x."
+          "purpose": "يشغّل السكربت بدون chmod +x.",
+          "proTip": "💡 مفيد في الـ testing السريع. بس للـ production، الأفضل chmod +x و ./script.sh لأن ده بيستخدم الـ shebang."
         },
         {
-          "id": "d7-echo-home",
+          "id": "d8-echo-home",
           "name": "echo",
           "example": "echo $HOME",
           "flags": "$HOME",
           "target": "None",
-          "purpose": "يعرض مسار مجلد البيت من متغير البيئة."
+          "purpose": "يعرض مسار مجلد البيت من متغير البيئة.",
+          "proTip": "💡 $HOME أحسن من ~ في السكربتات لأن ~ مش بتتفسر في كل الحالات (مثلاً جوه double quotes أحيانًا)."
         },
         {
-          "id": "d7-echo",
+          "id": "d8-echo",
           "name": "echo",
           "example": "echo $?",
           "flags": "$?",
           "target": "None",
-          "purpose": "يعرض كود خروج آخر أمر (0 نجاح)."
+          "purpose": "يعرض كود خروج آخر أمر (0 نجاح).",
+          "proTip": "💡 0 = نجاح، أي رقم تاني = فشل. كل أمر بيرجع exit code. لو بتكتب سكربت، exit 1 لما يحصل error."
         },
         {
-          "id": "d7-date-y-m-d-h-m-s",
+          "id": "d8-date-y-m-d-h-m-s",
           "name": "date",
           "example": "date \"+%Y-%m-%d %H:%M:%S\"",
           "flags": "\"+%Y-%m-%d",
           "target": "%H:%M:%S\"",
-          "purpose": "يعرض التاريخ والوقت بتنسيق strftime."
+          "purpose": "يعرض التاريخ والوقت بتنسيق strftime.",
+          "proTip": "💡 استخدم date في أسماء ملفات الـ backup: backup_$(date +%Y%m%d_%H%M%S).tar.gz — كده كل backup ليه اسم فريد."
         },
         {
-          "id": "d7-date-d-tomorrow-y-m-d",
+          "id": "d8-date-d-tomorrow-y-m-d",
           "name": "date",
           "example": "date -d \"tomorrow\" \"+%Y-%m-%d\"",
           "flags": "-d \"tomorrow\"",
           "target": "\"+%Y-%m-%d\"",
-          "purpose": "على Linux (GNU): حساب تاريخ نسبي مثل الغد."
+          "purpose": "على Linux (GNU): حساب تاريخ نسبي مثل الغد.",
+          "proTip": "💡 ده بيشتغل بس على Linux (GNU date). لو السكربت cross-platform، لازم تعمل check على uname الأول."
         },
         {
-          "id": "d7-date-v-1d-y-m-d",
+          "id": "d8-date-v-1d-y-m-d",
           "name": "date",
           "example": "date -v+1d \"+%Y-%m-%d\"",
           "flags": "-v+1d",
           "target": "\"+%Y-%m-%d\"",
-          "purpose": "على macOS (BSD): إضافة يوم للتاريخ الحالي."
+          "purpose": "على macOS (BSD): إضافة يوم للتاريخ الحالي.",
+          "proTip": "💡 macOS بيستخدم BSD date مش GNU. الفروق دي من أكتر حاجات بتوجع الراس في cross-platform scripting."
         }
       ],
       "practice": [
-        "mkdir day07",
-        "cd day07",
-        "touch info.sh",
-        "chmod +x info.sh",
-        "printf '#!/usr/bin/env bash\\nset -euo pipefail\\necho \"User: $(whoami)\"\\necho \"OS: $(uname -s)\"\\necho \"Current directory: $(pwd)\"\\n' > info.sh",
-        "./info.sh"
-      ]
+        "mkdir day08-backup",
+        "cd day08-backup",
+        "mkdir -p project/src project/docs",
+        "touch project/src/app.js project/src/utils.js project/docs/README.md",
+        "printf '#!/usr/bin/env bash\\nset -euo pipefail\\n\\n# Backup Script\\nBACKUP_DIR=\"./backups\"\\nSOURCE_DIR=\"./project\"\\nDATE=$(date \"+%%Y%%m%%d_%%H%%M%%S\")\\nBACKUP_NAME=\"backup_${DATE}.tar.gz\"\\n\\nmkdir -p \"$BACKUP_DIR\"\\n\\nif [ -d \"$SOURCE_DIR\" ]; then\\n  tar -czvf \"${BACKUP_DIR}/${BACKUP_NAME}\" \"$SOURCE_DIR\"\\n  echo \"[SUCCESS] Backup created: ${BACKUP_DIR}/${BACKUP_NAME}\"\\n  echo \"Backup size: $(du -sh ${BACKUP_DIR}/${BACKUP_NAME} | cut -f1)\"\\nelse\\n  echo \"[ERROR] Source directory not found: $SOURCE_DIR\"\\n  exit 1\\nfi\\n\\necho \"All backups:\"\\nls -lh \"$BACKUP_DIR\"\\n' > backup.sh",
+        "chmod +x backup.sh",
+        "cat backup.sh",
+        "./backup.sh",
+        "ls -lh backups/",
+        "echo $?",
+        "echo $HOME",
+        "date \"+%Y-%m-%d %H:%M:%S\""
+      ],
+      "labScenario": {
+        "title": "كتابة سكربت Backup",
+        "description": "هنكتب سكربت backup تلقائي بيحفظ ملفات المشروع في أرشيف مضغوط بالتاريخ — ونتعلم المتغيرات والشروط والحلقات."
+      }
+    },
+    {
+      "day": 9,
+      "id": "day09-git",
+      "title": "أساسيات Git",
+      "titleEn": "Git Essentials",
+      "titleAr": "أساسيات Git",
+      "slug": "git",
+      "goal": "تنشئ repo وتتحكم في الـ versions وتعمل branching وmerging وتتعامل مع remote.",
+      "commands": [
+        {
+          "id": "d9-git-init",
+          "name": "git init",
+          "example": "git init",
+          "flags": "None",
+          "target": "None",
+          "purpose": "ينشئ Git repository جديد في المجلد الحالي.",
+          "proTip": "💡 git init بيعمل مجلد .git مخفي. لو عايز تشيل git من مشروع، امسح المجلد ده: rm -rf .git. بس خلي بالك ده بيمسح كل الـ history."
+        },
+        {
+          "id": "d9-git-clone-url",
+          "name": "git clone",
+          "example": "git clone URL",
+          "flags": "URL",
+          "target": "None",
+          "purpose": "ينسخ repository موجود من الإنترنت على جهازك.",
+          "proTip": "💡 git clone بيعمل مجلد جديد باسم الـ repo. لو عايز تسميه حاجة تانية: git clone URL my-folder-name."
+        },
+        {
+          "id": "d9-git-status",
+          "name": "git status",
+          "example": "git status",
+          "flags": "None",
+          "target": "None",
+          "purpose": "يعرض حالة الملفات — إيه اللي اتغير وإيه المستني للـ commit.",
+          "proTip": "💡 git status هو أكتر أمر هتستخدمه. شغّله قبل وبعد أي عملية علشان تفهم إيه اللي حصل. جرّب git status -s للنسخة المختصرة."
+        },
+        {
+          "id": "d9-git-add",
+          "name": "git add",
+          "example": "git add .",
+          "flags": ".",
+          "target": "None",
+          "purpose": "يضيف كل التغييرات للـ staging area.",
+          "proTip": "💡 git add . بيضيف كل حاجة — حتى ملفات مش عايزها! اعمل .gitignore الأول علشان تتجنب إضافة node_modules أو .env."
+        },
+        {
+          "id": "d9-git-add-file-txt",
+          "name": "git add",
+          "example": "git add file.txt",
+          "flags": "file.txt",
+          "target": "None",
+          "purpose": "يضيف ملف معين للـ staging area.",
+          "proTip": "💡 لو عايز تضيف أجزاء معينة من ملف بس، استخدم git add -p file.txt — ده بيسألك على كل تغيير لوحده."
+        },
+        {
+          "id": "d9-git-commit-m-message",
+          "name": "git commit",
+          "example": "git commit -m \"message\"",
+          "flags": "-m \"message\"",
+          "target": "None",
+          "purpose": "يحفظ التغييرات في الـ history مع رسالة توضيحية.",
+          "proTip": "💡 اكتب رسالة واضحة: 'Fix login validation bug' مش 'update'. لو محتاج تفاصيل: git commit (من غير -m) بيفتحلك editor."
+        },
+        {
+          "id": "d9-git-log-oneline",
+          "name": "git log",
+          "example": "git log --oneline",
+          "flags": "--oneline",
+          "target": "None",
+          "purpose": "يعرض سجل الـ commits بشكل مختصر.",
+          "proTip": "💡 عايز تشوف الـ branches كمان؟ git log --oneline --graph --all بيرسملك شجرة الـ commits — مفيد جدًا لفهم الـ history."
+        },
+        {
+          "id": "d9-git-diff",
+          "name": "git diff",
+          "example": "git diff",
+          "flags": "None",
+          "target": "None",
+          "purpose": "يعرض التغييرات اللي لسه ما اتضافتش للـ staging.",
+          "proTip": "💡 git diff بيوري التغييرات مش الـ staged. لو عايز تشوف اللي staged: git diff --staged. الاتنين مهمين قبل الـ commit."
+        },
+        {
+          "id": "d9-git-branch",
+          "name": "git branch",
+          "example": "git branch",
+          "flags": "None",
+          "target": "None",
+          "purpose": "يعرض كل الـ branches ويحدد الحالي.",
+          "proTip": "💡 الـ * بيقولك أنت على أنهي branch. لو عايز تشوف الـ remote branches كمان: git branch -a."
+        },
+        {
+          "id": "d9-git-branch-feature",
+          "name": "git branch",
+          "example": "git branch feature",
+          "flags": "feature",
+          "target": "None",
+          "purpose": "ينشئ branch جديد بدون ما يتنقل ليه.",
+          "proTip": "💡 ده بيعمل الـ branch بس ومش بيتنقلّك عليه. لو عايز تعمل وتتنقل في خطوة واحدة، استخدم git checkout -b."
+        },
+        {
+          "id": "d9-git-checkout-b-feature",
+          "name": "git checkout",
+          "example": "git checkout -b feature",
+          "flags": "-b feature",
+          "target": "None",
+          "purpose": "ينشئ branch جديد وينتقل ليه فورًا.",
+          "proTip": "💡 ده أكتر أمر بتستخدمه في الشغل اليومي. سمّي الـ branch باسم واضح: feature/login, fix/navbar-bug, hotfix/crash."
+        },
+        {
+          "id": "d9-git-merge-feature",
+          "name": "git merge",
+          "example": "git merge feature",
+          "flags": "feature",
+          "target": "None",
+          "purpose": "يدمج branch في الـ branch الحالي.",
+          "proTip": "💡 دايمًا اتأكد إنك على الـ branch الصح (غالبًا main) قبل ما تعمل merge. لو حصل conflict، git بيقولك الملفات المتأثرة."
+        },
+        {
+          "id": "d9-git-pull-origin-main",
+          "name": "git pull",
+          "example": "git pull origin main",
+          "flags": "origin main",
+          "target": "None",
+          "purpose": "يجلب أحدث التغييرات من الـ remote ويدمجها.",
+          "proTip": "💡 اعمل git pull قبل ما تبدأ شغل جديد كل يوم! ده بيمنع conflicts كتير. جرّب git pull --rebase لـ history أنظف."
+        },
+        {
+          "id": "d9-git-push-origin-main",
+          "name": "git push",
+          "example": "git push origin main",
+          "flags": "origin main",
+          "target": "None",
+          "purpose": "يرفع التغييرات المحلية للـ remote repository.",
+          "proTip": "💡 أول مرة تعمل push لـ branch جديد: git push -u origin feature-name. الـ -u بيعمل tracking علشان بعدها تكتب git push بس."
+        },
+        {
+          "id": "d9-git-stash",
+          "name": "git stash",
+          "example": "git stash",
+          "flags": "None",
+          "target": "None",
+          "purpose": "يخبّي التغييرات مؤقتًا بدون commit.",
+          "proTip": "💡 محتاج تغير branch بس عندك تغييرات مش جاهزة للـ commit؟ git stash بيشيلهم، روح الـ branch التاني، وارجع stash pop."
+        },
+        {
+          "id": "d9-git-stash-pop",
+          "name": "git stash pop",
+          "example": "git stash pop",
+          "flags": "pop",
+          "target": "None",
+          "purpose": "يرجّع آخر تغييرات مخبّية من الـ stash.",
+          "proTip": "💡 pop بيرجع التغييرات ويمسحها من الـ stash. لو عايز تحتفظ بيها في الـ stash، استخدم git stash apply بدل pop."
+        },
+        {
+          "id": "d9-git-remote-v",
+          "name": "git remote",
+          "example": "git remote -v",
+          "flags": "-v",
+          "target": "None",
+          "purpose": "يعرض الـ remote repositories المتصلة بالمشروع.",
+          "proTip": "💡 لو عايز تغير الـ remote URL (مثلاً من HTTPS لـ SSH): git remote set-url origin git@github.com:user/repo.git."
+        },
+        {
+          "id": "d9-git-reset-head-1",
+          "name": "git reset",
+          "example": "git reset HEAD~1",
+          "flags": "HEAD~1",
+          "target": "None",
+          "purpose": "يلغي آخر commit مع الاحتفاظ بالتغييرات.",
+          "proTip": "💡 HEAD~1 يعني 'ارجع commit واحد'. التغييرات بتفضل موجودة كـ unstaged. لو عايز تمسح كل حاجة: git reset --hard HEAD~1 (⚠️ خطر!)."
+        }
+      ],
+      "practice": [
+        "mkdir my-git-project",
+        "cd my-git-project",
+        "git init",
+        "git status",
+        "echo '# My Project' > README.md",
+        "echo 'node_modules/' > .gitignore",
+        "echo '.env' >> .gitignore",
+        "git add .",
+        "git status",
+        "git commit -m 'Initial commit: add README and .gitignore'",
+        "git log --oneline",
+        "mkdir src",
+        "echo 'console.log(\"Hello World\")' > src/index.js",
+        "git add src/index.js",
+        "git commit -m 'Add main entry point'",
+        "git checkout -b feature/add-utils",
+        "echo 'export const add = (a, b) => a + b;' > src/utils.js",
+        "git add src/utils.js",
+        "git commit -m 'Add utility functions'",
+        "git log --oneline --all --graph",
+        "git checkout main",
+        "git merge feature/add-utils",
+        "git log --oneline",
+        "git branch",
+        "echo 'work in progress...' > src/temp.js",
+        "git stash",
+        "git status",
+        "git stash pop",
+        "git diff",
+        "git remote -v"
+      ],
+      "labScenario": {
+        "title": "مشروع Git من الصفر",
+        "description": "هنعمل مشروع جديد ونتتبع التغييرات بـ Git — من أول commit لحد branching و merging — زي أي مشروع حقيقي في شغلك."
+      }
     }
   ]
 }

@@ -70,6 +70,7 @@ function normalizeCommandEntry(raw, dayId) {
     desc: purpose,
     example,
     platform: raw.platform,
+    proTip: raw.proTip ?? raw.pro_tip ?? null,
   };
 }
 
@@ -112,6 +113,11 @@ export function getCommandsForDay(dayId) {
 export function getLabStepsForDay(dayId) {
   const raw = getRawDay(dayId);
   return raw?.practice ?? [];
+}
+
+export function getLabScenarioForDay(dayId) {
+  const raw = getRawDay(dayId);
+  return raw?.labScenario ?? null;
 }
 
 export function getCurriculumMeta() {

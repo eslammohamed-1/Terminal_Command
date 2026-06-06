@@ -15,14 +15,17 @@ function saveAll(data) {
 
 export function getDayProgress(dayId) {
   const all = loadAll();
-  return all[dayId] ?? {
+  const defaultProgress = {
     quizDone: false,
     practiceDone: false,
     quizScore: 0,
     quizTotal: 0,
     practiceScore: 0,
     practiceTotal: 0,
+    labDone: false,
+    labCompletedSteps: [],
   };
+  return all[dayId] ? { ...defaultProgress, ...all[dayId] } : defaultProgress;
 }
 
 export function saveQuizResult(dayId, score, total) {
@@ -47,17 +50,29 @@ export function savePracticeResult(dayId, score, total) {
   saveAll(all);
 }
 
+export function saveLabResult(dayId, completedSteps, isDone) {
+  const all = loadAll();
+  all[dayId] = {
+    ...getDayProgress(dayId),
+    labDone: isDone,
+    labCompletedSteps: completedSteps,
+  };
+  saveAll(all);
+}
+
 export function getDayCompletionPercent(dayId) {
   const p = getDayProgress(dayId);
   let done = 0;
+  let total = 3; // Quiz, Practice, Lab
   if (p.quizDone) done += 1;
   if (p.practiceDone) done += 1;
-  return Math.round((done / 2) * 100);
+  if (p.labDone) done += 1;
+  return Math.round((done / total) * 100);
 }
 
 export function isDayFullyComplete(dayId) {
   const p = getDayProgress(dayId);
-  return p.quizDone && p.practiceDone;
+  return p.quizDone && p.practiceDone && p.labDone;
 }
 
 export function getAllProgress() {

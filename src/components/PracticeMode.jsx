@@ -6,9 +6,11 @@ import { Button } from "@/components/ui/button";
 import DifficultyBadge from "@/components/DifficultyBadge";
 import { buildPracticeDeck, matchesPracticeAnswer } from "@/lib/quiz";
 import { getQuestionsMeta } from "@/lib/questionsLoader";
-import { savePracticeResult } from "@/lib/progress";
+import { useProgress } from "@/contexts/ProgressContext";
+import { playSuccessSound, playErrorSound } from "@/lib/audio";
 
-export default function PracticeMode({ dayId, onBackToDay, onStartQuiz, onProgressUpdate }) {
+export default function PracticeMode({ dayId, onBackToDay, onStartQuiz }) {
+  const { savePractice } = useProgress();
   const { uiCopy } = getQuestionsMeta();
   const [deckSeed, setDeckSeed] = useState(0);
   const [practiceIndex, setPracticeIndex] = useState(0);
@@ -33,10 +35,12 @@ export default function PracticeMode({ dayId, onBackToDay, onStartQuiz, onProgre
     const ok = matchesPracticeAnswer(typedAnswer, currentPractice);
     setPracticeChecked(true);
     if (ok) {
+      playSuccessSound();
       setCorrectCount((c) => c + 1);
       setPointsEarned((p) => p + (currentPractice.points ?? 1));
       setStreak((s) => s + 1);
     } else {
+      playErrorSound();
       setStreak(0);
     }
   };
@@ -137,6 +141,8 @@ export default function PracticeMode({ dayId, onBackToDay, onStartQuiz, onProgre
           </AnimatePresence>
           <div className="space-y-3">
             <input
+              id="cmd-input"
+              aria-label={uiCopy.typing_instruction}
               dir="ltr"
               value={typedAnswer}
               onChange={(e) => setTypedAnswer(e.target.value)}
@@ -191,8 +197,7 @@ export default function PracticeMode({ dayId, onBackToDay, onStartQuiz, onProgre
                     setPracticeChecked(false);
                     setShowHint(false);
                   } else {
-                    savePracticeResult(dayId, correctCount, practiceDeck.length);
-                    onProgressUpdate?.();
+                    savePractice(dayId, correctCount, practiceDeck.length);
                     setFinished(true);
                   }
                 }}

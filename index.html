@@ -1,11 +1,51 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>لعبة تعلّم أوامر التيرمنال</title>
+    
+    <!-- SEO & Metadata -->
+    <title>تعلّم أوامر التيرمنال | دورة تفاعلية في 7 أيام</title>
+    <meta name="description" content="طريقة تفاعلية وممتعة لتعلم واجهة سطر الأوامر (CLI) وأوامر التيرمنال في 7 أيام مع اختبارات ومعمل تفاعلي." />
+    <meta name="keywords" content="تيرمنال, سطر الأوامر, لينكس, CLI, Bash, Terminal Commands, تعلم البرمجة" />
+    <meta name="author" content="Antigravity" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph (Facebook / LinkedIn) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="تعلّم أوامر التيرمنال | دورة تفاعلية في 7 أيام" />
+    <meta property="og:description" content="طريقة تفاعلية وممتعة لتعلم واجهة سطر الأوامر (CLI) وأوامر التيرمنال في 7 أيام مع اختبارات ومعمل تفاعلي." />
+    <meta property="og:image" content="/og-image.png" />
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="تعلّم أوامر التيرمنال | دورة تفاعلية في 7 أيام" />
+    <meta name="twitter:description" content="طريقة تفاعلية وممتعة لتعلم واجهة سطر الأوامر (CLI) وأوامر التيرمنال في 7 أيام مع اختبارات ومعمل تفاعلي." />
+    
+    <!-- SVG Favicon (Terminal Icon) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%230f172a%22/><text y=%2265%22 x=%2210%22 font-size=%2260%22 font-family=%22monospace%22 fill=%22%2310b981%22 font-weight=%22bold%22>&gt;_</text></svg>" />
+
+    <!-- Google Fonts: Cairo (Arabic), Outfit (English UI), JetBrains Mono (Code) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;family=Outfit:wght@100..900&amp;display=swap" rel="stylesheet" />
+    
+    <!-- PWA Manifest & Theme Color -->
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#10b981" />
+    
+    <!-- PWA Service Worker Registration -->
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("sw.js")
+            .then(reg => console.log("Service Worker registered successfully!", reg))
+            .catch(err => console.log("Service Worker registration failed", err));
+        });
+      }
+    </script>
   </head>
-  <body>
+  <body class="bg-slate-950 text-slate-100 antialiased selection:bg-emerald-500/30 selection:text-emerald-300">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

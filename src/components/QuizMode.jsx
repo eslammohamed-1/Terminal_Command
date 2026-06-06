@@ -6,9 +6,11 @@ import { Button } from "@/components/ui/button";
 import DifficultyBadge from "@/components/DifficultyBadge";
 import { buildQuizDeck } from "@/lib/quiz";
 import { getQuestionsMeta } from "@/lib/questionsLoader";
-import { saveQuizResult } from "@/lib/progress";
+import { useProgress } from "@/contexts/ProgressContext";
+import { playSuccessSound, playErrorSound } from "@/lib/audio";
 
-export default function QuizMode({ dayId, onBackToDay, onStartPractice, onProgressUpdate }) {
+export default function QuizMode({ dayId, onBackToDay, onStartPractice }) {
+  const { saveQuiz } = useProgress();
   const { uiCopy } = getQuestionsMeta();
   const [deckSeed, setDeckSeed] = useState(0);
   const [questionIndex, setQuestionIndex] = useState(0);
@@ -29,10 +31,12 @@ export default function QuizMode({ dayId, onBackToDay, onStartPractice, onProgre
     if (isAnswered || !current) return;
     setSelected(option);
     if (option === current.answer) {
+      playSuccessSound();
       setCorrectCount((c) => c + 1);
       setPointsEarned((p) => p + (current.points ?? 1));
       setStreak((s) => s + 1);
     } else {
+      playErrorSound();
       setStreak(0);
     }
   };
@@ -182,8 +186,7 @@ export default function QuizMode({ dayId, onBackToDay, onStartPractice, onProgre
                   setSelected(null);
                   setShowHint(false);
                 } else {
-                  saveQuizResult(dayId, correctCount, quizDeck.length);
-                  onProgressUpdate?.();
+                  saveQuiz(dayId, correctCount, quizDeck.length);
                   setFinished(true);
                 }
               }}

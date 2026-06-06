@@ -1,5 +1,10 @@
 import TerminalCommandsGame from "./TerminalCommandsGame.jsx";
+import { ProgressProvider } from "@/contexts/ProgressContext";
 
 export default function App() {
-  return <TerminalCommandsGame />;
+  return (
+    <ProgressProvider>
+      <TerminalCommandsGame />
+    </ProgressProvider>
+  );
 }
