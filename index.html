@@ -34,16 +34,6 @@
     <link rel="manifest" href="manifest.json" />
     <meta name="theme-color" content="#10b981" />
     
-    <!-- PWA Service Worker Registration -->
-    <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker.register("sw.js")
-            .then(reg => console.log("Service Worker registered successfully!", reg))
-            .catch(err => console.log("Service Worker registration failed", err));
-        });
-      }
-    </script>
   </head>
   <body class="bg-slate-950 text-slate-100 antialiased selection:bg-emerald-500/30 selection:text-emerald-300">
     <div id="root"></div>
