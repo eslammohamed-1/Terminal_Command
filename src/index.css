@@ -71,3 +71,46 @@
     linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
 }
+
+/* Terminal emulator & output preview */
+.terminal-panel {
+  background: #020617;
+  font-family: var(--font-mono);
+}
+
+.terminal-output {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: #86efac;
+  background: rgba(2, 6, 23, 0.9);
+  border: 1px solid rgba(30, 41, 59, 0.8);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+}
+
+.terminal-input-line {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.use-case-box {
+  color: rgb(186 230 253 / 0.9);
+}
+
+.mistake-box {
+  color: rgb(253 230 138 / 0.9);
+}
+
+.related-chip {
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  color: rgb(165 180 252);
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.related-chip:hover {
+  background: rgba(99, 102, 241, 0.2);
+  border-color: rgba(99, 102, 241, 0.45);
+}

@@ -71,7 +71,17 @@ function normalizeCommandEntry(raw, dayId) {
     example,
     platform: raw.platform,
     proTip: raw.proTip ?? raw.pro_tip ?? null,
+    useCase: raw.useCase ?? null,
+    mistakes: Array.isArray(raw.mistakes) ? raw.mistakes : null,
+    outputPreview: raw.outputPreview ?? null,
+    related: Array.isArray(raw.related) ? raw.related : null,
   };
+}
+
+export function getAllCommands() {
+  return curriculum.days.flatMap((day) =>
+    day.commands.map((c) => normalizeCommandEntry(c, day.day))
+  );
 }
 
 function mapDay(day) {

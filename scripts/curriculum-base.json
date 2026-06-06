@@ -16,46 +16,109 @@
         {
           "command": "pwd",
           "purpose": "يعرض المسار الحالي.",
+          "useCase": "لما تضيع بين المجلدات، أو قبل ما تحفظ مسار في سكربت، أو تتأكد إنك في المكان الصح قبل تنفيذ أمر خطير.",
+          "mistakes": [
+            "نسيان إن pwd بيطبع المسار الكامل مش اسم المجلد بس",
+            "الخلط بين pwd و cd بدون arguments"
+          ],
+          "outputPreview": "/home/user/projects/my-app",
+          "related": ["cd", "ls -la"],
           "proTip": "💡 لو ضعت في المجلدات، pwd هو أول حاجة تكتبها. في السكربتات، استخدم $(pwd) علشان تحفظ المسار الحالي في متغير."
         },
         {
           "command": "ls",
           "purpose": "يعرض الملفات والمجلدات في المكان الحالي.",
+          "useCase": "نظرة سريعة على محتويات مجلد قبل ما تشتغل فيه — أول أمر بتكتبه لما تدخل مكان جديد.",
+          "mistakes": [
+            "الاعتماد على ls لوحده ومش شايف الملفات المخفية",
+            "نسيان إن ls بيرتب أبجديًا مش حسب التاريخ"
+          ],
+          "outputPreview": "README.md\npackage.json\nsrc\nnode_modules",
+          "related": ["ls -la", "ls -lah", "tree"],
           "proTip": "💡 ls لوحده كويس للنظرة السريعة، بس في الشغل الحقيقي هتلاقي نفسك دايمًا بتستخدم ls -la علشان تشوف كل حاجة."
         },
         {
           "command": "ls -l",
           "purpose": "يعرض الملفات بتفاصيل مثل الصلاحيات والمالك والحجم.",
+          "useCase": "لما تحتاج تشوف الصلاحيات، المالك، أو حجم الملفات — مثلاً قبل chmod أو لما ملف مش بيتنفذ.",
+          "mistakes": [
+            "قراءة الصلاحيات غلط — rwx للمالك، المجموعة، والباقي",
+            "نسيان إن المجلدات بتبدأ بـ d مش -"
+          ],
+          "outputPreview": "total 8\n-rw-r--r--  1 user group  1234 Jan 15 10:30 file.txt\ndrwxr-xr-x  2 user group  4096 Jan 15 09:00 src",
+          "related": ["ls -lah", "chmod", "stat"],
           "proTip": "💡 أول عمود في ls -l بيقولك الصلاحيات (rwx). لو شايف - مكان x يبقى الملف مش executable — هتحتاج chmod +x."
         },
         {
           "command": "ls -a",
           "purpose": "يعرض الملفات المخفية أيضًا.",
+          "useCase": "لما تدور على ملفات config زي .env أو .gitignore اللي مش بتظهر في ls العادي.",
+          "mistakes": [
+            "نسيان إن . و .. بيظهروا دايمًا مع -a",
+            "الخلط بين -a (all) و -A (almost all)"
+          ],
+          "outputPreview": ".\n..\n.env\n.gitignore\nsrc\nREADME.md",
+          "related": ["ls -la", "ls"],
           "proTip": "💡 ملفات زي .env و .gitignore مش بتظهر غير بـ -a. لو عندك مشكلة في config ومش لاقي الملف، جرّب ls -a الأول."
         },
         {
           "command": "ls -lah",
           "purpose": "عرض تفصيلي شامل مع أحجام مقروءة.",
+          "useCase": "الأمر الأكثر استخدامًا في الشغل اليومي — يجمع التفاصيل + الملفات المخفية + أحجام مقروءة.",
+          "mistakes": [
+            "نسيان ترتيب الـ flags — ls -lah و ls -lha نفس النتيجة",
+            "الخلط بين -h (human) و -H (help في بعض الأوامر)"
+          ],
+          "outputPreview": "total 12K\ndrwxr-xr-x  5 user group  160 Jan 15 10:30 .\n-rw-r--r--  1 user group  2.1K Jan 15 09:20 .env\n-rw-r--r--  1 user group  4.5K Jan 15 08:00 README.md",
+          "related": ["ls -l", "du -sh", "df -h"],
           "proTip": "💡 الـ h بتحوّل الأحجام من bytes لـ KB/MB/GB. الأمر ده هو صاحبك لما تدور على ملف كبير بياكل المساحة."
         },
         {
           "command": "cd folder-name",
           "purpose": "يدخل إلى مجلد معين.",
+          "useCase": "الانتقال لمجلد مشروع، أو مجلد فرعي علشان تشتغل فيه.",
+          "mistakes": [
+            "نسيان quotes لو اسم المجلد فيه مسافات: cd \"My Folder\"",
+            "كتابة cd folder-name/ بـ slash زيادة — مش ضروري"
+          ],
+          "outputPreview": "",
+          "related": ["pwd", "cd ..", "ls"],
           "proTip": "💡 استخدم Tab للـ auto-complete علشان متغلطش في اسم المجلد. لو اسم المجلد فيه مسافات، حطه بين quotes."
         },
         {
           "command": "cd ..",
           "purpose": "يرجع للمجلد الأب.",
+          "useCase": "لما تدخل مجلد فرعي وتعوز ترجع مستوى واحد — أو تبني مسار نسبي زي cd ../other-folder.",
+          "mistakes": [
+            "الخلط بين .. (مجلد أب) و . (المجلد الحالي)",
+            "محاولة cd .. من الجذر / — هيفضل في /"
+          ],
+          "outputPreview": "",
+          "related": ["cd", "pwd", "cd ~"],
           "proTip": "💡 ممكن تعمل cd ../.. علشان تطلع مستويين مرة واحدة بدل ما تكتب cd .. مرتين."
         },
         {
           "command": "cd ~",
           "purpose": "يرجع لمجلد المستخدم الرئيسي.",
+          "useCase": "الرجوع للـ home directory من أي مكان — سريع ومفيد في السكربتات.",
+          "mistakes": [
+            "الخلط بين ~ و / (الجذر)",
+            "نسيان إن cd لوحده بيرجع للـ home كمان"
+          ],
+          "outputPreview": "",
+          "related": ["cd", "pwd", "echo $HOME"],
           "proTip": "💡 ~ هو shortcut لـ /Users/username على macOS أو /home/username على Linux. كتابة cd لوحدها بدون أي حاجة بتعمل نفس الحاجة."
         },
         {
           "command": "cd -",
           "purpose": "يرجع للمسار السابق.",
+          "useCase": "لما تتنقل بين مجلدين كتير — زي الذهاب لـ /var/log والرجوع لمكانك بسرعة.",
+          "mistakes": [
+            "توقع إنه يعمل toggle أكتر من مرتين — بيرجع للمسار السابق بس",
+            "نسيان إن cd - بيطبع المسار الجديد على الشاشة"
+          ],
+          "outputPreview": "/home/user/projects/my-app",
+          "related": ["cd", "pwd"],
           "proTip": "💡 زي Alt+Tab بس للمجلدات! لو بتتنقل بين مجلدين كتير، cd - أسرع من إنك تكتب المسار كل مرة."
         },
         {
@@ -107,6 +170,26 @@
           "command": "brew install wget",
           "purpose": "يثبت برنامجًا على macOS عبر Homebrew.",
           "proTip": "💡 قبل ما تثبت، جرّب brew search اسم_البرنامج علشان تتأكد إنه موجود. وبعد التثبيت، brew list بيعرضلك كل اللي مثبت."
+        },
+        {
+          "command": "sudo apt install wget",
+          "purpose": "يثبت برنامجًا على Ubuntu/Debian Linux.",
+          "proTip": "💡 apt هو brew بتاع Linux. قبل التثبيت جرّب sudo apt update علشان تحدث قائمة الحزم. apt search اسم_البرنامج للبحث."
+        },
+        {
+          "command": "history",
+          "purpose": "يعرض تاريخ الأوامر اللي كتبتها.",
+          "proTip": "💡 اضغط السهم لفوق ↑ في التيرمنال يرجع آخر أمر. !! بتعيد آخر أمر، !$ بتجيب آخر argument، و !n بتنفذ الأمر رقم n من التاريخ."
+        },
+        {
+          "command": "clear",
+          "purpose": "ينظف شاشة التيرمنال.",
+          "proTip": "💡 Ctrl+L نفسها clear بس أسرع. لو عايز تمسح حقيقي (مش تسكر الفيو بس)، جرّب reset — بس ده هيمسح الـ history بتاع التيرمنال نفسه."
+        },
+        {
+          "command": "tldr ls",
+          "purpose": "يعرض ملخص عملي لاستخدام الأمر مع أمثلة شائعة.",
+          "proTip": "💡 tldr أسرع وأبسط من man. بيوريك الاستخدامات الشائعة بس. لو مش منصب: brew install tldr (macOS) أو npm install -g tldr."
         }
       ],
       "practice": [
@@ -125,7 +208,9 @@
         "command -v node",
         "type ls",
         "brew --version",
-        "cd -"
+        "cd -",
+        "clear",
+        "history"
       ]
     },
     {
@@ -212,6 +297,16 @@
           "command": "rm -rf folder",
           "purpose": "يحذف مجلدًا ومحتواه بالقوة. تحذير: حذف نهائي — تأكد من المسار.",
           "proTip": "💡 ⚠️ أخطر أمر في اللسته! متعملش rm -rf / أبدًا. دايمًا echo الأمر الأول أو استخدم rm -ri علشان يسأل على كل ملف."
+        },
+        {
+          "command": "nano file.txt",
+          "purpose": "يفتح محرر نصوص بسيط داخل التيرمنال.",
+          "proTip": "💡 Ctrl+O لحفظ الملف، Ctrl+X للخروج، Ctrl+K لقص سطر، Ctrl+U للصق. في أسفل الشاشة شايف ^ يعني Ctrl. nano أسهل من vim للمبتدئين!"
+        },
+        {
+          "command": "tree -L 2",
+          "purpose": "يعرض شجرة المجلدات والملفات بشكل مرئي.",
+          "proTip": "💡 tree أبسط وأوضح من ls -R. -L 2 بيحدد عمق 2 مستويات بس. لو مش منصب: brew install tree (macOS) أو apt install tree (Linux)."
         }
       ],
       "practice": [
@@ -226,11 +321,13 @@
         "touch public/index.html public/assets/images/.gitkeep",
         "touch .gitignore README.md package.json",
         "ls -R",
+        "tree -L 2",
         "cp src/App.js src/App.backup.js",
         "mv src/App.backup.js lib/",
         "rm lib/App.backup.js",
         "stat src/index.js",
-        "file src/index.js"
+        "file src/index.js",
+        "nano README.md"
       ]
     },
     {
@@ -246,6 +343,13 @@
         {
           "command": "cat file.txt",
           "purpose": "يعرض محتوى ملف صغير.",
+          "useCase": "قراءة ملفات config صغيرة، أو دمج محتوى ملفات، أو التأكد من محتوى ملف بعد إنشائه.",
+          "mistakes": [
+            "استخدام cat على ملفات كبيرة — بيغرق التيرمنال",
+            "الخلط بين cat file.txt و cat > file.txt (الثاني بيكتب مش يقرأ)"
+          ],
+          "outputPreview": "Hello World\nThis is line 2\nEnd of file",
+          "related": ["less", "head", "tail", "grep"],
           "proTip": "💡 cat كويس بس للملفات الصغيرة. لو الملف كبير هيغرق التيرمنال — استخدم less أو head بدله."
         },
         {
@@ -281,21 +385,49 @@
         {
           "command": "grep \"ERROR\" app.log",
           "purpose": "يبحث عن كلمة ERROR داخل ملف.",
+          "useCase": "البحث عن أخطاء في ملفات log — أول خطوة في أي debugging على السيرفر.",
+          "mistakes": [
+            "نسيان quotes حوالين الكلمة لو فيها مسافات أو أحرف خاصة",
+            "البحث case-sensitive — Error مش هيتلاقى بـ ERROR"
+          ],
+          "outputPreview": "2024-01-15 08:02:33 ERROR Connection timeout\n2024-01-15 08:10:22 ERROR OutOfMemoryError",
+          "related": ["grep -i", "grep -n", "grep -R", "tail -f"],
           "proTip": "💡 grep بيرجع كل سطر فيه الكلمة. لو عايز تشوف سطرين قبل وبعد كل نتيجة، استخدم grep -B2 -A2."
         },
         {
           "command": "grep -i \"error\" app.log",
           "purpose": "يبحث بدون حساسية لحالة الأحرف.",
+          "useCase": "لما مش متأكد إزاي البرنامج بيكتب الكلمة — Error أو ERROR أو error.",
+          "mistakes": [
+            "استخدام -i مع regex patterns معقدة — ممكن يغير السلوك",
+            "نسيان إن -i بيبطئ البحث شوية في الملفات الكبيرة"
+          ],
+          "outputPreview": "2024-01-15 08:02:33 ERROR Connection timeout\n2024-01-15 08:02:34 error Retry failed",
+          "related": ["grep", "grep -n", "ripgrep"],
           "proTip": "💡 بعض البرامج بتكتب Error وبعضها ERROR. الـ -i بيجيبلك الاتنين — استخدمه ديفولت لو مش متأكد من الحالة."
         },
         {
           "command": "grep -n \"ERROR\" app.log",
           "purpose": "يعرض نتائج البحث مع أرقام السطور.",
+          "useCase": "لما تلاقي خطأ وتعوز تروح لسطره بالظبط في الـ editor أو IDE.",
+          "mistakes": [
+            "نسيان إن الأرقام بتبدأ من 1 مش 0",
+            "الخلط بين -n (line numbers) و -c (count)"
+          ],
+          "outputPreview": "4:2024-01-15 08:02:33 ERROR Connection timeout\n8:2024-01-15 08:10:22 ERROR OutOfMemoryError",
+          "related": ["grep", "less", "sed"],
           "proTip": "💡 رقم السطر بيساعدك تروح للمكان بالظبط في الـ editor. جرّب vim +42 app.log علشان تفتح الملف على سطر 42."
         },
         {
           "command": "grep -R \"TODO\" .",
           "purpose": "يبحث داخل المجلدات بشكل recursive.",
+          "useCase": "البحث في مشروع كامل عن TODO comments، أو أي نص في كل الملفات.",
+          "mistakes": [
+            "نسيان استبعاد node_modules — البحث بيبقى بطيء جدًا",
+            "الخلط بين -R (recursive) و -r (في بعض الأنظمة القديمة)"
+          ],
+          "outputPreview": "./src/App.js:15:// TODO: fix validation\n./src/utils.js:42:// TODO: refactor",
+          "related": ["grep -Rni", "find", "ripgrep"],
           "proTip": "💡 لو بتدور على TODO في مشروع كبير، grep -Rni أسرع من أي IDE. جرّب ripgrep (rg) لو عايز سرعة خارقة."
         },
         {
@@ -426,6 +558,11 @@
           "command": "echo \"a b c\" | tr -d ' '",
           "purpose": "يحذف المسافات.",
           "proTip": "💡 tr -d بيحذف أي character تحدده. مثلاً tr -d '\\n' بيشيل كل الـ newlines ويخلي كل حاجة في سطر واحد."
+        },
+        {
+          "command": "find . -name '*.tmp' | xargs rm",
+          "purpose": "يحوّل stdin إلى arguments لأمر آخر.",
+          "proTip": "💡 xargs بيخلي الأوامر اللي مش بتقرأ من pipe تشتغل مع pipes. لو الملفات فيها مسافات، استخدم -print0 مع xargs -0."
         }
       ],
       "practice": [
@@ -459,16 +596,37 @@
         {
           "command": "find . -name \"*.log\"",
           "purpose": "يبحث عن ملفات أو مجلدات تنتهي بـ .log.",
+          "useCase": "البحث عن ملفات log في مشروع أو سيرفر — قبل التنظيف أو التحليل.",
+          "mistakes": [
+            "نسيان الـ quotes حوالين *.log — الـ shell ممكن يوسّعها غلط",
+            "عدم استبعاد node_modules في المشاريع الكبيرة"
+          ],
+          "outputPreview": "./logs/app.log\n./var/error.log\n./tmp/debug.log",
+          "related": ["find -type f", "grep", "xargs"],
           "proTip": "💡 find بيدور في كل المجلدات الفرعية. لو المشروع كبير وفيه node_modules، استخدم -not -path '*/node_modules/*' علشان تتجنبه."
         },
         {
           "command": "find . -iname \"readme.md\"",
           "purpose": "بحث بدون حساسية لحالة الأحرف.",
+          "useCase": "لما مش متأكد من كتابة اسم الملف — README.md أو readme.md أو Readme.md.",
+          "mistakes": [
+            "استخدام -name بدل -iname على Linux case-sensitive",
+            "نسيان إن -iname بيبطئ البحث شوية"
+          ],
+          "outputPreview": "./README.md\n./docs/readme.md",
+          "related": ["find -name", "ls -a"],
           "proTip": "💡 في macOS الـ filesystem مش case-sensitive ديفولت، بس على Linux لازم تستخدم -iname لو مش متأكد من الـ casing."
         },
         {
           "command": "find . -type f",
           "purpose": "يعرض الملفات فقط.",
+          "useCase": "عد الملفات في مشروع، أو إيجاد كل الملفات قبل معالجتها بـ xargs.",
+          "mistakes": [
+            "نسيان -type f وبيظهر المجلدات كمان",
+            "عدم تحديد -maxdepth في المشاريع الكبيرة"
+          ],
+          "outputPreview": "./src/index.js\n./src/App.js\n./package.json\n./README.md",
+          "related": ["find -type d", "wc -l", "xargs"],
           "proTip": "💡 عايز تعرف عدد الملفات في مشروعك؟ find . -type f | wc -l. لو كتير أوي، ممكن يكون فيه مجلد dependencies كبير."
         },
         {
@@ -745,6 +903,26 @@
           "command": "printenv",
           "purpose": "يعرض جميع متغيرات البيئة المعينة حالياً في النظام.",
           "proTip": "💡 عايز تشوف متغير معين؟ printenv PATH أو echo $PATH. لو عندك مشكلة في برنامج مش لاقيه، غالبًا الـ PATH هو السبب."
+        },
+        {
+          "command": "htop",
+          "purpose": "يراقب النظام بواجهة تفاعلية أحسن من top.",
+          "proTip": "💡 brew install htop (macOS) أو apt install htop (Linux). فيه ألوان وF3 للبحث وF9 لإيقاف عملية. أسرع وأوضح من top بكتير!"
+        },
+        {
+          "command": "alias ll='ls -la'",
+          "purpose": "ينشئ اختصارًا (alias) لأمر طويل.",
+          "proTip": "💡 حط الـ aliases المفضلة في ~/.zshrc أو ~/.bashrc. أمثلة: alias gst='git status'، alias gco='git checkout'. هتوفر وقت كتير!"
+        },
+        {
+          "command": "ssh user@server.com",
+          "purpose": "يدخل على سيرفر بعيد بشكل آمن.",
+          "proTip": "💡 ssh -i ~/.ssh/key.pem user@server لو عندك مفتاح SSH. ssh -p 2222 لو البورت مختلف. مهم جداً لـ DevOps و remote servers."
+        },
+        {
+          "command": "scp file.txt user@server:/path/",
+          "purpose": "ينسخ ملفات بين جهازك وسيرفر بعيد.",
+          "proTip": "💡 scp -r folder/ user@server:/path/ للمجلدات. scp user@server:/path/file.txt . للتحميل من السيرفر. بديل rsync أسرع للملفات الكبيرة."
         }
       ],
       "practice": [
@@ -763,6 +941,8 @@
         "curl -I https://httpbin.org/status/404",
         "ping -c 4 google.com",
         "lsof -i :3000",
+        "alias ll='ls -la'",
+        "ll",
         "export TEST_VAR=\"hello_from_day07\"",
         "echo $TEST_VAR",
         "printenv | grep TEST_VAR"
@@ -917,46 +1097,109 @@
         {
           "command": "git init",
           "purpose": "ينشئ Git repository جديد في المجلد الحالي.",
+          "useCase": "بداية أي مشروع جديد — أول خطوة قبل أول commit.",
+          "mistakes": [
+            "عمل git init في مجلد فيه ملفات كتير من غير .gitignore",
+            "عمل git init جوه repo موجود — بيعمل nested repo"
+          ],
+          "outputPreview": "Initialized empty Git repository in /home/user/project/.git/",
+          "related": ["git add", "git status", "git commit"],
           "proTip": "💡 git init بيعمل مجلد .git مخفي. لو عايز تشيل git من مشروع، امسح المجلد ده: rm -rf .git. بس خلي بالك ده بيمسح كل الـ history."
         },
         {
           "command": "git clone URL",
           "purpose": "ينسخ repository موجود من الإنترنت على جهازك.",
+          "useCase": "لما تبدأ شغل على مشروع موجود — من GitHub أو GitLab.",
+          "mistakes": [
+            "نسيان الـ URL الصح — HTTPS vs SSH",
+            "الخلط بين clone (أول مرة) و pull (تحديث)"
+          ],
+          "outputPreview": "Cloning into 'project'...\nremote: Counting objects: 100, done.\nReceiving objects: 100% (100/100), done.",
+          "related": ["git pull", "git remote", "git status"],
           "proTip": "💡 git clone بيعمل مجلد جديد باسم الـ repo. لو عايز تسميه حاجة تانية: git clone URL my-folder-name."
         },
         {
           "command": "git status",
           "purpose": "يعرض حالة الملفات — إيه اللي اتغير وإيه المستني للـ commit.",
+          "useCase": "قبل وبعد أي عملية git — علشان تفهم إيه اللي حصل في المشروع.",
+          "mistakes": [
+            "تجاهل الملفات untracked — محتاجة git add الأول",
+            "نسيان إن git status مش بيوري التغييرات جوه الملفات — استخدم git diff"
+          ],
+          "outputPreview": "On branch main\nChanges not staged for commit:\n  modified:   src/App.js\nUntracked files:\n  new-file.txt",
+          "related": ["git add", "git diff", "git log"],
           "proTip": "💡 git status هو أكتر أمر هتستخدمه. شغّله قبل وبعد أي عملية علشان تفهم إيه اللي حصل. جرّب git status -s للنسخة المختصرة."
         },
         {
           "command": "git add .",
           "purpose": "يضيف كل التغييرات للـ staging area.",
+          "useCase": "لما تخلص شغل وتعوز تجهز كل التغييرات لـ commit واحد.",
+          "mistakes": [
+            "إضافة ملفات حساسة زي .env — اعمل .gitignore الأول",
+            "git add . في مجلد فرعي بيضيف بس الملفات في المجلد ده"
+          ],
+          "outputPreview": "",
+          "related": ["git commit", "git status", "git diff"],
           "proTip": "💡 git add . بيضيف كل حاجة — حتى ملفات مش عايزها! اعمل .gitignore الأول علشان تتجنب إضافة node_modules أو .env."
         },
         {
           "command": "git add file.txt",
           "purpose": "يضيف ملف معين للـ staging area.",
+          "useCase": "لما تعوز تضيف ملف واحد بس من عدة ملفات متغيرة.",
+          "mistakes": [
+            "نسيان git add بعد التعديل — git commit مش هيشمل التغييرات",
+            "الخلط بين git add و git commit"
+          ],
+          "outputPreview": "",
+          "related": ["git add .", "git commit", "git status"],
           "proTip": "💡 لو عايز تضيف أجزاء معينة من ملف بس، استخدم git add -p file.txt — ده بيسألك على كل تغيير لوحده."
         },
         {
           "command": "git commit -m \"message\"",
           "purpose": "يحفظ التغييرات في الـ history مع رسالة توضيحية.",
+          "useCase": "بعد ما تخلص feature أو fix — حفظ نقطة في الـ history.",
+          "mistakes": [
+            "رسائل commit غامضة زي 'fix' أو 'update'",
+            "نسيان git add قبل commit — 'nothing to commit'"
+          ],
+          "outputPreview": "[main a1b2c3d] Add user authentication\n 2 files changed, 45 insertions(+), 3 deletions(-)",
+          "related": ["git add", "git log", "git push"],
           "proTip": "💡 اكتب رسالة واضحة: 'Fix login validation bug' مش 'update'. لو محتاج تفاصيل: git commit (من غير -m) بيفتحلك editor."
         },
         {
           "command": "git log --oneline",
           "purpose": "يعرض سجل الـ commits بشكل مختصر.",
+          "useCase": "مراجعة تاريخ المشروع — إيه اللي اتعمل ومتى.",
+          "mistakes": [
+            "نسيان --oneline والـ output بيبقى طويل جدًا",
+            "الخلط بين git log و git reflog"
+          ],
+          "outputPreview": "a1b2c3d Add user authentication\ne4f5g6h Fix login bug\nh7i8j9k Initial commit",
+          "related": ["git diff", "git status", "git branch"],
           "proTip": "💡 عايز تشوف الـ branches كمان؟ git log --oneline --graph --all بيرسملك شجرة الـ commits — مفيد جدًا لفهم الـ history."
         },
         {
           "command": "git diff",
           "purpose": "يعرض التغييرات اللي لسه ما اتضافتش للـ staging.",
+          "useCase": "قبل git add — علشان تراجع إيه اللي اتغير بالظبط.",
+          "mistakes": [
+            "توقع إنه يوري staged changes — استخدم git diff --staged",
+            "الخلط بين diff و log"
+          ],
+          "outputPreview": "diff --git a/src/App.js b/src/App.js\n--- a/src/App.js\n+++ b/src/App.js\n@@ -1,3 +1,4 @@\n+import Auth from './Auth'",
+          "related": ["git add", "git status", "git commit"],
           "proTip": "💡 git diff بيوري التغييرات مش الـ staged. لو عايز تشوف اللي staged: git diff --staged. الاتنين مهمين قبل الـ commit."
         },
         {
           "command": "git branch",
           "purpose": "يعرض كل الـ branches ويحدد الحالي.",
+          "useCase": "معرفة إنت على أنهي branch قبل ما تعمل تغييرات أو merge.",
+          "mistakes": [
+            "نسيان إن * بتوضح الـ branch الحالي",
+            "الخلط بين local branches و remote branches"
+          ],
+          "outputPreview": "* main\n  feature/login\n  develop",
+          "related": ["git checkout", "git merge", "git log"],
           "proTip": "💡 الـ * بيقولك أنت على أنهي branch. لو عايز تشوف الـ remote branches كمان: git branch -a."
         },
         {

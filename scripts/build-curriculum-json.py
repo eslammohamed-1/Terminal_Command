@@ -133,6 +133,9 @@ def enrich_command(day: int, cmd: dict, idx: int) -> dict:
         # Preserve proTip
         if "proTip" in cmd:
             out["proTip"] = cmd["proTip"]
+        for field in ("useCase", "mistakes", "outputPreview", "related"):
+            if field in cmd:
+                out[field] = cmd[field]
         return out
 
     legacy = cmd.get("command", "")
@@ -162,6 +165,11 @@ def enrich_command(day: int, cmd: dict, idx: int) -> dict:
     # Preserve platform if present
     if "platform" in cmd:
         result["platform"] = cmd["platform"]
+
+    # Preserve rich learning fields
+    for field in ("useCase", "mistakes", "outputPreview", "related"):
+        if field in cmd:
+            result[field] = cmd[field]
 
     return result
 
